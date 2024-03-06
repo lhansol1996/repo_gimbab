@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codeGroupXdmList</title>
+</head>
+<body>
+    codeGroupView.html
+    
+    <span th:text="${item.seq}"></span>
+    <span th:text="${item.name}"></span>
+    
+    <a th:href="@{/codeGroupXdmList}">11</a>
+    <a href="/codeGroupXdmList">11</a>
+    <br>
+    <a th:href="@{/codeGroupViewUpdate(seq=${item.seq},name=${item.name})}">수정</a>
+    
+     <form method="post" action="/codeGroupUelete" >
+    	<input type="hidden" name="seq" th:value="${item.seq}"/>
+     	<input type="hidden" name="name" th:value="${item.name}"/>
+	    <input type="hidden" name="delNy" th:value="${item.delNy}"/>
+	    <button type="submit">uelete삭제</button>
+	</form>
+	
+	<form method="post" action="/codeGroupDelete" >
+    	<input type="hidden" name="seq" th:value="${item.seq}"/>
+     	<input type="hidden" name="name" th:value="${item.name}"/>
+	    <input type="hidden" name="delNy" th:value="${item.delNy}"/>
+	    <button type="submit">드랍삭제</button>
+	</form>
+</body>
+</html>
+

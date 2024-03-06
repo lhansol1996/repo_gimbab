@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.codegroup.CodeGroupDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
+
+    <select id="selectList" resultMap="resultMapObj">
+         select 
+			a.seq
+			,a.name
+			,(select count(*)
+			from code aa 
+			where 1=1 
+				and	aa.codeGroup_seq = a.seq) as xcount
+			,a.delNy
+			,a.regDate
+			,a.modDate
+			from
+			codeGroup a
+			
+    </select>
+    
+     <select id="selectOne" resultMap="resultMapObj">
+         select 
+			seq
+			,name
+		from
+			codeGroup  
+		where 1=1 
+			and	seq= #{seq}	
+    </select>
+	  
+	  <insert id="insert">
+		insert into codeGroup(
+			name 
+			,delNy
+		)values(
+		#{name}
+		,0
+		);
+	  <selectKey resultType="String" keyProperty="seq" order="AFTER">
+	  	select last_insert_id()
+	  </selectKey>
+	  </insert>
+	  
+	  
+	  <update id="update">
+		UPDATE codeGroup
+		SET
+		name=#{name}
+		where 1=1
+			and seq=#{seq}
+	  </update>
+	  
+	  <update id="uelete">
+		UPDATE codeGroup
+		SET
+		delNy=1
+		where 1=1
+			and seq=#{seq}
+	  </update>
+	  
+	  <delete id="delete">
+	  Delete from codeGroup
+	  	where 1=1
+	  		and seq=#{seq}
+	  </delete>
+	  
+	  
+</mapper>

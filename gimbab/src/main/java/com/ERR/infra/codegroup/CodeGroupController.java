@@ -12,7 +12,7 @@ public class CodeGroupController {
 //	CodeGroupService codeGroupService;
 	CodeGroupService service;
 	
-	@RequestMapping(value="/codeGroupXdmList")
+	@RequestMapping(value="/tables")
 	public String codeGroupXdmList(Model model) throws Exception {
 		
 //		List <CodeGroupDto> codeGroupDtos = codeGroupService.selectList();	
@@ -21,7 +21,7 @@ public class CodeGroupController {
 		model.addAttribute("list", service.selectList());
 			
 		
-		return "codeGroupXdmList";
+		return "xdm/tables";
 	}
 	
 	
@@ -88,4 +88,10 @@ public class CodeGroupController {
 		return "redirect:/codeGroupXdmList";
 	}
 	
+	@RequestMapping(value="/")
+	public String test() throws Exception{
+		
+		
+		return "xdm/tables";
+	}
 }

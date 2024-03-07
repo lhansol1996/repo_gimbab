@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Admin Templates - Dashboard Templates - Venus Admin Template</title>
+
+		<!-- Meta -->
+		<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
+		<meta name="author" content="Bootstrap Gallery" />
+		<link rel="canonical" href="https://www.bootstrap.gallery/">
+		<meta property="og:url" content="https://www.bootstrap.gallery">
+		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+		<meta property="og:type" content="Website">
+		<meta property="og:site_name" content="Bootstrap Gallery">
+		<link rel="shortcut icon" href="assets/images/favicon.svg" />
+
+		<!-- *************
+			************ CSS Files *************
+		************* -->
+		<link rel="stylesheet" href="assets/fonts/bootstrap/bootstrap-icons.css" />
+		<link rel="stylesheet" href="assets/css/main.min.css" />
+
+		<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+
+		<!-- Scrollbar CSS -->
+		<link rel="stylesheet" href="assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+	</head>
+
+	<body>
+
+		<!-- Page wrapper start -->
+		<div class="page-wrapper">
+
+			<!-- Main container start -->
+			<div class="main-container">
+
+				<!-- Sidebar wrapper start -->
+				<nav id="sidebar" class="sidebar-wrapper">
+
+					<!-- App brand starts -->
+					<div class="app-brand p-4">
+						<a href="index.html">
+							<img src="assets/images/logo.svg" class="logo" alt="Bootstrap Gallery" />
+						</a>
+					</div>
+					<!-- App brand ends -->
+
+					<!-- Sidebar profile actions starts -->
+					<ul class="profile-actions d-lg-flex d-none">
+						<li>
+							<a href="settings.html" data-bs-toggle="tooltip" data-bs-placement="top"
+								data-bs-custom-class="custom-tooltip-success" data-bs-title="Settings">
+								<i class="bi bi-gear fs-4"></i>
+							</a>
+						</li>
+						<li>
+							<a href="profile.html" data-bs-toggle="tooltip" data-bs-placement="top"
+								data-bs-custom-class="custom-tooltip-success" data-bs-title="Profile">
+								<i class="bi bi-person-square fs-4"></i>
+							</a>
+						</li>
+						<li>
+							<a href="events.html" data-bs-toggle="tooltip" data-bs-placement="top"
+								data-bs-custom-class="custom-tooltip-success" data-bs-title="Notifications">
+								<i class="bi bi-bell fs-4"></i>
+								<span class="count-label"></span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="bottom"
+								data-bs-custom-class="custom-tooltip-warning" data-bs-title="Skype">
+								<i class="bi bi-skype fs-4"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="bottom"
+								data-bs-custom-class="custom-tooltip-danger" data-bs-title="Dribbble">
+								<i class="bi bi-dribbble fs-4"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="bottom"
+								data-bs-custom-class="custom-tooltip-info" data-bs-title="Twitter">
+								<i class="bi bi-twitter fs-4"></i>
+							</a>
+						</li>
+					</ul>
+					<!-- Sidebar profile actions ends -->
+
+					<!-- Sidebar menu starts -->
+					<div class="sidebarMenuScroll">
+						<ul class="sidebar-menu">
+							<li>
+								<a href="index.html">
+									<i class="bi bi-pie-chart"></i>
+									<span class="menu-text">Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="analytics.html">
+									<i class="bi bi-bar-chart-line"></i>
+									<span class="menu-text">Analytics</span>
+								</a>
+							</li>
+							<li>
+								<a href="widgets.html">
+									<i class="bi bi-box"></i>
+									<span class="menu-text">Widgets</span>
+								</a>
+							</li>
+							<li>
+								<a href="calendar.html">
+									<i class="bi bi-calendar2"></i>
+									<span class="menu-text">Calendar</span>
+								</a>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-stickies"></i>
+									<span class="menu-text">Components</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="accordions.html">Accordions</a>
+									</li>
+									<li>
+										<a href="alerts.html">Alerts</a>
+									</li>
+									<li>
+										<a href="buttons.html">Buttons</a>
+									</li>
+									<li>
+										<a href="badges.html">Badges</a>
+									</li>
+									<li>
+										<a href="carousel.html">Carousel</a>
+									</li>
+									<li>
+										<a href="list-items.html">List Items</a>
+									</li>
+									<li>
+										<a href="progress.html">Progress Bars</a>
+									</li>
+									<li>
+										<a href="popovers.html">Popovers</a>
+									</li>
+									<li>
+										<a href="tooltips.html">Tooltips</a>
+									</li>
+								</ul>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-ui-checks-grid"></i>
+									<span class="menu-text">Forms</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="form-inputs.html">Form Inputs</a>
+									</li>
+									<li>
+										<a href="form-checkbox-radio.html">Checkbox &amp; Radio</a>
+									</li>
+									<li>
+										<a href="form-file-input.html">File Input</a>
+									</li>
+									<li>
+										<a href="form-validations.html">Validations</a>
+									</li>
+									<li>
+										<a href="date-time-pickers.html">Date Time Pickers</a>
+									</li>
+									<li>
+										<a href="form-layouts.html">Form Layouts</a>
+									</li>
+								</ul>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-window-sidebar"></i>
+									<span class="menu-text">Invoices</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="create-invoice.html">Create Invoice</a>
+									</li>
+									<li>
+										<a href="view-invoice.html">View Invoice</a>
+									</li>
+									<li>
+										<a href="invoice-list.html">Invoice List</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="tables.html">
+									<i class="bi bi-border-all"></i>
+									<span class="menu-text">Tables</span>
+								</a>
+							</li>
+							<li>
+								<a href="events.html">
+									<i class="bi bi-calendar4"></i>
+									<span class="menu-text">Events</span>
+								</a>
+							</li>
+							<li>
+								<a href="subscribers.html">
+									<i class="bi bi-check-circle"></i>
+									<span class="menu-text">Subscribers</span>
+								</a>
+							</li>
+							<li>
+								<a href="contacts.html">
+									<i class="bi bi-wallet2"></i>
+									<span class="menu-text">Contacts</span>
+								</a>
+							</li>
+							<li>
+								<a href="settings.html">
+									<i class="bi bi-gear"></i>
+									<span class="menu-text">Settings</span>
+								</a>
+							</li>
+							<li>
+								<a href="profile.html">
+									<i class="bi bi-person-square"></i>
+									<span class="menu-text">Profile</span>
+								</a>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-code-square"></i>
+									<span class="menu-text">Cards</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="cards.html">Cards</a>
+									</li>
+									<li>
+										<a href="advanced-cards.html">Advanced Cards</a>
+									</li>
+								</ul>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-pie-chart"></i>
+									<span class="menu-text">Graphs</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="apex.html">Apex</a>
+									</li>
+									<li>
+										<a href="morris.html">Morris</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="maps.html">
+									<i class="bi bi-pin-map"></i>
+									<span class="menu-text">Maps</span>
+								</a>
+							</li>
+							<li>
+								<a href="tabs.html">
+									<i class="bi bi-slash-square"></i>
+									<span class="menu-text">Tabs</span>
+								</a>
+							</li>
+							<li>
+								<a href="modals.html">
+									<i class="bi bi-terminal"></i>
+									<span class="menu-text">Modals</span>
+								</a>
+							</li>
+							<li>
+								<a href="icons.html">
+									<i class="bi bi-textarea"></i>
+									<span class="menu-text">Icons</span>
+								</a>
+							</li>
+							<li class="active current-page">
+								<a href="typography.html">
+									<i class="bi bi-explicit"></i>
+									<span class="menu-text">Typography</span>
+								</a>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-upc-scan"></i>
+									<span class="menu-text">Login/Signup</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="login.html">Login</a>
+									</li>
+									<li>
+										<a href="signup.html">Signup</a>
+									</li>
+									<li>
+										<a href="forgot-password.html">Forgot Password</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="page-not-found.html">
+									<i class="bi bi-exclamation-diamond"></i>
+									<span class="menu-text">Page Not Found</span>
+								</a>
+							</li>
+							<li>
+								<a href="maintenance.html">
+									<i class="bi bi-exclamation-octagon"></i>
+									<span class="menu-text">Maintenance</span>
+								</a>
+							</li>
+							<li class="treeview">
+								<a href="#!">
+									<i class="bi bi-code-square"></i>
+									<span class="menu-text">Multi Level</span>
+								</a>
+								<ul class="treeview-menu">
+									<li>
+										<a href="#!">Level One Link</a>
+									</li>
+									<li>
+										<a href="#!">
+											Level One Menu
+											<i class="bi bi-chevron-right"></i>
+										</a>
+										<ul class="treeview-menu">
+											<li>
+												<a href="#!">Level Two Link</a>
+											</li>
+											<li>
+												<a href="#!">Level Two Menu
+													<i class="bi bi-chevron-right"></i>
+												</a>
+												<ul class="treeview-menu">
+													<li>
+														<a href="#!">Level Three Link</a>
+													</li>
+													<li>
+														<a href="#!">Level Three Link</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="#!">Level One Link</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!-- Sidebar menu ends -->
+
+				</nav>
+				<!-- Sidebar wrapper end -->
+
+				<!-- App container starts -->
+				<div class="app-container">
+
+					<!-- App header starts -->
+					<div class="app-header d-flex align-items-center">
+
+						<!-- Toggle buttons start -->
+						<div class="d-flex">
+							<button class="btn btn-outline-primary me-2 toggle-sidebar" id="toggle-sidebar">
+								<i class="bi bi-text-indent-left fs-5"></i>
+							</button>
+							<button class="btn btn-outline-primary me-2 pin-sidebar" id="pin-sidebar">
+								<i class="bi bi-text-indent-left fs-5"></i>
+							</button>
+						</div>
+						<!-- Toggle buttons end -->
+
+
+						<!-- App brand sm start -->
+						<div class="app-brand-sm d-md-none d-sm-block">
+							<a href="index.html">
+								<img src="assets/images/logo-sm.svg" class="logo" alt="Bootstrap Gallery">
+							</a>
+						</div>
+						<!-- App brand sm end -->
+
+						<!-- App header actions start -->
+						<div class="header-actions">
+							<div class="search-container d-lg-block d-none me-2">
+								<!-- Search container start -->
+								<input type="text" class="form-control" placeholder="Search" />
+								<i class="bi bi-search"></i>
+								<!-- Search container end -->
+							</div>
+							<div class="dropdown ms-2">
+								<a class="dropdown-toggle d-flex p-2 border rounded-2" href="#!" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									<i class="bi bi-grid fs-4 lh-1"></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end shadow">
+									<!-- Row start -->
+									<div class="d-flex gap-2 m-2">
+										<a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+											<img src="assets/images/brand-behance.svg" class="img-2x" alt="Admin Themes" />
+										</a>
+										<a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+											<img src="assets/images/brand-gatsby.svg" class="img-2x" alt="Admin Themes" />
+										</a>
+										<a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+											<img src="assets/images/brand-google.svg" class="img-2x" alt="Admin Themes" />
+										</a>
+										<a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+											<img src="assets/images/brand-bitcoin.svg" class="img-2x" alt="Admin Themes" />
+										</a>
+										<a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+											<img src="assets/images/brand-dribbble.svg" class="img-2x" alt="Admin Themes" />
+										</a>
+									</div>
+									<!-- Row end -->
+								</div>
+							</div>
+							<div class="dropdown ms-2">
+								<a class="dropdown-toggle d-flex p-2 border rounded-2" href="#!" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									<i class="bi bi-bell fs-4 lh-1"></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end shadow">
+									<div class="dropdown-item">
+										<div class="d-flex py-2 border-bottom">
+											<img src="assets/images/user.png" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<div class="m-0">
+												<h6 class="mb-1">Sophie Michiels</h6>
+												<p class="mb-2">Membership has been ended.</p>
+												<p class="small m-0 text-secondary">Today, 07:30pm</p>
+											</div>
+										</div>
+									</div>
+									<div class="dropdown-item">
+										<div class="d-flex py-2 border-bottom">
+											<img src="assets/images/user2.png" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<div class="m-0">
+												<h6 class="mb-1">Sophie Michiels</h6>
+												<p class="mb-2">Congratulate, James for new job.</p>
+												<p class="small m-0 text-secondary">Today, 08:00pm</p>
+											</div>
+										</div>
+									</div>
+									<div class="dropdown-item">
+										<div class="d-flex py-2">
+											<img src="assets/images/user1.png" class="img-4x me-3 rounded-3" alt="Admin Theme" />
+											<div class="m-0">
+												<h6 class="mb-1">Sophie Michiels</h6>
+												<p class="mb-2">Lewis added new schedule release.</p>
+												<p class="small m-0 text-secondary">Today, 09:30pm</p>
+											</div>
+										</div>
+									</div>
+									<div class="d-grid m-3">
+										<a href="javascript:void(0)" class="btn btn-primary">View all</a>
+									</div>
+								</div>
+							</div>
+							<div class="dropdown ms-2">
+								<a href="settings.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+									data-bs-custom-class="custom-tooltip-info" data-bs-title="Settings"
+									class="d-flex p-2 border rounded-2">
+									<i class="bi bi-gear fs-4 lh-1"></i>
+								</a>
+							</div>
+							<div class="dropdown ms-3">
+								<a id="userSettings" class="dropdown-toggle d-flex py-2 align-items-center ps-3 border-start" href="#!"
+									role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<span class="d-none d-md-block me-2">Michelle Max</span>
+									<img src="assets/images/user.png" class="rounded-circle img-3x" alt="Bootstrap Gallery" />
+								</a>
+								<div class="dropdown-menu dropdown-menu-end shadow">
+									<a class="dropdown-item d-flex align-items-center" href="profile.html"><i
+											class="bi bi-person fs-4 me-2"></i>Profile</a>
+									<a class="dropdown-item d-flex align-items-center" href="settings.html"><i
+											class="bi bi-gear fs-4 me-2"></i>Account Settings</a>
+									<a class="dropdown-item d-flex align-items-center" href="login.html"><i
+											class="bi bi-escape fs-4 me-2"></i>Logout</a>
+								</div>
+							</div>
+						</div>
+						<!-- App header actions end -->
+
+					</div>
+					<!-- App header ends -->
+
+					<!-- App hero header starts -->
+					<div class="app-hero-header d-flex align-items-start">
+
+						<!-- Breadcrumb start -->
+						<ol class="breadcrumb d-none d-lg-flex align-items-center">
+							<li class="breadcrumb-item">
+								<i class="bi bi-house"></i>
+								<a href="index.html">Home</a>
+							</li>
+							<li class="breadcrumb-item" aria-current="page">Typography</li>
+						</ol>
+						<!-- Breadcrumb end -->
+
+						<!-- Sales stats start -->
+						<div class="ms-auto d-flex flex-row">
+							<div class="d-flex flex-column me-5 text-end">
+								<p class="m-0 text-secondary">Sales</p>
+								<h3 class="m-0">5,58,560</h3>
+							</div>
+							<div class="d-flex flex-column text-end">
+								<p class="m-0 text-secondary">Income</p>
+								<h3 class="m-0">$65,80,990</h3>
+							</div>
+						</div>
+						<!-- Sales stats end -->
+					</div>
+					<!-- App Hero header ends -->
+					<!-- App body starts -->
+					<div class="app-body">
+						<div class="row justify-content-center">
+							<div class="col-xxl-9 col-xl-12">
+								<!-- Row start -->
+								<div class="row">
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="p-5 text-center">
+													<h1 class="display-5 text-success">Centered Hero</h1>
+													<div class="col-lg-6 mx-auto">
+														<p class="lead mb-4">
+															Quickly design and customize responsive
+															mobile-first sites with Bootstrap, the world’s
+															most popular front-end open source toolkit,
+															featuring Sass variables and mixins, responsive
+															grid system, extensive prebuilt components, and
+															powerful JavaScript plugins.
+														</p>
+														<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+															<button type="button" class="btn btn-success btn-lg">
+																Button
+															</button>
+															<button type="button" class="btn btn-secondary btn-lg">
+																Button
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Row end -->
+
+								<!-- Row start -->
+								<div class="row">
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="p-5 text-center">
+													<h1 class="display-5 text-success">
+														Centered Screenshot
+													</h1>
+													<div class="col-lg-6 mx-auto">
+														<p class="lead mb-4">
+															Quickly design and customize responsive
+															mobile-first sites with Bootstrap, the world’s
+															most popular front-end open source toolkit,
+															featuring Sass variables and mixins, responsive
+															grid system, extensive prebuilt components, and
+															powerful JavaScript plugins.
+														</p>
+														<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+															<button type="button" class="btn btn-success btn-lg">
+																Button
+															</button>
+															<button type="button" class="btn btn-secondary btn-lg">
+																Button
+															</button>
+														</div>
+														<div class="mt-4">
+															<img src="assets/images/flowers/img10.jpg" class="img-fluid rounded-5 mb-4"
+																alt="Admin Dashboards" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Row end -->
+
+								<!-- Row start -->
+								<div class="row">
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="p-5">
+													<div class="row flex-lg-row-reverse align-items-center">
+														<div class="col-10 col-sm-8 col-lg-6">
+															<div class="mt-4">
+																<img src="assets/images/flowers/img5.jpg" class="d-block mx-lg-auto img-fluid rounded-5"
+																	alt="Admin Dashboards" />
+															</div>
+														</div>
+														<div class="col-lg-6">
+															<h1 class="display-5">
+																Responsive left-aligned hero with image
+															</h1>
+															<p class="lead mb-4">
+																Quickly design and customize responsive
+																mobile-first sites with Bootstrap, the world’s
+																most popular front-end open source toolkit,
+																featuring Sass variables and mixins, responsive
+																grid system, extensive prebuilt components, and
+																powerful JavaScript plugins.
+															</p>
+															<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+																<button type="button" class="btn btn-danger btn-lg">
+																	Button
+																</button>
+																<button type="button" class="btn btn-info btn-lg">
+																	Button
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Row end -->
+
+								<!-- Row start -->
+								<div class="row">
+									<div class="col-lg-6 col-sm-12 col-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<h1 class="mb-3">h1. Admin Heading</h1>
+												<h2 class="mb-3">h2. Admin Heading</h2>
+												<h3 class="mb-3">h3. Admin Heading</h3>
+												<h4 class="mb-3">h4. Admin Heading</h4>
+												<h5 class="mb-3">h5. Admin Heading</h5>
+												<h6 class="mb-3">h6. Admin Heading</h6>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-12 col-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<h1 class="mb-3 text-dark">h1. Admin Heading</h1>
+												<h2 class="mb-3 text-secondary">h2. Admin Heading</h2>
+												<h3 class="mb-3 text-danger">h3. Admin Heading</h3>
+												<h4 class="mb-3 text-info">h4. Admin Heading</h4>
+												<h5 class="mb-3 text-success">h5. Admin Heading</h5>
+												<h6 class="mb-3 text-warning">h6. Admin Heading</h6>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-12 col-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<h1 class="display-1">Display 1</h1>
+												<h1 class="display-2">Display 2</h1>
+												<h1 class="display-3">Display 3</h1>
+												<h1 class="display-4">Display 4</h1>
+												<h1 class="display-5">Display 5</h1>
+												<h1 class="display-6">Display 6</h1>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-12 col-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<h1 class="display-1 text-dark">Display 1</h1>
+												<h1 class="display-2 text-secondary">Display 2</h1>
+												<h1 class="display-3 text-danger">Display 3</h1>
+												<h1 class="display-4 text-info">Display 4</h1>
+												<h1 class="display-5 text-success">Display 5</h1>
+												<h1 class="display-6 text-warning">Display 6</h1>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-12 col-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<p class="fs-1">.fs-1 text</p>
+												<p class="fs-2">.fs-2 text</p>
+												<p class="fs-3">.fs-3 text</p>
+												<p class="fs-4">.fs-4 text</p>
+												<p class="fs-5">.fs-5 text</p>
+												<p class="fs-6">.fs-6 text</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-12 col-12">
+										<div class="card mb-4">
+											<div class="card-body">
+												<p class="fs-1 text-dark">.fs-1 text</p>
+												<p class="fs-2 text-secondary">.fs-2 text</p>
+												<p class="fs-3 text-danger">.fs-3 text</p>
+												<p class="fs-4 text-info">.fs-4 text</p>
+												<p class="fs-5 text-success">.fs-5 text</p>
+												<p class="fs-6 text-warning">.fs-6 text</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Text Colors</h5>
+											</div>
+											<div class="card-body">
+												<p class="text-primary">Text Primary</p>
+												<p class="text-secondary">Text Secondary</p>
+												<p class="text-light">Text Light</p>
+												<p class="text-dark">Text Dark</p>
+												<p class="text-muted">Text Muted</p>
+												<p class="text-danger">Text Danger</p>
+												<p class="text-info">Text Info</p>
+												<p class="text-success">Text Success</p>
+												<p class="text-warning">Text Warning</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Text Alignments</h5>
+											</div>
+											<div class="card-body">
+												<p class="text-start">
+													Start aligned text on all viewport sizes.
+												</p>
+												<p class="text-center">
+													Center aligned text on all viewport sizes.
+												</p>
+												<p class="text-end">
+													End aligned text on all viewport sizes.
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Word break</h5>
+											</div>
+											<div class="card-body">
+												<p class="text-break">
+													mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Text transform</h5>
+											</div>
+											<div class="card-body">
+												<p class="text-lowercase">Lowercased text.</p>
+												<p class="text-uppercase">Uppercased text.</p>
+												<p class="text-capitalize">CapiTaliZed text.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Font weight and italics</h5>
+											</div>
+											<div class="card-body">
+												<p class="fw-bold">Bold text.</p>
+												<p class="fw-bolder">
+													Bolder weight text (relative to the parent element).
+												</p>
+												<p class="fw-semibold">Semibold weight text.</p>
+												<p class="fw-normal">Normal weight text.</p>
+												<p class="fw-light">Light weight text.</p>
+												<p class="fw-lighter">
+													Lighter weight text (relative to the parent element).
+												</p>
+												<p class="fst-italic">Italic text.</p>
+												<p class="fst-normal">Text with normal font style</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Line height</h5>
+											</div>
+											<div class="card-body">
+												<p class="lh-1">
+													This is a long paragraph written to show how the
+													line-height of an element is affected by our
+													utilities. Classes are applied to the element itself
+													or sometimes the parent element. These classes can be
+													customized as needed with our utility API.
+												</p>
+												<p class="lh-sm">
+													This is a long paragraph written to show how the
+													line-height of an element is affected by our
+													utilities. Classes are applied to the element itself
+													or sometimes the parent element. These classes can be
+													customized as needed with our utility API.
+												</p>
+												<p class="lh-base">
+													This is a long paragraph written to show how the
+													line-height of an element is affected by our
+													utilities. Classes are applied to the element itself
+													or sometimes the parent element. These classes can be
+													customized as needed with our utility API.
+												</p>
+												<p class="lh-lg">
+													This is a long paragraph written to show how the
+													line-height of an element is affected by our
+													utilities. Classes are applied to the element itself
+													or sometimes the parent element. These classes can be
+													customized as needed with our utility API.
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Text decoration</h5>
+											</div>
+											<div class="card-body">
+												<p class="text-decoration-underline">
+													This text has a line underneath it.
+												</p>
+												<p class="text-decoration-line-through">
+													This text has a line going through it.
+												</p>
+												<a href="#">This link has its text decoration removed</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xxl-12">
+										<div class="card mb-4">
+											<div class="card-header">
+												<h5 class="card-title">Colored links</h5>
+											</div>
+											<div class="card-body">
+												<div class="d-flex gap-4 flex-wrap">
+													<a href="#" class="link-primary">Primary link</a>
+													<a href="#" class="link-secondary">Secondary link</a>
+													<a href="#" class="link-success">Success link</a>
+													<a href="#" class="link-danger">Danger link</a>
+													<a href="#" class="link-warning">Warning link</a>
+													<a href="#" class="link-info">Info link</a>
+													<a href="#" class="link-light">Light link</a>
+													<a href="#" class="link-dark">Dark link</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Row end -->
+							</div>
+						</div>
+					</div>
+					<!-- App body ends -->
+					<!-- App footer start -->
+					<div class="app-footer">
+						<span>© Bootstrap Gallery 2023</span>
+					</div>
+					<!-- App footer end -->
+				</div>
+				<!-- App container ends -->
+			</div>
+			<!-- Main container end -->
+		</div>
+		<!-- Page wrapper end -->
+
+		<!-- *************
+			************ JavaScript Files *************
+		************* -->
+		<!-- Required jQuery first, then Bootstrap Bundle JS -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+		<!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+		<!-- Overlay Scroll JS -->
+		<script src="assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+		<script src="assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+		<!-- Custom JS files -->
+		<script src="assets/js/custom.js"></script>
+	</body>
+
+</html>

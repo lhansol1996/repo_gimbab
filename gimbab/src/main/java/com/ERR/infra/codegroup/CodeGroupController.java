@@ -68,17 +68,16 @@ public class CodeGroupController {
 	@RequestMapping(value="/codeGroupUpdt")
 	public String codeGroupUpdt(CodeGroupDto dto ,Model model) throws Exception{
 		
-//		System.out.println(dto.toString()+"==========업데이트 전 ==========");
-		int dto2 = service.update(dto);
-//		System.out.println(dto2+"============업데이트 후 ==========");
-		return "redirect:/codeGroupXdmList";
+		System.out.println(dto.toString()+"==========업데이트 전 ==========");
+		service.update(dto);
+		return "redirect:/tables";
 	}
 	@RequestMapping(value="/codeGroupUelete")
 	public String codeGroupUelete(CodeGroupDto dto ,Model model) throws Exception{
 		
 		service.uelete(dto);
 		System.out.println(dto.toString()+"--------------삭제후-------------------------");
-		return "redirect:/codeGroupXdmList";
+		return "redirect:/tables";
 	}
 	
 	@RequestMapping(value="/codeGroupDelete")
@@ -92,6 +91,6 @@ public class CodeGroupController {
 	public String test() throws Exception{
 		
 		
-		return "xdm/tables";
+		return "xdm/modals";
 	}
 }

@@ -498,7 +498,8 @@
 												<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
 													<td scope="row"><input class="form-check-input"
 														type="checkbox" value="" id="flexCheckDefault" /></td>
-													<td class="col" th:text="${list.seq}">#001</td>
+													<td class="col"><a href="#" th:href="@{/codeGroupView(seq=${list.seq},name=${list.name})}" 
+														th:text="${list.seq}">#001</a></td>
 													<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
 																alt="Bootstrap Gallery" />
@@ -512,42 +513,6 @@
 														th:text="${#dates.format(list.regDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
 													<td class="col-2">
-														<!-- 수정 버튼 시작 -->
-														<button class="btn btn-info btn-sm mb-1"
-															data-bs-toggle="modal"
-															th:data-bs-target="'#updateModal' + ${list['seq']}"
-															data-bs-target="#updateModal">
-															<i class="bi bi-pencil"></i>
-														</button> 
-														<!-- update Modal -->
-														<div class="modal fade"
-															th:id="'updateModal' + ${list['seq']}"
-															id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="updateModalLabel">
-																			수정 테스트</h5>
-																		<button type="button" class="btn-close"
-																			data-bs-dismiss="modal" aria-label="Close"></button>
-																	</div>
-																	<form action="/codeGroupUpdt" method="post">
-																		<div class="modal-body">	
-																			<input type="hidden" name="seq" th:value="${list.seq}">
-																			<span>이름 :</span><input type="text" name="name" th:value="${list.name}">
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-secondary"
-																				data-bs-dismiss="modal">Close</button>
-																			<button type="submit" class="btn btn-primary">
-																				수정</button>
-																		</div>
-																	</form>
-																</div>
-															</div>
-														</div> 
-														<!-- 수정 버튼 끝 -->
-
 														<!-- uelete 버튼 시작 -->
 														<button class="btn btn-danger btn-sm mb-1"
 															data-bs-toggle="modal"
@@ -615,14 +580,23 @@
 												</a></li>
 											</ul>
 										</nav>
+										<!-- 테이블 아래 쪽 삭제 -->
+											<div class="d-flex justify-content-between flex-row ms-5">
+												<div class="col-2">
+													<a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i
+														class="bi bi-trash"></i></a>
+												</div>
+										<!-- 테이블 아래 쪽 등록 버튼 -->
+												<div class="col-2">
+													<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
+													th:href="@{/codeGroupInsertForm}" >
+														<i class="bi bi-plus-circle"></i></a>
+												</div>
+												
 
-										<div class="flex-row ms-5">
-											<div class="col-2">
-												<a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i
-													class="bi bi-trash"></i></a>
 											</div>
-										</div>
 
+											
 									</div>
 								</div>
 							</div>

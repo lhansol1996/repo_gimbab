@@ -25,6 +25,8 @@
          select 
 			seq
 			,name
+			,regDate
+			,modDate
 		from
 			codeGroup  
 		where 1=1 
@@ -39,6 +41,7 @@
 		#{name}
 		,0
 		);
+		
 	  <selectKey resultType="String" keyProperty="seq" order="AFTER">
 	  	select last_insert_id()
 	  </selectKey>
@@ -49,6 +52,7 @@
 		UPDATE codeGroup
 		SET
 		name=#{name}
+		,modDate=now()
 		where 1=1
 			and seq=#{seq}
 	  </update>

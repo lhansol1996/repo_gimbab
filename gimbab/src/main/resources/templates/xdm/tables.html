@@ -498,7 +498,7 @@
 												<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
 													<td scope="row"><input class="form-check-input"
 														type="checkbox" value="" id="flexCheckDefault" /></td>
-													<td class="col"><a href="#" th:href="@{/codeGroupView(seq=${list.seq},name=${list.name})}" 
+													<td class="col"><a href="#" th:href="@{/codeGroupDView(seq=${list.seq},name=${list.name},delNy=${list.delNy})}" 
 														th:text="${list.seq}">#001</a></td>
 													<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"

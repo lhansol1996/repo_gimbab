@@ -39,7 +39,7 @@ public class CodeGroupController {
 //		return "codeGroupView";
 //	}
 	
-	@RequestMapping(value="/codeGroupView")
+	@RequestMapping(value="/codeGroupDView")
 	public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
 	
 		System.out.println("받아온 객체 ================");
@@ -47,7 +47,13 @@ public class CodeGroupController {
 		
 		model.addAttribute("item",service.selectOne(dto));
 		
-		return "xdm/codeGroupView";
+		return "xdm/codeGroupDView";
+	}
+	@RequestMapping(value = "/codeGroupUpdateForm")
+	public String codeGroupUpdateForm(Model model, CodeGroupDto dto) throws Exception {
+		
+		model.addAttribute("item", service.selectOne(dto));
+		return "xdm/codeGroupUpdateForm";
 	}
 	
 	@RequestMapping(value = "/codeGroupInsertForm")
@@ -82,7 +88,7 @@ public class CodeGroupController {
 	public String codeGroupDelete(CodeGroupDto dto ,Model model) throws Exception{
 		
 		service.delete(dto);
-		return "redirect:/codeGroupXdmList";
+		return "redirect:/tables";
 	}
 	
 	@RequestMapping(value="/")

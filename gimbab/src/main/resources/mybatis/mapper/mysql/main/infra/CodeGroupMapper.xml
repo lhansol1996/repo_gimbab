@@ -27,6 +27,7 @@
 			,name
 			,regDate
 			,modDate
+			,delNy
 		from
 			codeGroup  
 		where 1=1 

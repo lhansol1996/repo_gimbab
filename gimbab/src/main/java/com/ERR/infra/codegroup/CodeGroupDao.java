@@ -9,7 +9,7 @@ public interface CodeGroupDao {
 	 * service파일의 기능등을 명시하는 인터페이스.
 	 */
 	//수많은 DTO 목록들을 리스트로 리턴
-	public List<CodeGroupDto> selectList();
+	public List<CodeGroupDto> selectList(CodeGroupVo vo);
 	
 	//DTO 중 하나를 리턴
 	public CodeGroupDto selectOne(CodeGroupDto dto);

@@ -20,13 +20,13 @@ public class CodeGroupService {
 	
 	 
 	//selectList 구현
-	public List<CodeGroupDto> selectList() {
+	public List<CodeGroupDto> selectList(CodeGroupVo vo) {
 /*
  * 		List<CodeGroupDto> list = codeGroupDao.selectList();
  * 		return list;
  */
 		
-		return codeGroupDao.selectList();
+		return codeGroupDao.selectList(vo);
 	}
 
 	public CodeGroupDto selectOne(CodeGroupDto dto) {

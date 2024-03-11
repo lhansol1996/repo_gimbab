@@ -6,7 +6,7 @@
 	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
 
     <select id="selectList" resultMap="resultMapObj">
-         select 
+   		select 
 			a.seq
 			,a.name
 			,(select count(*)
@@ -18,8 +18,35 @@
 			,a.modDate
 			from
 			codeGroup a
-			
+        WHERE 1=1
+        <if test="voDelNy != null and !voDelNy.equals('')">AND a.delNy = #{voDelNy}</if>
+        
+		<!-- 		<choose>
+					<when test="voOptionDate == 1">AND regDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+					<when test="voOptionDate == 2">AND modDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+				</choose>
+        -->
+        <choose>
+            <when test="voOption == 1">AND a.seq = #{voValue}</when>
+            <when test="voOption == 2">AND a.name LIKE CONCAT('%',#{voValue},'%')</when>
+        </choose>    
     </select>
+    
+      <!--
+      select 
+			a.seq
+			,a.name
+			,(select count(*)
+			from code aa 
+			where 1=1 
+				and	aa.codeGroup_seq = a.seq) as xcount
+			,a.delNy
+			,a.regDate
+			,a.modDate
+			from
+			codeGroup a
+    -->
+  
     
      <select id="selectOne" resultMap="resultMapObj">
          select 

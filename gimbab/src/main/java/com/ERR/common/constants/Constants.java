@@ -1,0 +1,14 @@
+package com.ERR.common.constants;
+
+public final class Constants {
+	
+	//Date 타입 포맷 상수
+	public static final String DATETIME_FORMAT_BASIC = "yyyy-MM-dd HH:mm:ss";
+	
+	//Date 시작일 기본 설정을 위한 상수
+	public static final int DATE_INTERVAL = -30;
+	
+	//시간 기본 설정 상수
+	public static final String TIME_FORMAT_BASIC = "HH:mm:ss";
+	
+}

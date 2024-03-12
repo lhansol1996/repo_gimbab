@@ -3,101 +3,92 @@
 
 <mapper namespace="com.ERR.infra.codegroup.CodeGroupDao">
 
-	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
+	<resultMap id="resultMapObj"
+		type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
 
-    <select id="selectList" resultMap="resultMapObj">
-   		select 
-			a.seq
-			,a.name
-			,(select count(*)
-			from code aa 
-			where 1=1 
-				and	aa.codeGroup_seq = a.seq) as xcount
-			,a.delNy
-			,a.regDate
-			,a.modDate
-			from
-			codeGroup a
-        WHERE 1=1
-        <if test="voDelNy != null and !voDelNy.equals('')">AND a.delNy = #{voDelNy}</if>
-        
-		<!-- 		<choose>
-					<when test="voOptionDate == 1">AND regDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-					<when test="voOptionDate == 2">AND modDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-				</choose>
-        -->
-        <choose>
-            <when test="voOption == 1">AND a.seq = #{voValue}</when>
-            <when test="voOption == 2">AND a.name LIKE CONCAT('%',#{voValue},'%')</when>
-        </choose>    
-    </select>
-    
-      <!--
-      select 
-			a.seq
-			,a.name
-			,(select count(*)
-			from code aa 
-			where 1=1 
-				and	aa.codeGroup_seq = a.seq) as xcount
-			,a.delNy
-			,a.regDate
-			,a.modDate
-			from
-			codeGroup a
-    -->
-  
-    
-     <select id="selectOne" resultMap="resultMapObj">
-         select 
-			seq
-			,name
-			,regDate
-			,modDate
-			,delNy
+	<select id="selectList" resultMap="resultMapObj">
+		select
+		a.seq
+		,a.name
+		,(select count(*)
+		from code aa
+		where 1=1
+		and aa.codeGroup_seq = a.seq) as xcount
+		,a.delNy
+		,a.regDate
+		,a.modDate
 		from
-			codeGroup  
-		where 1=1 
-			and	seq= #{seq}	
-    </select>
-	  
-	  <insert id="insert">
+		codeGroup a
+		WHERE 1=1
+		<if test="voDelNy != null and !voDelNy.equals('')">AND a.delNy = #{voDelNy}</if>
+
+		<choose>
+			<when test="voOptionDate == 1">AND regDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND modDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.seq = #{voValue}</when>
+			<when test="voOption == 2">AND a.name LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</select>
+
+	<!-- select a.seq ,a.name ,(select count(*) from code aa where 1=1 and aa.codeGroup_seq 
+		= a.seq) as xcount ,a.delNy ,a.regDate ,a.modDate from codeGroup a -->
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+		seq
+		,name
+		,regDate
+		,modDate
+		,delNy
+		from
+		codeGroup
+		where 1=1
+		and seq= #{seq}
+	</select>
+
+	<insert id="insert">
 		insert into codeGroup(
-			name 
-			,delNy
+		name
+		,delNy
 		)values(
 		#{name}
 		,0
 		);
-		
-	  <selectKey resultType="String" keyProperty="seq" order="AFTER">
-	  	select last_insert_id()
-	  </selectKey>
-	  </insert>
-	  
-	  
-	  <update id="update">
+
+		<selectKey resultType="String" keyProperty="seq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
 		UPDATE codeGroup
 		SET
 		name=#{name}
 		,modDate=now()
-		where 1=1
-			and seq=#{seq}
-	  </update>
-	  
-	  <update id="uelete">
+		where
+		1=1
+		and seq=#{seq}
+	</update>
+
+	<update id="uelete">
 		UPDATE codeGroup
 		SET
 		delNy=1
 		where 1=1
-			and seq=#{seq}
-	  </update>
-	  
-	  <delete id="delete">
-	  Delete from codeGroup
-	  	where 1=1
-	  		and seq=#{seq}
-	  </delete>
-	  
-	  
+		and seq=#{seq}
+	</update>
+
+	<delete id="delete">
+		Delete from codeGroup
+		where 1=1
+		and seq=#{seq}
+	</delete>
+
+
 </mapper>

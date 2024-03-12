@@ -2,7 +2,7 @@ package com.ERR.infra.codegroup;
 
 public class CodeGroupVo {
 	private Integer voOptionDate = 2;  /* 날짜종류(Updt,Delt,Inst) 검색 옵션 */ 
-	private Integer voDelNy;       /* 삭제여부 검색 옵션 */
+	private Integer voDelNy;      	   /* 삭제여부 검색 옵션 */
 	private Integer voOption;		   /* 검색종류 옵션 */	
 	private String voValue;			   /* 검색한 내용 */
 	

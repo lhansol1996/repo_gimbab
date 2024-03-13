@@ -506,7 +506,7 @@
 							</li>
 							<li class="breadcrumb-item">tables</li>
 							<li class="breadcrumb-item" aria-current="page">
-								수정
+								수정222
 							</li>
 						</ol>
 						<!-- Breadcrumb end -->
@@ -524,24 +524,24 @@
 							<div class="col-xxl-12">
 								<div class="card mb-4">
 									<div class="card-body">
-										<form name="formInsert" id="formInsert" class="row g-3 needs-validation"
-											method="post">
+										<form class="row g-3 needs-validation"
+											action="/codeGroupUpdt" method="post">
 											
+											<!-- 수정 폼 -->
 											<div class="col-md-3">
-												<label for="name" class="form-label">등록</span></label>
-												<input type="text" class="form-control" name="name" id="name" placeholder="이름을 넣어주십시오" required />
-												<div class="invalid-feedback">
-													값 넣어
-												</div>
+												<label for="name" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.seq}"></span></label>
+												<input type="text" class="form-control" name="name" id="name" th:value="${item.name}" required />
+												<input type="hidden" name="seq" th:value="${item.seq}" id="seq">
 											</div>
+
 											
 											<div class="d-flex justify-content-between col-12">
-												<a href="#" th:href="@{/codeGroupXdmList}" class="btn btn-primary" role="button">
+												<a href="#" th:href="@{/tables}" class="btn btn-primary" role="button">
 													뒤로가기
 												</a>
 
-												<button class="btn btn-primary" id="btnInsert">
-													등록
+												<button class="btn btn-primary" type="submit">
+													수정
 												</button>
 											</div>
 										</form>
@@ -553,11 +553,10 @@
 						</div>
 						<!-- Row end -->
 
-					
+						
 
 					</div>
 					<!-- App body ends -->
-
 
 					<!-- App footer start -->
 					<div class="app-footer">
@@ -592,61 +591,6 @@
 		<!-- Custom JS files -->
 		<script src="/xdm/assets/js/custom.js"></script>
 		<script src="/xdm/assets/js/validations.js"></script>
-		
-		<script>
-
-		let form = document.querySelector("form[name=formInsert]");
-		let seq = document.querySelector("input[name=seq]");
-		let goUrlXdmList = "/codeGroupXdmList";								
-		let goUrlXdmInstForm = "/codeGroupInsert";							
-		let goUrlXdmView = "/codeGroupXdmView";		
-
-		// 등록버튼
-		document.getElementById("btnInsert").onclick = function () {
-			if(validationInst()==false) {
-				return false;
-			}else{
-				form.action = goUrlXdmInstForm
-				form.submit();
-			}
-
-		}
-
-		function validationInst() {
-			if(validationUpdt() == false) {
-				return false;
-				alert("insert");	
-			}
-		}
-			
-		function validationUpdt() {
-			if(!nullToEmpty(document.getElementById("name").value)){
-				document.getElementById("name").setAttribute("class", "form-control is-invalid");
-				
-				return false;
-			}
-		}
-
-		nullToEmpty = function (value) {
-			if(value== null || value == 'null' || value.length == 0){
-				return false;
-			}else{
-					return true;
-				}
-			
-		}
-		
-		</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	</body>
 
 </html>

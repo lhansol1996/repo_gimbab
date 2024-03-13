@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.code.CodeDao">
+
+	<resultMap id="resultMapObj"
+		type="com.ERR.infra.code.CodeDto"></resultMap>
+
+	<select id="selectList" resultMap="resultMapObj">
+			select
+		a.codeGroup_seq as xcodeGroupSeq
+		,b.name as xcodeGroupName
+		,a.delNy
+		,a.seq
+		,a.name
+		,a.modifyDate
+		From code a join codeGroup b
+		on a.codegroup_seq = b.seq
+		WHERE 1=1
+		<if test="voDelNy != null and !voDelNy.equals('')">AND a.delNy = #{voDelNy}</if>
+
+		<choose>
+			<when test="voOptionDate == 1">AND regDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND modDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.seq = #{voValue}</when>
+			<when test="voOption == 2">AND a.name LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</select>
+
+	<!-- select a.seq ,a.name ,(select count(*) from code aa where 1=1 and aa.codeGroup_seq 
+		= a.seq) as xcount ,a.delNy ,a.regDate ,a.modDate from codeGroup a -->
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			seq
+			,name
+			,delNy
+			From code
+		where 1=1
+				and seq=#{seq}
+	</select>
+
+	<insert id="insert">
+		insert into code(
+			name
+		    ,memo
+		    ,delNy
+		    ,codeGroup_seq
+		   )values(
+			    #{name}
+			    ,#{memo}
+			    ,0
+			    ,#{xcodeGroupSeq}
+		    )
+
+		<selectKey resultType="String" keyProperty="seq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
+		UPDATE code
+		SET
+		name=#{name}
+		where 1=1
+			and seq=#{seq}
+	</update>
+
+	<update id="uelete">
+		update code
+		set 
+		delNy=1
+		where 1=1
+		 and seq = #{seq}
+	</update>
+
+	<delete id="delete">
+		delete From code
+			where 1=1
+		and seq=#{seq}
+	</delete>
+
+
+</mapper>

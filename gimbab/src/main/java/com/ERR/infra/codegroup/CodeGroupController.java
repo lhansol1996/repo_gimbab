@@ -96,7 +96,7 @@ public class CodeGroupController {
 
 	@RequestMapping(value="/codeGroupInsert")
 	public String codeGroupInsert(CodeGroupDto dto ,Model model) throws Exception{
-//		System.out.println(dto.toString());
+	//	System.out.println(dto.toString());
 
 		service.insert(dto);
 		return "redirect:/codeGroupXdmList";

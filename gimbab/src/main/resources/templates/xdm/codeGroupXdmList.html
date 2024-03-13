@@ -583,7 +583,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/codeGroupInsertForm}">
+													th:href="@{/codeGroupInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -1127,11 +1127,12 @@ window.addEventListener('load', function () {
 
 		let form = document.querySelector("form[name=formList]");
 		let goUrlXdmList = "/codeGroupXdmList";								
+		let goUrlXdmInstForm = "/codeGroupInsertForm";							
+		let goUrlXdmView = "/codeGroupXdmView";								
 /*
-		let goUrlXdmForm = "/codeGroupXdmForm";							
 		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
 		let goUrlXdmMultiDele = "/infra/codegroup/codeGroupXdmMultiDele";			
-		let goUrlXdmView = "/codeGroupXdmView";								*/
+		*/
 
 		let seq = document.querySelector("input[name=seq]");									/* ### */
 
@@ -1163,6 +1164,9 @@ window.addEventListener('load', function () {
 			    form.submit();
 		    }
 		}
+
+	
+		
 	</script>
 
 </body>

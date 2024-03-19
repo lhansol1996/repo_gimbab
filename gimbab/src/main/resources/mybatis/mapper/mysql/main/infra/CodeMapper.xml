@@ -39,7 +39,7 @@
 			seq
 			,name
 			,delNy
-			 From code
+			From code
 		where 1=1
 				and seq=#{seq}
 	</select>

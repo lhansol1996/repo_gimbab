@@ -1,72 +1,88 @@
 package com.ERR.infra.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CodeDto {
-	private String seq;
-	private String name;
-	private String memo;
-	private Integer delNy;
-	private Date regDate;
-	private Date modDate;
+	private String codeSeq;
+	private String codeName;
+	private Integer codeDelNy;
+	private Date codeRegDate;
+	private Date codeModDate;
 	
-	private String xcodeGroupSeq;
+	private String codeGroupSeqF;
 	private String xcodeGroupName;
 	
+//	캐시사용을 위한 list 생성
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+	
 	CodeDto () {}
-	public String getSeq() {
-		return seq;
+
+	public String getCodeSeq() {
+		return codeSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+
+	public void setCodeSeq(String codeSeq) {
+		this.codeSeq = codeSeq;
 	}
-	public String getName() {
-		return name;
+
+	public String getCodeName() {
+		return codeName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
 	}
-	public String getMemo() {
-		return memo;
+
+	
+	public Integer getCodeDelNy() {
+		return codeDelNy;
 	}
-	public void setMemo(String memo) {
-		this.memo = memo;
+
+	public void setCodeDelNy(Integer codeDelNy) {
+		this.codeDelNy = codeDelNy;
 	}
-	public Integer getDelNy() {
-		return delNy;
+
+	public Date getCodeRegDate() {
+		return codeRegDate;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
+
+	public void setCodeRegDate(Date codeRegDate) {
+		this.codeRegDate = codeRegDate;
 	}
-	public Date getRegDate() {
-		return regDate;
+
+	public Date getCodeModDate() {
+		return codeModDate;
 	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+
+	public void setCodeModDate(Date codeModDate) {
+		this.codeModDate = codeModDate;
 	}
-	public Date getModDate() {
-		return modDate;
+
+	public String getCodeGroupSeqF() {
+		return codeGroupSeqF;
 	}
-	public void setModDate(Date modDate) {
-		this.modDate = modDate;
+
+	public void setCodeGroupSeqF(String codeGroupSeqF) {
+		this.codeGroupSeqF = codeGroupSeqF;
 	}
-	public String getXcodeGroupSeq() {
-		return xcodeGroupSeq;
-	}
-	public void setXcodeGroupSeq(String xcodeGroupSeq) {
-		this.xcodeGroupSeq = xcodeGroupSeq;
-	}
+
 	public String getXcodeGroupName() {
 		return xcodeGroupName;
 	}
+
 	public void setXcodeGroupName(String xcodeGroupName) {
 		this.xcodeGroupName = xcodeGroupName;
 	}
+
 	@Override
 	public String toString() {
-		return "CodeDto [seq=" + seq + ", name=" + name + ", delNy=" + delNy + ", regDate=" + regDate + ", modDate="
-				+ modDate + ", xcodeGroupSeq=" + xcodeGroupSeq + ", xcodeGroupName=" + xcodeGroupName + "]";
+		return "CodeDto [codeSeq=" + codeSeq + ", codeName=" + codeName +" , codeDelNy="
+				+ codeDelNy + ", codeRegDate=" + codeRegDate + ", codeModDate=" + codeModDate + ", codeGroupSeqF="
+				+ codeGroupSeqF + ", xcodeGroupName=" + xcodeGroupName + "]";
 	}
+
 	
 	
 	

@@ -8,28 +8,28 @@
 
 	<select id="selectList" resultMap="resultMapObj">
 		select
-		a.seq
-		,a.name
+		a.codeGroupSeq
+		,a.codeGroupName
 		,(select count(*)
 		from code aa
 		where 1=1
-		and aa.codeGroup_seq = a.seq) as xcount
-		,a.delNy
-		,a.regDate
-		,a.modDate
+		and aa.codeGroupSeqF = a.codeGroupSeq) as xcount
+		,a.codeGroupDelNy
+		,a.codeGroupRegDate
+		,a.codeGroupModDate
 		from
 		codeGroup a
 		WHERE 1=1
-		<if test="voDelNy != null and !voDelNy.equals('')">AND a.delNy = #{voDelNy}</if>
+		<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeGroupDelNy = #{voDelNy}</if>
 
 		<choose>
-			<when test="voOptionDate == 1">AND regDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-			<when test="voOptionDate == 2">AND modDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 1">AND a.codeGroupRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.codeGroupModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
 		</choose>
 
 		<choose>
-			<when test="voOption == 1">AND a.seq = #{voValue}</when>
-			<when test="voOption == 2">AND a.name LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 1">AND a.codeGroupSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{voValue},'%')</when>
 		</choose>
 	</select>
 
@@ -39,27 +39,28 @@
 
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-		seq
-		,name
-		,regDate
-		,modDate
-		,delNy
+		codeGroupSeq
+		,codeGroupName
+		,codeGroupRegDate
+		,codeGroupModDate
+		,codeGroupDelNy
 		from
 		codeGroup
 		where 1=1
-		and seq= #{seq}
+		and codeGroupSeq = #{codeGroupSeq}
 	</select>
 
 	<insert id="insert">
 		insert into codeGroup(
-		name
-		,delNy
+		codeGroupName
+		,codeGroupDelNy
 		)values(
-		#{name}
+		#{codeGroupName}
 		,0
 		);
 
-		<selectKey resultType="String" keyProperty="seq"
+<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="codeGroupSeq"
 			order="AFTER">
 			select last_insert_id()
 		</selectKey>
@@ -69,25 +70,25 @@
 	<update id="update">
 		UPDATE codeGroup
 		SET
-		name=#{name}
-		,modDate=now()
+		codeGroupName = #{codeGroupName}
+		,codeGroupModDate = now()
 		where
 		1=1
-		and seq=#{seq}
+		and codeGroupSeq = #{codeGroupSeq}
 	</update>
 
 	<update id="uelete">
 		UPDATE codeGroup
 		SET
-		delNy=1
+		codeGroupDelNy=1
 		where 1=1
-		and seq=#{seq}
+		and codeGroupSeq=#{codeGroupSeq}
 	</update>
 
 	<delete id="delete">
 		Delete from codeGroup
 		where 1=1
-		and seq=#{seq}
+		and codeGroupSeq = #{codeGroupSeq}
 	</delete>
 
 

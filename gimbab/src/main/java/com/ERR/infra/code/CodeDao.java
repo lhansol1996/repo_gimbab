@@ -21,4 +21,8 @@ public interface CodeDao {
 	
 	//삭제 버튼(drop)
 	public int delete(CodeDto dto);
+	
+	//캐시사용 서비스
+	public List<CodeDto> selectListCachedCodeArrayList();
+	
 }

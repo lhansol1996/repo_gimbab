@@ -1,9 +1,12 @@
 package com.ERR.infra.code;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.annotation.PostConstruct;
 
 /*
  * 로직을 처리하는 클래스
@@ -54,4 +57,29 @@ public class CodeService {
 			return codeDao.delete(dto);
 		}
 	
+		/**
+		 * code 명으로 표출하는 메소드
+		 */
+		
+		@PostConstruct
+		public void selectListCachedCodeArrayList() throws Exception {
+			List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) codeDao.selectListCachedCodeArrayList();
+//			codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+			CodeDto.cachedCodeArrayList.clear(); 
+			CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
+			System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
+		}	
+		
+		public static String selectOneCachedCode(int code) throws Exception {
+			String rt = "";
+			for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+				if (codeRow.getCodeSeq().equals(Integer.toString(code))) {
+					rt = codeRow.getCodeName();
+				} else {
+					// by pass
+				}
+			}
+			return rt;
+		}
+		
 }

@@ -524,23 +524,27 @@
 							<div class="col-xxl-12">
 								<div class="card mb-4">
 									<div class="card-body">
-										<form class="row g-3 needs-validation"
-											action="/codeGroupUpdt" method="post">
+										<form name="formUpdate" id="formUpdate" 
+										class="row g-3 needs-validation"
+											action="/codeUpdt" method="post">
 											
 											<!-- 수정 폼 -->
 											<div class="col-md-3">
-												<label for="name" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.seq}"></span></label>
-												<input type="text" class="form-control" name="name" id="name" th:value="${item.name}" required />
-												<input type="hidden" name="seq" th:value="${item.seq}" id="seq">
+												<label for="codeName" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeSeq}"></span></label>
+												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" required />
+												<input type="hidden" name="codeSeq" th:value="${item.codeSeq}" id="codeSeq">
+												<div class="invalid-feedback">
+													값 넣어
+												</div>
 											</div>
 
 											
 											<div class="d-flex justify-content-between col-12">
-												<a href="#" th:href="@{/tables}" class="btn btn-primary" role="button">
+												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
 													뒤로가기
 												</a>
 
-												<button class="btn btn-primary" type="submit">
+												<button class="btn btn-primary" id="btnUpdate">
 													수정
 												</button>
 											</div>
@@ -591,6 +595,57 @@
 		<!-- Custom JS files -->
 		<script src="/xdm/assets/js/custom.js"></script>
 		<script src="/xdm/assets/js/validations.js"></script>
+		
+		<script>
+
+		let form = document.querySelector("form[name=formUpdate]");
+		let seq = document.querySelector("input[name=seq]");
+		let goUrlXdmList = "/codeXdmList";
+		let goUrlXdmInstForm = "/codeInsert";
+		let goUrlXdmUpdtForm = "/codeUpdt";
+		let goUrlXdmView = "/codeXdmView";
+
+		// 등록버튼
+		document.getElementById("btnUpdate").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlXdmUpdtForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!nullToEmpty(document.getElementById("codeName").value)) {
+				document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
+				document.getElementById("codeName").focus();
+				return false;
+			}
+				if (!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
+					document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
+					document.getElementById("codeGroupSeqF").focus();
+				return false;
+			}
+		}
+
+		nullToEmpty = function (value) {
+			if (value == null || value == 'null' || value.length == 0) {
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+	</script>
+		
 	</body>
 
 </html>

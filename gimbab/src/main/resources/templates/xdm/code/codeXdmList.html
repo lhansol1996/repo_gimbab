@@ -391,7 +391,7 @@
 									name="voDelNy">
 									<option value="" th:selected="${vo.voDelNy == null}">삭제여부</option>
 									<option value="1" th:selected="${vo.voDelNy == 1}">Y</option>
-									<option value="2" th:selected="${vo.voDelNy == 0}">N</option>
+									<option value="0" th:selected="${vo.voDelNy == 0}">N</option>
 								</select>
 							</div>
 							<!--삭제여부 끝-->
@@ -424,8 +424,8 @@
 								<select class="form-select" aria-label="Default select example" id="voOption"
 									name="voOption">
 									<option value="" th:selected="${vo.voOption == null}">검색구분</option>
-									<option value="1" th:selected="${vo.voOption == 1}">코드그룹 코드</option>
-									<option value="2" th:selected="${vo.voOption == 2}">코드그룹 이름</option>
+									<option value="1" th:selected="${vo.voOption == 1}">코드</option>
+									<option value="2" th:selected="${vo.voOption == 2}">이름</option>
 								</select>
 							</div>
 
@@ -477,9 +477,10 @@
 												<tr>
 													<th scope="col-2"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></th>
-													<th scope="col-2">seq</th>
+													<th scope="col-2">Seq</th>
 													<th scope="col-2">Name</th>
 													<th scope="col-2">delNy</th>
+													<th scope="col-2">codeGroupSeq</th>
 													<th scope="col-2">modDate</th>
 													<th scope="col-2">regDate</th>
 													<th scope="col"></th>
@@ -490,30 +491,31 @@
 													<td scope="row"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></td>
 													<td class="col"><a href="#"
-															th:href="@{/codeGroupDView(seq=${list.seq},name=${list.name},delNy=${list.delNy})}"
-															th:text="${list.seq}">#001</a></td>
+															th:href="@{/codeView(codeSeq=${list.codeSeq},codeName=${list.codeName},codeDelNy=${list.codeDelNy})}"
+															th:text="${list.codeSeq}">#001</a></td>
 													<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
 																alt="Bootstrap Gallery" />
 														</th> -->
-													<td class="col-2" th:text="${list.name}">first1</td>
-													<td class="col-2" th:text="${list.delNy}">Last1</td>
+													<td class="col-2" th:text="${list.codeName}">first1</td>
+													<td class="col-2" th:text="${list.codeDelNy}">Last1</td>
+													<td class="col" th:text="${list.codeGroupSeqF}">Last1</td>
 													<td class="col-3"
-														th:text="${#dates.format(list.modDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+														th:text="${#dates.format(list.codeModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
 													<td class="col-3"
-														th:text="${#dates.format(list.regDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+														th:text="${#dates.format(list.codeRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
 													<td class="col-2">
 														<!-- uelete 버튼 시작 -->
 														<button class="btn btn-danger btn-sm mb-1"
 															data-bs-toggle="modal"
-															th:data-bs-target="'#ueleteModal' + ${list['seq']}"
+															th:data-bs-target="'#ueleteModal' + ${list['codeSeq']}"
 															data-bs-target="#ueleteModal">
 															<i class="bi bi-trash"></i>
 														</button>
 														<!-- uelete Modal -->
-														<div class="modal fade" th:id="'ueleteModal' + ${list['seq']}"
+														<div class="modal fade" th:id="'ueleteModal' + ${list['codeSeq']}"
 															id="ueleteModal" tabindex="-1"
 															aria-labelledby="ueleteModalLabel" aria-hidden="true">
 															<div class="modal-dialog">
@@ -525,10 +527,10 @@
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/codeGroupUelete" method="post">
+																	<form action="/codeUelete" method="post">
 																		<div class="modal-body">
-																			<input type="hidden" name="seq"
-																				th:value="${list.seq}">
+																			<input type="hidden" name="codeSeq"
+																				th:value="${list.codeSeq}">
 																			<span>정말 삭제하시겠습니까 ?</span>
 																		</div>
 																		<div class="modal-footer">
@@ -583,7 +585,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/codeGroupInsertForm}" id="btnInsert">
+													th:href="@{/codeInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -595,482 +597,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xxl-12">
-							<div class="card mb-4">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table m-0">
-											<thead>
-												<tr>
-													<th>Customer ID</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Phone</th>
-													<th>Email</th>
-													<th>Items Bought</th>
-													<th>Money Spent</th>
-													<th>Last Login</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>#00001</td>
-													<td><a href="#" class="text-red">Alia</a></td>
-													<td>Willams</td>
-													<td>+143-148-60985</td>
-													<td>info@example.com</td>
-													<td>250</td>
-													<td>$4500</td>
-													<td>10/10/2022 4:30pm</td>
-												</tr>
-												<tr>
-													<td>#00002</td>
-													<td><a href="#" class="text-red">Nathan</a></td>
-													<td>James</td>
-													<td>+278-119-88790</td>
-													<td>info@example.com</td>
-													<td>390</td>
-													<td>$3500</td>
-													<td>12/10/2022 2:37am</td>
-												</tr>
-												<tr>
-													<td>#00003</td>
-													<td><a href="#" class="text-red">Kelly</a></td>
-													<td>Thomas</td>
-													<td>+125-117-88763</td>
-													<td>info@example.com</td>
-													<td>135</td>
-													<td>$2400</td>
-													<td>14/10/2022 7:50pm</td>
-												</tr>
-												<tr>
-													<td>#00004</td>
-													<td><a href="#" class="text-red">Steve</a></td>
-													<td>Smitth</td>
-													<td>+334-676-66530</td>
-													<td>info@example.com</td>
-													<td>765</td>
-													<td>$7890</td>
-													<td>18/10/2022 9:30pm</td>
-												</tr>
-												<tr>
-													<td>#00005</td>
-													<td><a href="#" class="text-red">Kevin</a></td>
-													<td>Oliver</td>
-													<td>+435-667-99808</td>
-													<td>info@example.com</td>
-													<td>763</td>
-													<td>$5690</td>
-													<td>21/10/2022 3:20pm</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12">
-							<div class="card mb-4">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table m-0">
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Heading 1</th>
-													<th>Heading 2</th>
-													<th>Heading 3</th>
-													<th>Heading 4</th>
-													<th>Heading 5</th>
-													<th>Heading 6</th>
-													<th>Heading 7</th>
-													<th>Heading 8</th>
-													<th>Heading 9</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th>001</th>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-												</tr>
-												<tr>
-													<th>002</th>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-												</tr>
-												<tr>
-													<th>003</th>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-												</tr>
-												<tr>
-													<th>004</th>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-												</tr>
-												<tr>
-													<th>005</th>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-													<td>Long text</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12">
-							<div class="card mb-4">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-striped m-0">
-											<thead>
-												<tr>
-													<th>Customer ID</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Phone</th>
-													<th>Email</th>
-													<th>Items Bought</th>
-													<th>Money Spent</th>
-													<th>Last Login</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>#00001</td>
-													<td><a href="#" class="text-red">Alia</a></td>
-													<td>Willams</td>
-													<td>+143-148-60985</td>
-													<td>info@example.com</td>
-													<td>250</td>
-													<td>$4500</td>
-													<td>10/10/2022 4:30pm</td>
-												</tr>
-												<tr>
-													<td>#00002</td>
-													<td><a href="#" class="text-red">Nathan</a></td>
-													<td>James</td>
-													<td>+278-119-88790</td>
-													<td>info@example.com</td>
-													<td>390</td>
-													<td>$3500</td>
-													<td>12/10/2022 2:37am</td>
-												</tr>
-												<tr>
-													<td>#00003</td>
-													<td><a href="#" class="text-red">Kelly</a></td>
-													<td>Thomas</td>
-													<td>+125-117-88763</td>
-													<td>info@example.com</td>
-													<td>135</td>
-													<td>$2400</td>
-													<td>14/10/2022 7:50pm</td>
-												</tr>
-												<tr>
-													<td>#00004</td>
-													<td><a href="#" class="text-red">Steve</a></td>
-													<td>Smitth</td>
-													<td>+334-676-66530</td>
-													<td>info@example.com</td>
-													<td>765</td>
-													<td>$7890</td>
-													<td>18/10/2022 9:30pm</td>
-												</tr>
-												<tr>
-													<td>#00005</td>
-													<td><a href="#" class="text-red">Kevin</a></td>
-													<td>Oliver</td>
-													<td>+435-667-99808</td>
-													<td>info@example.com</td>
-													<td>763</td>
-													<td>$5690</td>
-													<td>21/10/2022 3:20pm</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12">
-							<div class="card mb-4">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table m-0">
-											<thead>
-												<tr>
-													<th>Customer ID</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Phone</th>
-													<th>Email</th>
-													<th>Items Bought</th>
-													<th>Money Spent</th>
-													<th>Last Login</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>#00001</td>
-													<td>Alia</td>
-													<td>Willams</td>
-													<td>+143-148-60985</td>
-													<td>info@example.com</td>
-													<td>250</td>
-													<td>$4500</td>
-													<td>10/10/2022 4:30pm</td>
-												</tr>
-												<tr>
-													<td>#00002</td>
-													<td>Nathan</td>
-													<td>James</td>
-													<td>+278-119-88790</td>
-													<td>info@example.com</td>
-													<td>390</td>
-													<td>$3500</td>
-													<td>12/10/2022 2:37am</td>
-												</tr>
-												<tr>
-													<td>#00003</td>
-													<td>Kelly</td>
-													<td>Thomas</td>
-													<td>+125-117-88763</td>
-													<td>info@example.com</td>
-													<td>135</td>
-													<td>$2400</td>
-													<td>14/10/2022 7:50pm</td>
-												</tr>
-												<tr>
-													<td>#00004</td>
-													<td>Steve</td>
-													<td>Smitth</td>
-													<td>+334-676-66530</td>
-													<td>info@example.com</td>
-													<td>765</td>
-													<td>$7890</td>
-													<td>18/10/2022 9:30pm</td>
-												</tr>
-												<tr>
-													<td>#00005</td>
-													<td>Kevin</td>
-													<td>Oliver</td>
-													<td>+435-667-99808</td>
-													<td>info@example.com</td>
-													<td>763</td>
-													<td>$5690</td>
-													<td>21/10/2022 3:20pm</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12">
-							<div class="card mb-4">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table align-middle m-0">
-											<thead>
-												<tr>
-													<th>Country</th>
-													<th>Languages</th>
-													<th>Population</th>
-													<th>Median Age</th>
-													<th>Area (Km²)</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td><img src="/xdm/assets/images/flags/1x1/hk.svg"
-															class="img-1xx me-2" alt="Hong Kong" />Hong Kong</td>
-													<td>Chinese (official), English</td>
-													<td>7,39,000</td>
-													<td>31.3</td>
-													<td>1106</td>
-												</tr>
-												<tr>
-													<td><img src="/xdm/assets/images/flags/1x1/au.svg"
-															class="img-1xx me-2" alt="Australia" />Australia</td>
-													<td>English 79%, native and other languages</td>
-													<td>23,630,169</td>
-													<td>37.3</td>
-													<td>7,739,983</td>
-												</tr>
-												<tr>
-													<td><img src="/xdm/assets/images/flags/1x1/tz.svg"
-															class="img-1xx me-2" alt="Tanzania" />Tanzania</td>
-													<td>Swahili (national), English, Arabic, Chaga,
-														Makonde</td>
-													<td>57,353,670</td>
-													<td>39.1</td>
-													<td>945,086</td>
-												</tr>
-												<tr>
-													<td><img src="/xdm/assets/images/flags/1x1/ru.svg"
-															class="img-1xx me-2" alt="Russia" />Russia</td>
-													<td>Russian, others</td>
-													<td>142,467,651</td>
-													<td>38.4</td>
-													<td>17,076,310</td>
-												</tr>
-												<tr>
-													<td><img src="/xdm/assets/images/flags/1x1/de.svg"
-															class="img-1xx me-2" alt="Germany" />Germany</td>
-													<td>German, Danish, Low Rhenish, Romani</td>
-													<td>82,081,261</td>
-													<td>41.1</td>
-													<td>357,386</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="5" class="text-center">Data retrieved
-														from BootstrapGallery.</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xxl-12">
-							<div class="card mb-4">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-bordered m-0">
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Title</th>
-													<th>Module</th>
-													<th>Reporter</th>
-													<th>Status</th>
-													<th>Owner</th>
-													<th>Severity</th>
-													<th>Created</th>
-													<th>Updated</th>
-													<th>Due</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>App crashes</td>
-													<td>Main App</td>
-													<td>Lewis</td>
-													<td><span class="badge border border-danger text-danger">Open</span>
-													</td>
-													<td>Micheal</td>
-													<td><span
-															class="badge border border-success text-success">High</span>
-													</td>
-													<td>Aug-10, 2022</td>
-													<td>Sep-14, 2022</td>
-													<td>Oct-20, 2022</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Saving file</td>
-													<td>Form Screen</td>
-													<td>James</td>
-													<td><span class="badge border border-success text-success">In
-															Progress</span></td>
-													<td>Donald</td>
-													<td><span class="badge border border-danger text-danger">Low</span>
-													</td>
-													<td>Aug-10, 2022</td>
-													<td>Sep-14, 2022</td>
-													<td>Oct-20, 2022</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Login fail</td>
-													<td>Main App</td>
-													<td>Powell</td>
-													<td><span class="badge border border-danger text-danger">Open</span>
-													</td>
-													<td>Glory</td>
-													<td><span
-															class="badge border border-success text-success">High</span>
-													</td>
-													<td>Aug-10, 2022</td>
-													<td>Sep-14, 2022</td>
-													<td>Oct-20, 2022</td>
-												</tr>
-												<tr>
-													<td>4</td>
-													<td>Saving file</td>
-													<td>Form Screen</td>
-													<td>James</td>
-													<td><span class="badge border border-success text-success">In
-															Progress</span></td>
-													<td>Donald</td>
-													<td><span class="badge border border-danger text-danger">Low</span>
-													</td>
-													<td>Aug-10, 2022</td>
-													<td>Sep-14, 2022</td>
-													<td>Oct-20, 2022</td>
-												</tr>
-												<tr>
-													<td>5</td>
-													<td>Login fail</td>
-													<td>Main App</td>
-													<td>Powell</td>
-													<td><span class="badge border border-success text-success">In
-															Progress</span></td>
-													<td>Glory</td>
-													<td><span
-															class="badge border border-success text-success">High</span>
-													</td>
-													<td>Aug-10, 2022</td>
-													<td>Sep-14, 2022</td>
-													<td>Oct-20, 2022</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+						
 					<!-- Row end -->
 
 				</div>
@@ -1126,15 +653,15 @@ window.addEventListener('load', function () {
 		});
 
 		let form = document.querySelector("form[name=formList]");
-		let goUrlXdmList = "/codeGroupXdmList";								
-		let goUrlXdmInstForm = "/codeGroupInsertForm";							
-		let goUrlXdmView = "/codeGroupXdmView";								
+		let goUrlXdmList = "/codeXdmList";								
+		let goUrlXdmInstForm = "/codeInsertForm";							
+		let goUrlXdmView = "/codeXdmView";								
 /*
 		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
 		let goUrlXdmMultiDele = "/infra/codegroup/codeGroupXdmMultiDele";			
 		*/
 
-		let seq = document.querySelector("input[name=seq]");									/* ### */
+		let seq = document.querySelector("input[name=codeSeq]");									/* ### */
 
 		document.getElementById("btnReset").onclick = function () {
 			location.href = goUrlXdmList;

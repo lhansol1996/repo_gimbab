@@ -1,4 +1,4 @@
-package com.ERR.infra.code;
+package com.ERR.infra.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
 
+
 @Controller
-public class CodeController {
-	
-	private String XdmCommomPath = "xdm/code";
+public class MemberController {
+private String XdmCommomPath = "xdm/member/";
 	
 	@Autowired
-	CodeService service;
+	MemberService service;
+//	memberService memberService;
 	
-	public void setSearch(CodeVo vo) throws Exception {
+	public void setSearch(MemberVo vo) throws Exception {
 		/* 최초 화면 로딩시에 세팅은 문제가 없지만 */
 		/*이후 전체적으로 데이터를 조회를 하려면 null 값이 넘어 오는 관계로 문제가 전체 데이터 조회가 되지 못한다.*/
 		/*해서 BaseVo.java 에서 기본값을 주어서 처리*/
@@ -40,8 +41,8 @@ public class CodeController {
 		
 	}
 	
-	@RequestMapping(value="/codeXdmList")
-	public String codeXdmList(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
+	@RequestMapping(value="/memberXdmList")
+	public String memberXdmList(@ModelAttribute("vo")MemberVo vo, Model model) throws Exception {
 		System.out.println(vo.toString());
 		System.out.println("-==================");
 		
@@ -53,12 +54,12 @@ public class CodeController {
 		System.out.println(vo.toString());
 		System.out.println("-==================");
 		
-		return XdmCommomPath + "codeXdmList";
+		return XdmCommomPath + "memberXdmList";
 	}
 	
 	
-//	@RequestMapping(value="/codeGroupView")
-//	public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
+//	@RequestMapping(value="/memberView")
+//	public String memberView(memberDto dto, Model model) throws Exception{
 //		/*
 //		 * 넘겨 받은 변수 2개 확인하는 방법
 //		 * 1번째 방법 : 받는 객체를 dto로 받는 방법
@@ -68,58 +69,65 @@ public class CodeController {
 //		
 //		model.addAttribute("item",service.selectOne(dto));
 //		
-//		return "codeGroupView";
+//		return "memberView";
 //	}
 	
-	@RequestMapping(value="/codeView")
-	public String codeView(CodeDto dto, Model model) throws Exception{
+	@RequestMapping(value="/memberView")
+	public String memberView(MemberDto dto, Model model) throws Exception{
 	
 		System.out.println("받아온 객체 ================");
 		System.out.println(dto.toString());
 		
 		model.addAttribute("item",service.selectOne(dto));
 		
-		return  XdmCommomPath + "codeView";
+		return  XdmCommomPath + "memberView";
 	}
-	@RequestMapping(value = "/codeUpdateForm")
-	public String codeUpdateForm(Model model, CodeDto dto) throws Exception {
+	@RequestMapping(value = "/memberUpdateForm")
+	public String memberUpdateForm(Model model, MemberDto dto) throws Exception {
 		
 		model.addAttribute("item", service.selectOne(dto));
-		return  XdmCommomPath + "codeUpdateForm";
+		return  XdmCommomPath + "memberUpdateForm";
 	}
 	
-	@RequestMapping(value = "/codeInsertForm")
-	public String codeInsertForm(Model model) throws Exception {
-		return  XdmCommomPath + "codeInsertForm";
+	@RequestMapping(value = "/memberInsertForm")
+	public String memberViewUpdate(Model model) throws Exception {
+		return  XdmCommomPath + "memberInsertForm";
 	}
 
-	@RequestMapping(value="/codeInsert")
-	public String codeInsert(CodeDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/memberInsert")
+	public String memberInsert(MemberDto dto ,Model model) throws Exception{
 	//	System.out.println(dto.toString());
 
 		service.insert(dto);
-		return "redirect:/codeXdmList";
+		return "redirect:/memberXdmList";
 	}
 	
-	@RequestMapping(value="/codeUpdt")
-	public String codeUpdt(CodeDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/memberUpdt")
+	public String memberUpdt(MemberDto dto ,Model model) throws Exception{
 		
 		System.out.println(dto.toString()+"==========업데이트 전 ==========");
 		service.update(dto);
-		return "redirect:/codeXdmList";
+		return "redirect:/memberXdmList";
 	}
-	@RequestMapping(value="/codeUelete")
-	public String codeUelete(CodeDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/memberUelete")
+	public String memberUelete(MemberDto dto ,Model model) throws Exception{
 		
 		service.uelete(dto);
 		System.out.println(dto.toString()+"--------------삭제후-------------------------");
-		return "redirect:/codeXdmList";
+		return "redirect:/memberXdmList";
 	}
 	
-	@RequestMapping(value="/codeDelete")
-	public String codeDelete(CodeDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/memberDelete")
+	public String memberDelete(MemberDto dto ,Model model) throws Exception{
 		
 		service.delete(dto);
-		return "redirect:/codeXdmList";
+		return "redirect:/memberXdmList";
+	}
+	
+	@RequestMapping(value="/")
+	public String test() throws Exception{
+		
+		
+		return  XdmCommomPath + "form-validations";
 	}
 }

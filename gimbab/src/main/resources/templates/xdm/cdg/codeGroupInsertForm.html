@@ -528,8 +528,8 @@
 											method="post">
 											
 											<div class="col-md-3">
-												<label for="name" class="form-label">등록</span></label>
-												<input type="text" class="form-control" name="name" id="name" placeholder="이름을 넣어주십시오" required />
+												<label for="codeGroupName" class="form-label">등록</span></label>
+												<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" placeholder="이름을 넣어주십시오" required />
 												<div class="invalid-feedback">
 													값 넣어
 												</div>
@@ -620,8 +620,8 @@
 		} 
 			
 		function validationUpdt() {
-			if(!nullToEmpty(document.getElementById("name").value)){
-				document.getElementById("name").setAttribute("class", "form-control is-invalid");
+			if(!nullToEmpty(document.getElementById("codeGroupName").value)){
+				document.getElementById("codeGroupName").setAttribute("class", "form-control is-invalid");
 				
 				return false;
 			}

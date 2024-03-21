@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ERR.infra.code.CodeDao">
+<mapper namespace="com.ERR.infra.member.MemberDao">
 
 	<resultMap id="resultMapObj"
-		type="com.ERR.infra.code.CodeDto"></resultMap>
+		type="com.ERR.infra.member.MemberDto"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
 			select
-		a.codeGroupSeqF
-		,b.codeGroupName as xcodeGroupName
+		memberSeq
 		,a.codeDelNy
 		,a.codeSeq
 		,a.codeName

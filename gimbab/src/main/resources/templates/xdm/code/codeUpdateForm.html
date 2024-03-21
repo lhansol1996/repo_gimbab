@@ -506,7 +506,7 @@
 							</li>
 							<li class="breadcrumb-item">tables</li>
 							<li class="breadcrumb-item" aria-current="page">
-								수정
+								수정222
 							</li>
 						</ol>
 						<!-- Breadcrumb end -->
@@ -524,21 +524,28 @@
 							<div class="col-xxl-12">
 								<div class="card mb-4">
 									<div class="card-body">
-										<form name="formInsert" id="formInsert" class="row g-3 needs-validation"
-											method="post">
+										<form name="formUpdate" id="formUpdate" 
+										class="row g-3 needs-validation"
+											action="/codeUpdt" method="post">
 											
+											<!-- 수정 폼 -->
 											<div class="col-md-3">
-												<label for="name" class="form-label">등록</span></label>
-												<input type="text" class="form-control" name="name" id="name" placeholder="이름을 넣어주십시오" required />
+												<label for="codeName" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeSeq}"></span></label>
+												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" required />
+												<input type="hidden" name="codeSeq" th:value="${item.codeSeq}" id="codeSeq">
+												<div class="invalid-feedback">
+													값 넣어
+												</div>
 											</div>
+
 											
 											<div class="d-flex justify-content-between col-12">
-												<a href="#" th:href="@{/codeGroupXdmList}" class="btn btn-primary" role="button">
+												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
 													뒤로가기
 												</a>
 
-												<button class="btn btn-primary" id="btnInsert">
-													등록
+												<button class="btn btn-primary" id="btnUpdate">
+													수정
 												</button>
 											</div>
 										</form>
@@ -550,11 +557,10 @@
 						</div>
 						<!-- Row end -->
 
-					
+						
 
 					</div>
 					<!-- App body ends -->
-
 
 					<!-- App footer start -->
 					<div class="app-footer">
@@ -592,56 +598,53 @@
 		
 		<script>
 
-		let form = document.querySelector("form[name=formInsert]");
+		let form = document.querySelector("form[name=formUpdate]");
 		let seq = document.querySelector("input[name=seq]");
-		let goUrlXdmList = "/codeGroupXdmList";								
-		let goUrlXdmInstForm = "/codeGroupInsert";							
-		let goUrlXdmView = "/codeGroupXdmView";		
+		let goUrlXdmList = "/codeXdmList";
+		let goUrlXdmInstForm = "/codeInsert";
+		let goUrlXdmUpdtForm = "/codeUpdt";
+		let goUrlXdmView = "/codeXdmView";
 
 		// 등록버튼
-		document.getElementById("btnInsert").onclick = function () {
-			if(validationInst()==false) {
+		document.getElementById("btnUpdate").onclick = function () {
+			if (validationInst() == false) {
 				return false;
-			}else{
-				form.action = goUrlXdmInstForm
+			} else {
+				form.action = goUrlXdmUpdtForm
 				form.submit();
 			}
 
 		}
 
 		function validationInst() {
-			if(validationUpdt() == false) {
+			if (validationUpdt() == false) {
 				return false;
-				alert("insert");	
 			}
 		}
-			
+
 		function validationUpdt() {
-			if(!nullToEmpty(document.getElementById("name").value)){
-			alert("값이없다.")
-			return false;
+			if (!nullToEmpty(document.getElementById("codeName").value)) {
+				document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
+				document.getElementById("codeName").focus();
+				return false;
+			}
+				if (!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
+					document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
+					document.getElementById("codeGroupSeqF").focus();
+				return false;
 			}
 		}
 
 		nullToEmpty = function (value) {
-			if(value== null || value == 'null' || value.length == 0){
+			if (value == null || value == 'null' || value.length == 0) {
 				return false;
-			}else{
-					return true;
-				}
-			
+			} else {
+				return true;
+			}
+
 		}
-		
-		</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+	</script>
 		
 	</body>
 

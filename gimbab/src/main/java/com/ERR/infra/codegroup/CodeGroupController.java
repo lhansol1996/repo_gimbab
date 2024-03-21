@@ -12,7 +12,7 @@ import com.ERR.common.util.UtilDateTime;
 @Controller
 public class CodeGroupController {
 	
-	private String XdmCommomPath = "xdm/";
+	private String XdmCommomPath = "xdm/cdg/";
 	
 	@Autowired
 	CodeGroupService service;

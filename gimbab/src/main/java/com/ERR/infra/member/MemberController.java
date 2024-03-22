@@ -124,10 +124,5 @@ private String XdmCommomPath = "xdm/member/";
 		return "redirect:/memberXdmList";
 	}
 	
-	@RequestMapping(value="/")
-	public String test() throws Exception{
-		
-		
-		return  XdmCommomPath + "form-validations";
-	}
+	
 }

@@ -424,8 +424,11 @@
 								<select class="form-select" aria-label="Default select example" id="voOption"
 									name="voOption">
 									<option value="" th:selected="${vo.voOption == null}">검색구분</option>
-									<option value="1" th:selected="${vo.voOption == 1}">코드</option>
-									<option value="2" th:selected="${vo.voOption == 2}">이름</option>
+									<option value="1" th:selected="${vo.voOption == 1}">멤버코드</option>
+									<option value="2" th:selected="${vo.voOption == 2}">성별</option>
+									<option value="2" th:selected="${vo.voOption == 3}">생일</option>
+									<option value="2" th:selected="${vo.voOption == 4}">이름</option>
+									<option value="2" th:selected="${vo.voOption == 5}">아이디</option>
 								</select>
 							</div>
 
@@ -475,12 +478,13 @@
 										<table class="table align-middle table-hover m-0">
 											<thead>
 												<tr>
-													<th scope="col-2"><input class="form-check-input" type="checkbox"
+													<th scope="col-1"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></th>
-													<th scope="col-2">Seq</th>
+													<th scope="col">Seq</th>
 													<th scope="col-2">Name</th>
-													<th scope="col-2">delNy</th>
-													<th scope="col-2">codeGroupSeq</th>
+													<th scope="col">delNy</th>
+													<th scope="col-2">Email</th>
+													<th scope="col">gender</th>
 													<th scope="col-2">modDate</th>
 													<th scope="col-2">regDate</th>
 													<th scope="col"></th>
@@ -491,31 +495,33 @@
 													<td scope="row"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></td>
 													<td class="col"><a href="#"
-															th:href="@{/codeView(codeSeq=${list.codeSeq},codeName=${list.codeName},codeDelNy=${list.codeDelNy})}"
-															th:text="${list.codeSeq}">#001</a></td>
+															th:href="@{/memberView(memberSeq=${list.memberSeq},memberName=${list.memberName},memberDelNy=${list.memberDelNy}, memberDpt=${list.memberDpt})}"
+															th:text="${list.memberSeq}">#001</a></td>
 													<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
 																alt="Bootstrap Gallery" />
 														</th> -->
-													<td class="col-2" th:text="${list.codeName}">first1</td>
-													<td class="col-2" th:text="${list.codeDelNy}">Last1</td>
-													<td class="col" th:text="${list.codeGroupSeqF}">Last1</td>
-													<td class="col-3"
-														th:text="${#dates.format(list.codeModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+													<td class="col-2" th:text="${list.memberName}">first1</td>
+													<td class="col" th:text="${list.memberDelNy}">Last1</td>
+													<td class="col-2" th:text="${list.memberEmail}">Last1</td>
+													<td th:if="${list.memberGenderCd != null}" th:text="${@codeService.selectOneCachedCode(list.memberGenderCd)}" class="memberGenderCd align-middle col-1"></td>
+														<td th:unless="${list.memberGenderCd != null}" class="memberGenderCd align-middle col-1"></td>
+													<td class="col-2"
+														th:text="${#dates.format(list.memberModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
-													<td class="col-3"
-														th:text="${#dates.format(list.codeRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+													<td class="col-2"
+														th:text="${#dates.format(list.memberRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
-													<td class="col-2">
+													<td class="col">
 														<!-- uelete 버튼 시작 -->
 														<button class="btn btn-danger btn-sm mb-1"
 															data-bs-toggle="modal"
-															th:data-bs-target="'#ueleteModal' + ${list['codeSeq']}"
+															th:data-bs-target="'#ueleteModal' + ${list['memberSeq']}"
 															data-bs-target="#ueleteModal">
 															<i class="bi bi-trash"></i>
 														</button>
 														<!-- uelete Modal -->
-														<div class="modal fade" th:id="'ueleteModal' + ${list['codeSeq']}"
+														<div class="modal fade" th:id="'ueleteModal' + ${list['memberSeq']}"
 															id="ueleteModal" tabindex="-1"
 															aria-labelledby="ueleteModalLabel" aria-hidden="true">
 															<div class="modal-dialog">
@@ -527,10 +533,10 @@
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/codeUelete" method="post">
+																	<form action="/memberUelete" method="post">
 																		<div class="modal-body">
-																			<input type="hidden" name="codeSeq"
-																				th:value="${list.codeSeq}">
+																			<input type="hidden" name="memberSeq"
+																				th:value="${list.memberSeq}">
 																			<span>정말 삭제하시겠습니까 ?</span>
 																		</div>
 																		<div class="modal-footer">
@@ -585,7 +591,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/codeInsertForm}" id="btnInsert">
+													th:href="@{/memberInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -653,15 +659,15 @@ window.addEventListener('load', function () {
 		});
 
 		let form = document.querySelector("form[name=formList]");
-		let goUrlXdmList = "/codeXdmList";								
-		let goUrlXdmInstForm = "/codeInsertForm";							
-		let goUrlXdmView = "/codeXdmView";								
+		let goUrlXdmList = "/memberXdmList";								
+		let goUrlXdmInstForm = "/memberInsertForm";							
+		let goUrlXdmView = "/memberXdmView";								
 /*
 		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
 		let goUrlXdmMultiDele = "/infra/codegroup/codeGroupXdmMultiDele";			
 		*/
 
-		let seq = document.querySelector("input[name=codeSeq]");									/* ### */
+		let seq = document.querySelector("input[name=memberSeq]");									/* ### */
 
 		document.getElementById("btnReset").onclick = function () {
 			location.href = goUrlXdmList;
@@ -680,7 +686,6 @@ window.addEventListener('load', function () {
 		}
 
 		document.getElementById("btnSearch").onclick = function () {
-			alert("222");
 			form.action = goUrlXdmList;
 			form.submit();
 		};

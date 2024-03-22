@@ -539,6 +539,7 @@
 											<tr>
 												<th scope="col-2">seq</th>
 												<th scope="col-2">Name</th>
+												<th scope="col-2">Gender</th>
 												<th scope="col-2">modDate</th>
 												<th scope="col-2">regDate</th>
 												<th scope="col-2">delNy</th>
@@ -547,19 +548,21 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td class="col-1" th:text="${item.codeSeq}">#001</td>
+												<td class="col-1" th:text="${item.memberSeq}">#001</td>
 												<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
 																alt="Bootstrap Gallery" />
 														</th> -->
-												<td class="col-2" th:text="${item.codeName}">first1</td>
+												<td class="col-2" th:text="${item.memberName}">first1</td>
+												<td th:if="${item.memberGenderCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}" class="memberGenderCd align-middle col-2"></td>
+														<td th:unless="${item.memberGenderCd != null}" class="memberGenderCd align-middle col-2"></td>
 												<td class="col-3"
-													th:text="${#dates.format(item.codeModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+													th:text="${#dates.format(item.memberModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 												</td>
 												<td class="col-3"
-													th:text="${#dates.format(item.codeRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+													th:text="${#dates.format(item.memberRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 												</td>
-												<td class="col-1" th:text="${item.codeDelNy}">
+												<td class="col-1" th:text="${item.memberDelNy}">
 												</td>
 
 											</tr>
@@ -571,24 +574,24 @@
 									<div class="d-flex justify-content-between flex-row ms-5 pt-5">
 										<div class="col-2">
 											<a class="btn btn-danger btn-icon btn-sm mb-1" href="#"
-												th:href="@{/codeXdmList}"><i class="bi bi-arrow-left"></i></a>
+												th:href="@{/memberXdmList}"><i class="bi bi-arrow-left"></i></a>
 										</div>
 										<!-- 테이블 아래 쪽 등록 버튼 -->
 
 										<div class="col-2">
 											<a class="btn btn-info btn-sm mb-1" href="#"
-												th:href="@{/codeUpdateForm(codeSeq=${item.codeSeq}, codeName=${item.codeName})}">
+												th:href="@{/memberUpdateForm(memberSeq=${item.memberSeq}, memberName=${item.memberName}, memberDpt=${item.memberDpt})}">
 												<i class="bi bi-pencil"></i>
 											</a>
 
 											<!-- uelete 버튼 시작 -->
 											<button class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal"
-												th:data-bs-target="'#ueleteModal' + ${item['codeSeq']}"
+												th:data-bs-target="'#ueleteModal' + ${item['memberSeq']}"
 												data-bs-target="#ueleteModal">
 												<i class="bi bi-trash"></i>
 											</button>
 											<!-- uelete Modal -->
-											<div class="modal fade" th:id="'ueleteModal' + ${item['codeSeq']}"
+											<div class="modal fade" th:id="'ueleteModal' + ${item['memberSeq']}"
 												id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel"
 												aria-hidden="true">
 												<div class="modal-dialog">
@@ -599,9 +602,9 @@
 															<button type="button" class="btn-close"
 																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
-														<form action="/codeUelete" method="post">
+														<form action="/memberUelete" method="post">
 															<div class="modal-body">
-																<input type="hidden" name="codeSeq" th:value="${item.codeSeq}">
+																<input type="hidden" name="memberSeq" th:value="${item.memberSeq}">
 																<span>정말 삭제하시겠습니까 ?</span>
 															</div>
 															<div class="modal-footer">
@@ -616,12 +619,12 @@
 											</div>
 											<!-- delete 버튼 시작 -->
 											<button class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal"
-												th:data-bs-target="'#deleteModal' + ${item['codeSeq']}"
+												th:data-bs-target="'#deleteModal' + ${item['memberSeq']}"
 												data-bs-target="#deleteModal">
 												<i class="bi bi-x-lg"></i>
 											</button>
 											<!-- delete Modal -->
-											<div class="modal fade" th:id="'deleteModal' + ${item['codeSeq']}"
+											<div class="modal fade" th:id="'deleteModal' + ${item['memberSeq']}"
 												id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
 												aria-hidden="true">
 												<div class="modal-dialog">
@@ -632,9 +635,9 @@
 															<button type="button" class="btn-close"
 																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
-														<form action="/codeDelete" method="post">
+														<form action="/memberDelete" method="post">
 															<div class="modal-body">
-																<input type="hidden" name="codeSeq" th:value="${item.codeSeq}">
+																<input type="hidden" name="memberSeq" th:value="${item.memberSeq}">
 																<span>정말 삭제하시겠습니까 ?</span>
 															</div>
 															<div class="modal-footer">

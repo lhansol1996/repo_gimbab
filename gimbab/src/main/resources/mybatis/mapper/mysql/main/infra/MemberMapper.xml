@@ -9,24 +9,31 @@
 	<select id="selectList" resultMap="resultMapObj">
 			select
 		memberSeq
-		,a.codeDelNy
-		,a.codeSeq
-		,a.codeName
-		,a.codeRegDate
-		,a.codeModDate
-		From code a join codeGroup b
-		on a.codeGroupSeqF = b.codeGroupSeq
+		,memberID
+		,memberPwd
+		,memberName
+		,memberBirthday
+		,memberEmail
+		,memberDpt
+		,memberDelNy
+		,memberGenderCd
+		,memberRegDate
+		,memberModDate
+		From member
 		WHERE 1=1
-		<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if>
+		<if test="voDelNy != null and !voDelNy.equals('')">AND memberDelNy = #{voDelNy}</if>
 
 		<choose>
-			<when test="voOptionDate == 1">AND a.codeRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-			<when test="voOptionDate == 2">AND a.codeModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 1">AND memberRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND memberModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
 		</choose>
 
 		<choose>
-			<when test="voOption == 1">AND a.codeSeq = #{voValue}</when>
-			<when test="voOption == 2">AND a.codeName LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 1">AND memberSeq = #{voValue}</when>
+			<when test="voOption == 2">AND memberGenderCd = #{voValue}</when>
+			<when test="voOption == 3">AND memberBirthday LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 4">AND memberName LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 5">AND memberID LIKE CONCAT('%',#{voValue},'%')</when>
 		</choose>
 	</select>
 
@@ -36,28 +43,49 @@
 
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			codeSeq
-			,codeName
-			,codeDelNy
-			,codeModDate
-			,codeRegDate
-			From code
+			memberSeq
+			,memberID
+			,memberPwd
+			,memberName
+			,memberBirthday
+			,memberEmail
+			,memberDpt
+			,memberDelNy
+			,memberGenderCd
+			,memberRegDate
+			,memberModDate
+			From member
 		where 1=1
-				and codeSeq=#{codeSeq}
+				and memberSeq=#{memberSeq}
 	</select>
 
 	<insert id="insert">
-		insert into code(
-			codeName
-		    ,codeDelNy
-		    ,codeGroupSeqF
-		   )values(
-			    #{codeName}
-			    ,0
-			    ,#{codeGroupSeqF}
+		insert into member(
+				memberName,
+				memberID,
+				memberPwd,
+				memberBirthday,
+				memberEmail,
+				memberDelNy,
+				memberAdminNy,
+				memberGenderCd,
+				memberRegDate,
+				memberModDate)
+				VALUES
+				(
+				#{memberName},
+				#{memberID},
+				#{memberPwd},
+				#{memberBirthday},
+				#{memberEmail},
+				0,
+				#{memberAdminNy},
+				#{memberGenderCd},
+				now(),
+				now()
 		    )
 
-		<selectKey resultType="String" keyProperty="codeSeq"
+		<selectKey resultType="String" keyProperty="memberSeq"
 			order="AFTER">
 			select last_insert_id()
 		</selectKey>
@@ -65,37 +93,28 @@
 
 
 	<update id="update">
-		UPDATE code
-		SET
-		codeName=#{codeName}
+		UPDATE member
+		<set>
+            <if test="memberEmail != null or memberEmail != ''">memberEmail = #{memberEmail},</if>
+            <if test="memberDpt != null or memberDpt != ''">memberDpt = #{memberDpt},</if>
+        </set>
 		where 1=1
-			and codeSeq=#{codeSeq}
+			and memberSeq=#{memberSeq}
 	</update>
 
 	<update id="uelete">
-		update code
+		update member
 		set 
-		codeDelNy=1
+		memberDelNy=1
 		where 1=1
-		 and codeSeq = #{codeSeq}
+		 and memberSeq = #{memberSeq}
 	</update>
 
 	<delete id="delete">
-		delete From code
+		delete From member
 			where 1=1
-		and codeSeq=#{codeSeq}
+		and memberSeq=#{memberSeq}
 	</delete>
-	
-	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
-			SELECT 
-				codeSeq
-				, codeName
-				, codeGroupSeqF
-			FROM
-				code
-			WHERE 1=1
-				AND codeDelNy = 0
-	   </select>
 	
 
 </mapper>

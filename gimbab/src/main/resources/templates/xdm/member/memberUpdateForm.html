@@ -526,13 +526,30 @@
 									<div class="card-body">
 										<form name="formUpdate" id="formUpdate" 
 										class="row g-3 needs-validation"
-											action="/codeUpdt" method="post">
+											action="/memberUpdt" method="post">
 											
+											<input type="hidden" name="memberSeq" th:value="${item.memberSeq}" id="memberSeq">
 											<!-- 수정 폼 -->
 											<div class="col-md-3">
-												<label for="codeName" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeSeq}"></span></label>
-												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" required />
-												<input type="hidden" name="codeSeq" th:value="${item.codeSeq}" id="codeSeq">
+												<label for="memberDpt" class="form-label">멤버 Seq:<span th:text="${item.memberSeq}"></span><span>&nbsp;상세설명</span></label>
+												<textarea class="form-control" name="memberDpt" id="memberDpt" th:text="${item.memberDpt}" required style="height: 100px"></textarea>
+												<div class="invalid-feedback">
+													값 넣어
+												</div>
+											</div>
+
+
+											<div class="col-md-3">
+												<label for="memberPwd" class="form-label">멤버 비밀번호:<span th:text="${item.memberPwd}"></span></label>
+												<input type="text" class="form-control" name="memberPwd" id="memberPwd" th:value="${item.memberPwd}" required />
+												<div class="invalid-feedback">
+													값 넣어
+												</div>
+											</div>
+
+											<div class="col-md-3">
+												<label for="memberEmail" class="form-label">멤버 이메일:<span th:text="${item.memberEmail}"></span></label>
+												<input type="text" class="form-control" name="memberEmail" id="memberEmail" th:value="${item.memberEmail}" required />
 												<div class="invalid-feedback">
 													값 넣어
 												</div>
@@ -600,10 +617,10 @@
 
 		let form = document.querySelector("form[name=formUpdate]");
 		let seq = document.querySelector("input[name=seq]");
-		let goUrlXdmList = "/codeXdmList";
-		let goUrlXdmInstForm = "/codeInsert";
-		let goUrlXdmUpdtForm = "/codeUpdt";
-		let goUrlXdmView = "/codeXdmView";
+		let goUrlXdmList = "/memberXdmList";
+		let goUrlXdmInstForm = "/memberInsert";
+		let goUrlXdmUpdtForm = "/memberUpdt";
+		let goUrlXdmView = "/memberXdmView";
 
 		// 등록버튼
 		document.getElementById("btnUpdate").onclick = function () {
@@ -623,14 +640,19 @@
 		}
 
 		function validationUpdt() {
-			if (!nullToEmpty(document.getElementById("codeName").value)) {
-				document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
-				document.getElementById("codeName").focus();
+			if (!nullToEmpty(document.getElementById("memberDpt").value)) {
+				document.getElementById("memberDpt").setAttribute("class", "form-control is-invalid");
+				document.getElementById("memberDpt").focus();
 				return false;
 			}
-				if (!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
-					document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
-					document.getElementById("codeGroupSeqF").focus();
+				if (!nullToEmpty(document.getElementById("memberPwd").value)) {
+					document.getElementById("memberPwd").setAttribute("class", "form-control is-invalid");
+					document.getElementById("memberPwd").focus();
+				return false;
+			}
+			if (!nullToEmpty(document.getElementById("memberEmail").value)) {
+					document.getElementById("memberEmail").setAttribute("class", "form-control is-invalid");
+					document.getElementById("memberEmail").focus();
 				return false;
 			}
 		}

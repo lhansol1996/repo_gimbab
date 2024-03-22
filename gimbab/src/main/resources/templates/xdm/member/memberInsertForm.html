@@ -390,24 +390,80 @@
 										method="post">
 
 										<div class="col-md-3">
-											<label for="codeName" class="form-label">등록</span></label> <input
-												type="text" class="form-control" name="codeName" id="codeName"
+											<label for="memberName" class="form-label">이름</span></label> <input
+												type="text" class="form-control" name="memberName" id="memberName"
 												placeholder="이름을 넣어주십시오" required />
 											<div class="invalid-feedback">
 												값 넣어
 											</div>
 										</div>
+
 										<div class="col-md-3">
-											<label for="codeGroupSeqF" class="form-label">코드그룹 Seq 지정</span></label>
-											<input type="text" class="form-control" name="codeGroupSeqF"
-												id="codeGroupSeqF" placeholder="이름을 넣어주십시오" required />
+											<label for="memberID" class="form-label">ID</span></label> <input
+												type="text" class="form-control" name="memberID" id="memberID"
+												placeholder="아이디를 넣어주십시오" required />
 											<div class="invalid-feedback">
 												값 넣어
 											</div>
 										</div>
 
+										<div class="col-md-3">
+											<label for="memberPwd" class="form-label">비밀번호</span></label> <input
+												type="text" class="form-control" name="memberPwd" id="memberPwd"
+												placeholder="비밀번호를 넣어주십시오" required />
+											<div class="invalid-feedback">
+												값 넣어
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label for="memberBirthday" class="form-label">생년월일</span></label>
+											<input type="text" class="form-control" name="memberBirthday"
+												id="memberBirthday" placeholder="생년월일을 넣어주십시오" required />
+											<div class="invalid-feedback">
+												값 넣어
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label for="memberEmail" class="form-label">이메일</span></label>
+											<input type="text" class="form-control" name="memberEmail"
+												id="memberEmail" placeholder="이메일을 넣어주십시오" required />
+											<div class="invalid-feedback">
+												값 넣어
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label class="form-label" for="memberAdminNy">유형</label>
+											<select class="form-select" name="memberAdminNy" id="memberAdminNy"
+												required>
+												<option value="" selected>유형을 선택하세요</option>
+												<option value="1">회원</option>
+												<option value="2">관리자</option>
+											</select>
+											<div class="invalid-feedback">
+												값 선택해
+											</div>
+										</div>
+										<div class="col-md-3">
+											<label class="form-label" for="memberGenderCd">Gender</label>
+											<select class="form-select" name="memberGenderCd" id="memberGenderCd"
+												required>
+												<option value="" selected>성별을 선택하세요</option>
+												<option value="12">Male</option>
+												<option value="13">Famale</option>
+												<option value="14">Etc</option>
+											</select>
+											<div class="invalid-feedback">
+												값 선택해
+											</div>
+										</div>
+
+
 										<div class="d-flex justify-content-between col-12">
-											<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
+											<a href="#" th:href="@{/memberXdmList}" class="btn btn-primary"
+												role="button">
 												뒤로가기 </a>
 
 											<button class="btn btn-primary" id="btnInsert">등록</button>
@@ -465,9 +521,9 @@
 
 		let form = document.querySelector("form[name=formInsert]");
 		let seq = document.querySelector("input[name=seq]");
-		let goUrlXdmList = "/codeXdmList";
-		let goUrlXdmInstForm = "/codeInsert";
-		let goUrlXdmView = "/codeXdmView";
+		let goUrlXdmList = "/memberXdmList";
+		let goUrlXdmInstForm = "/memberInsert";
+		let goUrlXdmView = "/memberXdmView";
 
 		// 등록버튼
 		document.getElementById("btnInsert").onclick = function () {
@@ -487,14 +543,39 @@
 		}
 
 		function validationUpdt() {
-			if (!nullToEmpty(document.getElementById("codeName").value)) {
-				document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
-				document.getElementById("codeName").focus();
+			if (!nullToEmpty(document.getElementById("memberName").value)) {
+				document.getElementById("memberName").setAttribute("class", "form-control is-invalid");
+				document.getElementById("memberName").focus();
 				return false;
 			}
-				if (!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
-					document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
-					document.getElementById("codeGroupSeqF").focus();
+			if (!nullToEmpty(document.getElementById("memberID").value)) {
+				document.getElementById("memberID").setAttribute("class", "form-control is-invalid");
+				document.getElementById("memberID").focus();
+				return false;
+			}
+			if (!nullToEmpty(document.getElementById("memberPwd").value)) {
+				document.getElementById("memberPwd").setAttribute("class", "form-control is-invalid");
+				document.getElementById("memberPwd").focus();
+				return false;
+			}
+			if (!nullToEmpty(document.getElementById("memberBirthday").value)) {
+				document.getElementById("memberBirthday").setAttribute("class", "form-control is-invalid");
+				document.getElementById("memberBirthday").focus();
+				return false;
+			}
+			if (!nullToEmpty(document.getElementById("memberEmail").value)) {
+				document.getElementById("memberEmail").setAttribute("class", "form-control is-invalid");
+				document.getElementById("memberEmail").focus();
+				return false;
+			}
+			if (!nullToEmpty(document.getElementById("memberAdminNy").value)) {
+				document.getElementById("memberAdminNy").setAttribute("class", "form-select is-invalid");
+				document.getElementById("memberAdminNy").focus();
+				return false;
+			}
+			if (!nullToEmpty(document.getElementById("memberGenderCd").value)) {
+				document.getElementById("memberGenderCd").setAttribute("class", "form-select is-invalid");
+				document.getElementById("memberGenderCd").focus();
 				return false;
 			}
 		}

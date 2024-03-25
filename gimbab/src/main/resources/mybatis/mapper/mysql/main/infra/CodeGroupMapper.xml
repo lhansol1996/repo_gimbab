@@ -90,6 +90,15 @@
 		where 1=1
 		and codeGroupSeq = #{codeGroupSeq}
 	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		select 
+		codeGroupSeq
+		codeGroupName
+		from codeGroup
+		where 1=1
+			AND codeGroupDelNy=0
+	</select>
 
 
 </mapper>

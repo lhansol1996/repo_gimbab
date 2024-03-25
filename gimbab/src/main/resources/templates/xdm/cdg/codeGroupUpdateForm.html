@@ -1,34 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Admin Templates - Dashboard Templates - Venus Admin Template</title>
-
-		<!-- Meta -->
-		<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
-		<meta name="author" content="Bootstrap Gallery" />
-		<link rel="canonical" href="https://www.bootstrap.gallery/">
-		<meta property="og:url" content="https://www.bootstrap.gallery">
-		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-		<meta property="og:type" content="Website">
-		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/assets/images/favicon.svg" />
-
-		<!-- *************
-			************ CSS Files *************
-		************* -->
-		<link rel="stylesheet" href="/xdm/assets/fonts/bootstrap/bootstrap-icons.css" />
-		<link rel="stylesheet" href="/xdm/assets/css/main.min.css" />
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="/xdm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+		<div th:replace="~{include/xdmHead :: xdmHead}"></div>
 	</head>
 
 	<body>
@@ -532,9 +506,7 @@
 											<div class="col-md-3">
 												<label for="name" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeGroupSeq}"></span></label>
 												<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" th:value="${item.codeGroupName}" required />
-												<div class="invalid-feedback">
-													값 넣어
-												</div>
+												<div class="invalid-feedback" id="codeGroupNameFeedback"></div>
 												
 												<input type="hidden" name="codeGroupSeq" th:value="${item.codeGroupSeq}" id="codeGroupSeq">
 											</div>
@@ -621,22 +593,17 @@
 		}
 
 		function validationUpdt() {
-			if (!nullToEmpty(document.getElementById("codeGroupName").value)) {
-				document.getElementById("codeGroupName").setAttribute("class", "form-control is-invalid");
-				document.getElementById("codeGroupName").focus();
-				return false;
-			}
-				
+			if (!checkOnlyKoreanEnglish('codeGroupName',2,0,'한국어랑 영어만 가능합니다.')) return false;
 		}
 
-		nullToEmpty = function (value) {
-			if (value == null || value == 'null' || value.length == 0) {
-				return false;
-			} else {
-				return true;
-			}
+// 		nullToEmpty = function (value) {
+// 			if (value == null || value == 'null' || value.length == 0) {
+// 				return false;
+// 			} else {
+// 				return true;
+// 			}
 
-		}
+// 		}
 
 	</script>
 		

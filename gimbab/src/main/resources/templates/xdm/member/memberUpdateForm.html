@@ -2,33 +2,7 @@
 <html lang="en">
 
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Admin Templates - Dashboard Templates - Venus Admin Template</title>
-
-		<!-- Meta -->
-		<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
-		<meta name="author" content="Bootstrap Gallery" />
-		<link rel="canonical" href="https://www.bootstrap.gallery/">
-		<meta property="og:url" content="https://www.bootstrap.gallery">
-		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-		<meta property="og:type" content="Website">
-		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/assets/images/favicon.svg" />
-
-		<!-- *************
-			************ CSS Files *************
-		************* -->
-		<link rel="stylesheet" href="/xdm/assets/fonts/bootstrap/bootstrap-icons.css" />
-		<link rel="stylesheet" href="/xdm/assets/css/main.min.css" />
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="/xdm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+		<div th:replace="~{include/xdmHead :: xdmHead}"></div>
 	</head>
 
 	<body>
@@ -525,34 +499,28 @@
 								<div class="card mb-4">
 									<div class="card-body">
 										<form name="formUpdate" id="formUpdate" 
-										class="row g-3 needs-validation"
+										class="row g-3"
 											action="/memberUpdt" method="post">
 											
 											<input type="hidden" name="memberSeq" th:value="${item.memberSeq}" id="memberSeq">
 											<!-- 수정 폼 -->
 											<div class="col-md-3">
 												<label for="memberDpt" class="form-label">멤버 Seq:<span th:text="${item.memberSeq}"></span><span>&nbsp;상세설명</span></label>
-												<textarea class="form-control" name="memberDpt" id="memberDpt" th:text="${item.memberDpt}" required style="height: 100px"></textarea>
-												<div class="invalid-feedback">
-													값 넣어
-												</div>
+												<textarea class="form-control" name="memberDpt" id="memberDpt" th:text="${item.memberDpt}"  style="height: 100px"></textarea>
+												<div class="invalid-feedback" id="memberDptFeedback"></div>
 											</div>
 
 
 											<div class="col-md-3">
 												<label for="memberPwd" class="form-label">멤버 비밀번호:<span th:text="${item.memberPwd}"></span></label>
-												<input type="text" class="form-control" name="memberPwd" id="memberPwd" th:value="${item.memberPwd}" required />
-												<div class="invalid-feedback">
-													값 넣어
-												</div>
+												<input type="text" class="form-control" name="memberPwd" id="memberPwd" th:value="${item.memberPwd}"  />
+												<div class="invalid-feedback" id="memberPwdFeedback"></div>
 											</div>
 
 											<div class="col-md-3">
 												<label for="memberEmail" class="form-label">멤버 이메일:<span th:text="${item.memberEmail}"></span></label>
-												<input type="text" class="form-control" name="memberEmail" id="memberEmail" th:value="${item.memberEmail}" required />
-												<div class="invalid-feedback">
-													값 넣어
-												</div>
+												<input type="text" class="form-control" name="memberEmail" id="memberEmail" th:value="${item.memberEmail}"  />
+												<div class="invalid-feedback" id="memberEmailFeedback"></div>
 											</div>
 
 											
@@ -640,21 +608,10 @@
 		}
 
 		function validationUpdt() {
-			if (!nullToEmpty(document.getElementById("memberDpt").value)) {
-				document.getElementById("memberDpt").setAttribute("class", "form-control is-invalid");
-				document.getElementById("memberDpt").focus();
-				return false;
-			}
-				if (!nullToEmpty(document.getElementById("memberPwd").value)) {
-					document.getElementById("memberPwd").setAttribute("class", "form-control is-invalid");
-					document.getElementById("memberPwd").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberEmail").value)) {
-					document.getElementById("memberEmail").setAttribute("class", "form-control is-invalid");
-					document.getElementById("memberEmail").focus();
-				return false;
-			}
+			if (!checkOnlyKoreanEnglishNumber('memberDpt',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkOnlyKoreanEnglishNumber('memberPwd',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
+		
 		}
 
 		nullToEmpty = function (value) {

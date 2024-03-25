@@ -49,9 +49,13 @@ public class CodeGroupService {
 		return codeGroupDao.uelete(dto);
 	}
 	
-	//삭제버튼(delete
-		public int delete(CodeGroupDto dto) {
-			return codeGroupDao.delete(dto);
-		}
-	
+	//삭제버튼(delete)
+	public int delete(CodeGroupDto dto) {
+		return codeGroupDao.delete(dto);
+	}
+		
+	//페이징없는 코드그룹 리스트 
+	public List<CodeGroupDto> selectListWithoutPaging() {
+		return codeGroupDao.selectListWithoutPaging();
+	}
 }

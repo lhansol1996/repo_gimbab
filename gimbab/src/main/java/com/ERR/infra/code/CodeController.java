@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+import com.ERR.infra.codegroup.CodeGroupService;
 
 @Controller
 public class CodeController {
 	
-	private String XdmCommomPath = "xdm/code";
+	private String XdmCommomPath = "xdm/code/";
 	
 	@Autowired
 	CodeService service;
+	@Autowired
+	CodeGroupService codeGroupService;
 	
 	public void setSearch(CodeVo vo) throws Exception {
 		/* 최초 화면 로딩시에 세팅은 문제가 없지만 */

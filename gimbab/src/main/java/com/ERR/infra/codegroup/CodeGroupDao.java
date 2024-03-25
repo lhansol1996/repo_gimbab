@@ -26,5 +26,7 @@ public interface CodeGroupDao {
 	//삭제 버튼(drop)
 	public int delete(CodeGroupDto dto);
 	
-
+	//페이징처리없는 코드그룹 리스트 리턴
+	public List<CodeGroupDto> selectListWithoutPaging();
+	
 }

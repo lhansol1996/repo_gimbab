@@ -2,34 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Admin Templates - Dashboard Templates - Venus Admin
-		Template</title>
-
-	<!-- Meta -->
-	<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
-	<meta name="author" content="Bootstrap Gallery" />
-	<link rel="canonical" href="https://www.bootstrap.gallery/">
-	<meta property="og:url" content="https://www.bootstrap.gallery">
-	<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-	<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-	<meta property="og:type" content="Website">
-	<meta property="og:site_name" content="Bootstrap Gallery">
-	<link rel="shortcut icon" href="/xdm/assets/images/favicon.svg" />
-
-	<!-- *************
-			************ CSS Files *************
-		************* -->
-	<link rel="stylesheet" href="/xdm/assets/fonts/bootstrap/bootstrap-icons.css" />
-	<link rel="stylesheet" href="/xdm/assets/css/main.min.css" />
-
-	<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-	<!-- Scrollbar CSS -->
-	<link rel="stylesheet" href="/xdm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+	<div th:replace="~{include/xdmHead :: xdmHead}"></div>
 </head>
 
 <body>
@@ -386,78 +359,62 @@
 						<div class="col-xxl-12">
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formInsert" id="formInsert" class="row g-3 needs-validation"
+									<form name="formInsert" id="formInsert" class="row g-3"
 										method="post">
 
 										<div class="col-md-3">
 											<label for="memberName" class="form-label">이름</span></label> <input
 												type="text" class="form-control" name="memberName" id="memberName"
-												placeholder="이름을 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+												placeholder="이름을 넣어주십시오" />
+											<div class="invalid-feedback" id="memberNameFeedback"></div>
 										</div>
 
 										<div class="col-md-3">
 											<label for="memberID" class="form-label">ID</span></label> <input
 												type="text" class="form-control" name="memberID" id="memberID"
-												placeholder="아이디를 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+												placeholder="아이디를 넣어주십시오" />
+											<div class="invalid-feedback" id="memberIDFeedback"></div>
 										</div>
 
 										<div class="col-md-3">
 											<label for="memberPwd" class="form-label">비밀번호</span></label> <input
 												type="text" class="form-control" name="memberPwd" id="memberPwd"
-												placeholder="비밀번호를 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+												placeholder="비밀번호를 넣어주십시오"  />
+											<div class="invalid-feedback" id="memberPwdFeedback"></div>
 										</div>
 
 										<div class="col-md-3">
 											<label for="memberBirthday" class="form-label">생년월일</span></label>
 											<input type="text" class="form-control" name="memberBirthday"
-												id="memberBirthday" placeholder="생년월일을 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+												id="memberBirthday" placeholder="생년월일을 넣어주십시오"  />
+											<div class="invalid-feedback" id="memberBirthdayFeedback"></div>
 										</div>
 
 										<div class="col-md-3">
 											<label for="memberEmail" class="form-label">이메일</span></label>
 											<input type="text" class="form-control" name="memberEmail"
-												id="memberEmail" placeholder="이메일을 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+												id="memberEmail" placeholder="이메일을 넣어주십시오"  />
+											<div class="invalid-feedback" id="memberEmailFeedback"></div>
 										</div>
 
 										<div class="col-md-3">
 											<label class="form-label" for="memberAdminNy">유형</label>
-											<select class="form-select" name="memberAdminNy" id="memberAdminNy"
-												required>
+											<select class="form-select" name="memberAdminNy" id="memberAdminNy">
 												<option value="" selected>유형을 선택하세요</option>
 												<option value="1">회원</option>
 												<option value="2">관리자</option>
 											</select>
-											<div class="invalid-feedback">
-												값 선택해
-											</div>
+											<div class="invalid-feedback" id="memberAdminNyFeedback"></div>
 										</div>
 										<div class="col-md-3">
 											<label class="form-label" for="memberGenderCd">Gender</label>
-											<select class="form-select" name="memberGenderCd" id="memberGenderCd"
-												required>
+											<select class="form-select" name="memberGenderCd" id="memberGenderCd">
 												<option value="" selected>성별을 선택하세요</option>
 												<option value="12">Male</option>
 												<option value="13">Famale</option>
 												<option value="14">Etc</option>
 											</select>
-											<div class="invalid-feedback">
-												값 선택해
-											</div>
+											<div class="invalid-feedback" id="memberGenderCdFeedback"></div>
 										</div>
 
 
@@ -543,41 +500,13 @@
 		}
 
 		function validationUpdt() {
-			if (!nullToEmpty(document.getElementById("memberName").value)) {
-				document.getElementById("memberName").setAttribute("class", "form-control is-invalid");
-				document.getElementById("memberName").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberID").value)) {
-				document.getElementById("memberID").setAttribute("class", "form-control is-invalid");
-				document.getElementById("memberID").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberPwd").value)) {
-				document.getElementById("memberPwd").setAttribute("class", "form-control is-invalid");
-				document.getElementById("memberPwd").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberBirthday").value)) {
-				document.getElementById("memberBirthday").setAttribute("class", "form-control is-invalid");
-				document.getElementById("memberBirthday").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberEmail").value)) {
-				document.getElementById("memberEmail").setAttribute("class", "form-control is-invalid");
-				document.getElementById("memberEmail").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberAdminNy").value)) {
-				document.getElementById("memberAdminNy").setAttribute("class", "form-select is-invalid");
-				document.getElementById("memberAdminNy").focus();
-				return false;
-			}
-			if (!nullToEmpty(document.getElementById("memberGenderCd").value)) {
-				document.getElementById("memberGenderCd").setAttribute("class", "form-select is-invalid");
-				document.getElementById("memberGenderCd").focus();
-				return false;
-			}
+			if (!checkOnlyKoreanEnglish('memberName',2,0,'한글과 영어만 가능합니다.')) return false;
+			if (!checkOnlyKoreanEnglish('memberID',2,0,'한글과 영어만 가능합니다.')) return false;
+			if (!checkOnlyKoreanEnglish('memberPwd',2,0,'한글과 영어만 가능합니다.')) return false;
+			if (!checkOnlyNumber('memberBirthday',2,0,1,0,9,'적절한 생년월일을 넣어주십시오 ex)19960825.')) return false;
+			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주십시오.')) return false;
+			if (!checkSelectNull('memberAdminNy',2,'값을 선택해주십시요.')) return false;
+			if (!checkSelectNull('memberGenderCd',2,'값을 선택해주십시요.')) return false;
 		}
 
 		nullToEmpty = function (value) {

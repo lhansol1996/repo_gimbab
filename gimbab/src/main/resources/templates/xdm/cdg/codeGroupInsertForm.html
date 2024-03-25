@@ -1,34 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Admin Templates - Dashboard Templates - Venus Admin Template</title>
-
-		<!-- Meta -->
-		<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
-		<meta name="author" content="Bootstrap Gallery" />
-		<link rel="canonical" href="https://www.bootstrap.gallery/">
-		<meta property="og:url" content="https://www.bootstrap.gallery">
-		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-		<meta property="og:type" content="Website">
-		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="/xdm/assets/images/favicon.svg" />
-
-		<!-- *************
-			************ CSS Files *************
-		************* -->
-		<link rel="stylesheet" href="/xdm/assets/fonts/bootstrap/bootstrap-icons.css" />
-		<link rel="stylesheet" href="/xdm/assets/css/main.min.css" />
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="/xdm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+		<div th:replace="~{include/xdmHead :: xdmHead}"></div>
 	</head>
 
 	<body>
@@ -524,15 +498,13 @@
 							<div class="col-xxl-12">
 								<div class="card mb-4">
 									<div class="card-body">
-										<form name="formInsert" id="formInsert" class="row g-3 needs-validation"
+										<form name="formInsert" id="formInsert" class="row g-3"
 											method="post">
 											
 											<div class="col-md-3">
 												<label for="codeGroupName" class="form-label">등록</span></label>
-												<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" placeholder="이름을 넣어주십시오" required />
-												<div class="invalid-feedback">
-													값 넣어
-												</div>
+												<input type="text" class="form-control" name="codeGroupName" id="codeGroupName" placeholder="이름을 넣어주십시오"/>
+												<div class="invalid-feedback" id="codeGroupNameFeedback"></div>
 											</div>
 											
 											<div class="d-flex justify-content-between col-12">
@@ -620,11 +592,7 @@
 		} 
 			
 		function validationUpdt() {
-			if(!nullToEmpty(document.getElementById("codeGroupName").value)){
-				document.getElementById("codeGroupName").setAttribute("class", "form-control is-invalid");
-				
-				return false;
-			}
+			if(!checkOnlyKoreanEnglishNumber('codeGroupName', 2 ,0,'코드그룹 이름은 한글,영어,숫자만 가능합니다.' )) return false;
 		}
 
 		

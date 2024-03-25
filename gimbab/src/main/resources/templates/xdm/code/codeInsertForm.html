@@ -2,34 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Admin Templates - Dashboard Templates - Venus Admin
-		Template</title>
-
-	<!-- Meta -->
-	<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
-	<meta name="author" content="Bootstrap Gallery" />
-	<link rel="canonical" href="https://www.bootstrap.gallery/">
-	<meta property="og:url" content="https://www.bootstrap.gallery">
-	<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-	<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-	<meta property="og:type" content="Website">
-	<meta property="og:site_name" content="Bootstrap Gallery">
-	<link rel="shortcut icon" href="/xdm/assets/images/favicon.svg" />
-
-	<!-- *************
-			************ CSS Files *************
-		************* -->
-	<link rel="stylesheet" href="/xdm/assets/fonts/bootstrap/bootstrap-icons.css" />
-	<link rel="stylesheet" href="/xdm/assets/css/main.min.css" />
-
-	<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-	<!-- Scrollbar CSS -->
-	<link rel="stylesheet" href="/xdm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+	<div th:replace="~{include/xdmHead :: xdmHead}"></div>
 </head>
 
 <body>
@@ -393,17 +366,13 @@
 											<label for="codeName" class="form-label">등록</span></label> <input
 												type="text" class="form-control" name="codeName" id="codeName"
 												placeholder="이름을 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+											<div class="invalid-feedback" id="codeNameFeedback"></div>
 										</div>
 										<div class="col-md-3">
 											<label for="codeGroupSeqF" class="form-label">코드그룹 Seq 지정</span></label>
 											<input type="text" class="form-control" name="codeGroupSeqF"
 												id="codeGroupSeqF" placeholder="이름을 넣어주십시오" required />
-											<div class="invalid-feedback">
-												값 넣어
-											</div>
+											<div class="invalid-feedback" id="codeGroupSeqFFeedback"></div>
 										</div>
 
 										<div class="d-flex justify-content-between col-12">
@@ -487,16 +456,9 @@
 		}
 
 		function validationUpdt() {
-			if (!nullToEmpty(document.getElementById("codeName").value)) {
-				document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
-				document.getElementById("codeName").focus();
-				return false;
-			}
-				if (!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
-					document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
-					document.getElementById("codeGroupSeqF").focus();
-				return false;
-			}
+			if(!checkOnlyKoreanEnglish('codeName',2,0,'한글과 영어만 사용가능합니다.')) return false;
+			
+			if(!checkOnlyNumber('codeGroupSeqF',2,0,1,1,9,'적절한 코드그룹을 입력해주십시요.')) return false;
 		}
 
 		nullToEmpty = function (value) {

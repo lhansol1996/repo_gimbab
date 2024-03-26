@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="xdmAside">
+
+    <!-- Sidebar wrapper start -->
+    <nav id="sidebar" class="sidebar-wrapper">
+        <!-- App brand starts -->
+            <div class="app-brand p-4">
+                <a href="#"> <img src="xdm/assets/images/logo.svg" class="logo" alt="Bootstrap Gallery" />
+                </a>
+            </div>
+            <!-- App brand ends -->
+
+        <!-- Sidebar menu starts -->
+        <div class="sidebarMenuScroll">
+            <ul class="sidebar-menu">
+                
+                <li>
+                    <a href="index.html">
+                        <i class="bi bi-pie-chart"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="treeview"><a href="#!"> <i class="bi bi-stickies"></i> 
+                <span class="menu-text">CodeGroup</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="" th:href="@{/codeGroupXdmList}">코드그룹 리스트</a></li>
+                        <li><a href="" th:href="@{/codeGroupInsertForm}">코드그룹 등록</a></li>
+                    </ul>
+                </li>
+                <li class="treeview"><a href="#!"> <i class="bi bi-wallet2"></i> 
+                <span class="menu-text">Code</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="" th:href="@{/codeXdmList}">코드 리스트</a></li>
+                        <li><a href="" th:href="@{/codeInsertForm}">코드 등록</a></li>
+                    </ul>
+                </li>
+                <li class="treeview"><a href="#!"> <i class="bi bi-person-square"></i> 
+                <span class="menu-text">Member</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="" th:href="@{/memberXdmList}">멤버 리스트</a></li>
+                        <li><a href="" th:href="@{/memberInsertForm}">멤버 등록</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Sidebar menu ends -->
+    </nav>
+    <!-- Sidebar wrapper end -->
+    
+</th:block>

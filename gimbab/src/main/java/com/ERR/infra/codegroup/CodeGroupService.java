@@ -58,4 +58,15 @@ public class CodeGroupService {
 	public List<CodeGroupDto> selectListWithoutPaging() {
 		return codeGroupDao.selectListWithoutPaging();
 	}
+	
+	//페이징 처리 리스트 
+	public List<CodeGroupDto> selectListWithPaging(CodeGroupVo vo){
+		return codeGroupDao.selectListWithPaging(vo);
+	}
+		
+	//개수 리턴
+	public int selectCount() {
+		return codeGroupDao.selectCount();
+	}
+		
 }

@@ -3,8 +3,24 @@
 
 <mapper namespace="com.ERR.infra.codegroup.CodeGroupDao">
 
-	<resultMap id="resultMapObj"
-		type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
+	
+<!-- 	<sql id="commonSelect"> -->
+<!-- 		FROM code a -->
+<!-- 		LEFT JOIN codeGroup b ON b.codeGroupSeq = a.codeGroupSeqF -->
+<!-- 		WHERE 1=1 -->
+<!-- 			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if> -->
+			
+<!-- 		<choose> -->
+<!-- 			<when test="voOptionDate == 1">AND a.codeRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when> -->
+<!-- 			<when test="voOptionDate == 2">AND a.codeModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when> -->
+<!-- 		</choose> -->
+
+<!-- 		<choose> -->
+<!-- 			<when test="voOption == 1">AND a.codeSeq = #{voValue}</when> -->
+<!-- 			<when test="voOption == 2">AND a.codeName LIKE CONCAT('%',#{voValue},'%')</when> -->
+<!-- 		</choose> -->
+<!-- 	</sql> -->
 
 	<select id="selectList" resultMap="resultMapObj">
 		select
@@ -98,6 +114,53 @@
 		from codeGroup
 		where 1=1
 			AND codeGroupDelNy=0
+	</select>
+	
+	<select id="selectListWithPaging"  resultMap="resultMapObj">
+		select aa.* from (
+			SELECT
+				a.codeGroupSeqF
+			    , b.codeGroupName
+				, a.codeSeq
+				, a.codeName
+			FROM code a
+		LEFT JOIN codeGroup b ON b.codeGroupSeq = a.codeGroupSeqF
+		WHERE 1=1
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if>
+			
+		<choose>
+			<when test="voOptionDate == 1">AND a.codeRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.codeModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.codeSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.codeName LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+			
+			ORDER BY a.codeSeq desc, a.codeName, a.codeSeq
+			limit 99999999999
+		) aa
+		limit 5 offset 0
+	
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			FROM code a
+			LEFT JOIN codeGroup b ON b.codeGroupSeq = a.codeGroupSeqF
+			WHERE 1=1
+				<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if>
+				
+			<choose>
+				<when test="voOptionDate == 1">AND a.codeRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+				<when test="voOptionDate == 2">AND a.codeModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			</choose>
+	
+			<choose>
+				<when test="voOption == 1">AND a.codeSeq = #{voValue}</when>
+				<when test="voOption == 2">AND a.codeName LIKE CONCAT('%',#{voValue},'%')</when>
+			</choose>
 	</select>
 
 

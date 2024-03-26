@@ -45,14 +45,15 @@ public class CodeGroupController {
 	public String codeGroupXdmList(@ModelAttribute("vo")CodeGroupVo vo, Model model) throws Exception {
 		System.out.println(vo.toString());
 		System.out.println("-==================");
-		
-		
+		System.out.println("-==================");
+		System.out.println("-==================");
+		model.addAttribute("count", service.selectCount());
+		System.out.println(service.selectCount());
+		model.addAttribute("pagingList", service.selectListWithPaging(vo));
+		System.out.println( service.selectListWithPaging(vo));
 		
 		model.addAttribute("list", service.selectList(vo));
-//		model.addAttribute("vo", vo);
 		setSearch(vo);
-		System.out.println(vo.toString());
-		System.out.println("-==================");
 		
 		return XdmCommomPath + "codeGroupXdmList";
 	}

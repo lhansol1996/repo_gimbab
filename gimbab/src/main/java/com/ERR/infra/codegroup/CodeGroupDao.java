@@ -29,4 +29,10 @@ public interface CodeGroupDao {
 	//페이징처리없는 코드그룹 리스트 리턴
 	public List<CodeGroupDto> selectListWithoutPaging();
 	
+	//페이징 처리 리스트 
+	public List<CodeGroupDto> selectListWithPaging(CodeGroupVo vo);
+	
+	//개수 리턴
+	public int selectCount();
+	
 }

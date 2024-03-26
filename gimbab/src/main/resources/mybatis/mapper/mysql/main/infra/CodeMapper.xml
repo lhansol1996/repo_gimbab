@@ -69,6 +69,7 @@
 		UPDATE code
 		SET
 		codeName=#{codeName}
+		,codeGroupSeqF=#{codeGroupSeqF}
 		where 1=1
 			and codeSeq=#{codeSeq}
 	</update>

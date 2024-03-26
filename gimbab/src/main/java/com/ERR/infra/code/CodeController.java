@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+import com.ERR.infra.codegroup.CodeGroupDto;
 import com.ERR.infra.codegroup.CodeGroupService;
 
 @Controller
@@ -93,13 +94,14 @@ public class CodeController {
 	
 	@RequestMapping(value = "/codeInsertForm")
 	public String codeInsertForm(Model model) throws Exception {
+		model.addAttribute("codeGroupList", codeGroupService.selectListWithoutPaging());
+		System.out.println(model+"==================================================");
 		return  XdmCommomPath + "codeInsertForm";
 	}
 
 	@RequestMapping(value="/codeInsert")
-	public String codeInsert(CodeDto dto ,Model model) throws Exception{
-	//	System.out.println(dto.toString());
-
+	public String codeInsert(CodeDto dto, Model model) throws Exception{
+		System.out.println("==================================================");
 		service.insert(dto);
 		return "redirect:/codeXdmList";
 	}

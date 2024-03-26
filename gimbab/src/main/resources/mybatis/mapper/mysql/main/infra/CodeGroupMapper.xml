@@ -93,7 +93,7 @@
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		select 
-		codeGroupSeq
+		codeGroupSeq,
 		codeGroupName
 		from codeGroup
 		where 1=1

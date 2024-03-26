@@ -31,91 +31,39 @@
 
 				<!-- App brand starts -->
 				<div class="app-brand p-4">
-					<a href="index.html"> <img src="assets/images/logo.svg" class="logo" alt="Bootstrap Gallery" />
+					<a href="#"> <img src="xdm/assets/images/logo.svg" class="logo" alt="Bootstrap Gallery" />
 					</a>
 				</div>
 				<!-- App brand ends -->
 
-				<!-- Sidebar profile actions starts -->
-				<ul class="profile-actions d-lg-flex d-none">
-					<li><a href="settings.html" data-bs-toggle="tooltip" data-bs-placement="top"
-							data-bs-custom-class="custom-tooltip-success" data-bs-title="Settings"> <i
-								class="bi bi-gear fs-4"></i>
-						</a></li>
-					<li><a href="profile.html" data-bs-toggle="tooltip" data-bs-placement="top"
-							data-bs-custom-class="custom-tooltip-success" data-bs-title="Profile"> <i
-								class="bi bi-person-square fs-4"></i>
-						</a></li>
-					<li><a href="events.html" data-bs-toggle="tooltip" data-bs-placement="top"
-							data-bs-custom-class="custom-tooltip-success" data-bs-title="Notifications"> <i
-								class="bi bi-bell fs-4"></i>
-							<span class="count-label"></span>
-						</a></li>
-					<li><a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="bottom"
-							data-bs-custom-class="custom-tooltip-warning" data-bs-title="Skype"> <i
-								class="bi bi-skype fs-4"></i>
-						</a></li>
-					<li><a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="bottom"
-							data-bs-custom-class="custom-tooltip-danger" data-bs-title="Dribbble"> <i
-								class="bi bi-dribbble fs-4"></i>
-						</a></li>
-					<li><a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="bottom"
-							data-bs-custom-class="custom-tooltip-info" data-bs-title="Twitter">
-							<i class="bi bi-twitter fs-4"></i>
-						</a></li>
-				</ul>
-				<!-- Sidebar profile actions ends -->
+				
 
 				<!-- Sidebar menu starts -->
 				<div class="sidebarMenuScroll">
 					<ul class="sidebar-menu">
-						<li><a href="index.html"> <i class="bi bi-pie-chart"></i>
-								<span class="menu-text">Dashboard</span>
-							</a></li>
-						<li><a href="analytics.html"> <i class="bi bi-bar-chart-line"></i> <span
-									class="menu-text">Analytics</span>
-							</a></li>
-						<li><a href="widgets.html"> <i class="bi bi-box"></i> <span class="menu-text">Widgets</span>
-							</a></li>
-						<li><a href="calendar.html"> <i class="bi bi-calendar2"></i>
-								<span class="menu-text">Calendar</span>
-							</a></li>
+						
 						<li class="treeview"><a href="#!"> <i class="bi bi-stickies"></i> <span
-									class="menu-text">Components</span>
+									class="menu-text">CodeGroup</span>
 							</a>
 							<ul class="treeview-menu">
-								<li><a href="accordions.html">Accordions</a></li>
-								<li><a href="alerts.html">Alerts</a></li>
-								<li><a href="buttons.html">Buttons</a></li>
-								<li><a href="badges.html">Badges</a></li>
-								<li><a href="carousel.html">Carousel</a></li>
-								<li><a href="list-items.html">List Items</a></li>
-								<li><a href="progress.html">Progress Bars</a></li>
-								<li><a href="popovers.html">Popovers</a></li>
-								<li><a href="tooltips.html">Tooltips</a></li>
+								<li><a href="" th:href="@{/codeGroupXdmList}">코드그룹 리스트</a></li>
+								<li><a href="" th:href="@{/codeGroupInsertForm}">코드그룹 등록</a></li>
 							</ul>
 						</li>
 						<li class="treeview"><a href="#!"> <i class="bi bi-ui-checks-grid"></i> <span
-									class="menu-text">Forms</span>
+									class="menu-text">Code</span>
 							</a>
 							<ul class="treeview-menu">
-								<li><a href="form-inputs.html">Form Inputs</a></li>
-								<li><a href="form-checkbox-radio.html">Checkbox &amp;
-										Radio</a></li>
-								<li><a href="form-file-input.html">File Input</a></li>
-								<li><a href="form-validations.html">Validations</a></li>
-								<li><a href="date-time-pickers.html">Date Time Pickers</a>
-								</li>
-								<li><a href="form-layouts.html">Form Layouts</a></li>
+								<li><a href="" th:href="@{/codeXdmList}">코드 리스트</a></li>
+								<li><a href="" th:href="@{/codeInsertForm}">코드 등록</a></li>
 							</ul>
 						</li>
-						<li class="treeview"><a href="#!"> <i class="bi bi-window-sidebar"></i> <span
-									class="menu-text">Invoices</span>
+						<li class="treeview"><a href="#!"> <i class="bi bi-person-square"></i> <span
+									class="menu-text">Member</span>
 							</a>
 							<ul class="treeview-menu">
-								<li><a href="create-invoice.html">Create Invoice</a></li>
-								<li><a href="view-invoice.html">View Invoice</a></li>
-								<li><a href="invoice-list.html">Invoice List</a></li>
+								<li><a href="" th:href="@{/memberXdmList}">멤버 리스트</a></li>
+								<li><a href="" th:href="@{/memberInsertForm}">멤버 등록</a></li>
 							</ul>
 						</li>
 						<li class="active current-page"><a href="tables.html"> <i class="bi bi-border-all"></i> <span

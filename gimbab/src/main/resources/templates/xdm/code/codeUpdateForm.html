@@ -505,11 +505,20 @@
 											<!-- 수정 폼 -->
 											<div class="col-md-3">
 												<label for="codeName" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeSeq}"></span></label>
-												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" required />
+												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" />
 												<input type="hidden" name="codeSeq" th:value="${item.codeSeq}" id="codeSeq">
 												<div class="invalid-feedback" id="codeNameFeedback"></div>
 											</div>
 
+											<div class="col-md-3">
+												<label for="codeGroupSeqF" class="form-label">코드그룹 지정</span></label>
+												<select class="form-select" name="codeGroupSeqF" id="codeGroupSeqF">
+													<option value="" selected>코드 그룹을 선택하세요</option>
+													<option th:each="codeGroupList : ${@codeGroupService.selectListWithoutPaging()}" 
+													th:value="${codeGroupList.codeGroupSeq}" th:text="${codeGroupList.codeGroupName}"></option>
+												</select>
+												<div class="invalid-feedback" id="codeGroupSeqFFeedback"></div>
+											</div>
 											
 											<div class="d-flex justify-content-between col-12">
 												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">

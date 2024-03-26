@@ -365,13 +365,17 @@
 										<div class="col-md-3">
 											<label for="codeName" class="form-label">등록</span></label> <input
 												type="text" class="form-control" name="codeName" id="codeName"
-												placeholder="이름을 넣어주십시오" required />
+												placeholder="이름을 넣어주십시오"  />
 											<div class="invalid-feedback" id="codeNameFeedback"></div>
 										</div>
+										
 										<div class="col-md-3">
-											<label for="codeGroupSeqF" class="form-label">코드그룹 Seq 지정</span></label>
-											<input type="text" class="form-control" name="codeGroupSeqF"
-												id="codeGroupSeqF" placeholder="이름을 넣어주십시오" required />
+											<label for="codeGroupSeqF" class="form-label">코드그룹 지정</span></label>
+											<select class="form-select" name="codeGroupSeqF" id="codeGroupSeqF">
+												<option value="" selected>코드 그룹을 선택하세요</option>
+												<option th:each="codeGroupList : ${@codeGroupService.selectListWithoutPaging()}" 
+												th:value="${codeGroupList.codeGroupSeq}" th:text="${codeGroupList.codeGroupName}"></option>
+											</select>
 											<div class="invalid-feedback" id="codeGroupSeqFFeedback"></div>
 										</div>
 
@@ -458,7 +462,7 @@
 		function validationUpdt() {
 			if(!checkOnlyKoreanEnglish('codeName',2,0,'한글과 영어만 사용가능합니다.')) return false;
 			
-			if(!checkOnlyNumber('codeGroupSeqF',2,0,1,1,9,'적절한 코드그룹을 입력해주십시요.')) return false;
+			if(!checkSelectNull('codeGroupSeqF',2,'값을 선택해주십시요.')) return false;
 		}
 
 		nullToEmpty = function (value) {

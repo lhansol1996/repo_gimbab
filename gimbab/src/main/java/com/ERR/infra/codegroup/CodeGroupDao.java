@@ -8,8 +8,8 @@ public interface CodeGroupDao {
 	 * 자동으로 매핑되게하는 인터페이스이다. 
 	 * service파일의 기능등을 명시하는 인터페이스.
 	 */
-	//수많은 DTO 목록들을 리스트로 리턴
-	public List<CodeGroupDto> selectList(CodeGroupVo vo);
+//	//수많은 DTO 목록들을 리스트로 리턴
+//	public List<CodeGroupDto> selectList(CodeGroupVo vo);
 	
 	//DTO 중 하나를 리턴
 	public CodeGroupDto selectOne(CodeGroupDto dto);
@@ -33,6 +33,6 @@ public interface CodeGroupDao {
 	public List<CodeGroupDto> selectListWithPaging(CodeGroupVo vo);
 	
 	//개수 리턴
-	public int selectCount();
+	public Integer selectCount(CodeGroupVo vo);
 	
 }

@@ -59,6 +59,9 @@ public class CodeGroupDto {
 		this.xcount = xcount;
 	}
 
+	
+	
+
 	@Override
 	public String toString() {
 		return "CodeGroupDto [codeGroupSeq=" + codeGroupSeq + ", codeGroupName=" + codeGroupName + ", codeGroupDelNy="

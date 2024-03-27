@@ -99,8 +99,11 @@
 								</div>
 								<!-- 검색 바 끝 -->
 							</div>
+							<!-- 페이징 처리 필요한 검색값 -->
+							<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+							<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
 						</div>
-					</form>
+					
 					<!-- 고정 검색창 끝 -->
 
 				</div>
@@ -116,15 +119,14 @@
 								<!-- 총합 및 나열 값-->
 								<div class="container row m-auto">
 									<div class="fw-bold border-bottom col-3 mt-3 ms-5"
-										style="text-align: center; font-size: large;">Total :
-										2222</div>
+										style="text-align: center; font-size: large;">Total : <span th:text="${vo.totalRows}"></span>
+									</div>
 
 									<div class="col-md-2 offset-md-6 mt-3">
-										<select class="form-select" aria-label="Default select example">
-											<option selected>10</option>
-											<option value="1">5</option>
-											<option value="2">15</option>
-											<option value="3">20</option>
+										<select class="form-select" aria-label="Default select example" id="rowNumToShow" name="rowNumToShow" th:onchange="javascript:goList(1)">
+											<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+											<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>													
+											<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
 										</select>
 									</div>
 								</div>
@@ -135,8 +137,8 @@
 												<tr>
 													<th scope="col-2"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></th>
-													<th scope="col-2">seq</th>
-													<th scope="col-2">Name</th>
+													<th scope="col-2">GroupSeq</th>
+													<th scope="col-2">GroupName</th>
 													<th scope="col-2">delNy</th>
 													<th scope="col-2">modDate</th>
 													<th scope="col-2">regDate</th>
@@ -206,32 +208,10 @@
 
 											</tbody>
 										</table>
-										<nav aria-label="Page Navigation" class="mt-3">
-											<ul class="pagination justify-content-center">
-												<li class="page-item"><a class="page-link" href="#"
-														aria-label="Previous"> <span aria-hidden="true">
-															<i class="bi bi-arrow-left"></i>
-														</span>
-													</a></li>
-												<li class="page-item active"><a class="page-link" href="#">1</a></li>
-												<li class="page-item"><a class="page-link" href="#">2</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">3</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">4</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">5</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">6</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">7</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#" aria-label="Next">
-														<span aria-hidden="true"> <i class="bi bi-arrow-right"></i>
-														</span>
-													</a></li>
-											</ul>
-										</nav>
+										
+									<div th:replace="~{include/pagination :: pagination}"></div>
+
+
 										<!-- 테이블 아래 쪽 삭제 -->
 										<div class="d-flex justify-content-between flex-row ms-5">
 											<div class="col-2">
@@ -346,7 +326,12 @@ window.addEventListener('load', function () {
 			    form.submit();
 		    }
 		}
-
+	 
+		goList = function (thisPage) {
+		    document.querySelector("input[name=thisPage]").value = thisPage;
+		    form.action = goUrlXdmList;
+		    form.submit();
+		}
 	
 		
 	</script>

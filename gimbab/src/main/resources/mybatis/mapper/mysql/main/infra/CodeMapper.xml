@@ -5,21 +5,13 @@
 
 	<resultMap id="resultMapObj"
 		type="com.ERR.infra.code.CodeDto"></resultMap>
-
-	<select id="selectList" resultMap="resultMapObj">
-			select
-		a.codeGroupSeqF
-		,b.codeGroupName as xcodeGroupName
-		,a.codeDelNy
-		,a.codeSeq
-		,a.codeName
-		,a.codeRegDate
-		,a.codeModDate
-		From code a join codeGroup b
-		on a.codeGroupSeqF = b.codeGroupSeq
+		
+	<sql id="commonSelectCode">
+		FROM code a
+		LEFT JOIN codeGroup b on b.codeGroupSeq = a.codeGroupSeqF
 		WHERE 1=1
-		<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if>
-
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if>
+			
 		<choose>
 			<when test="voOptionDate == 1">AND a.codeRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
 			<when test="voOptionDate == 2">AND a.codeModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
@@ -29,11 +21,39 @@
 			<when test="voOption == 1">AND a.codeSeq = #{voValue}</when>
 			<when test="voOption == 2">AND a.codeName LIKE CONCAT('%',#{voValue},'%')</when>
 		</choose>
+	</sql>
+
+	<select id="selectListWithPaging" resultMap="resultMapObj">
+	<include refid="base.selectHeader" />
+			select
+		a.codeGroupSeqF
+		,b.codeGroupName as xcodeGroupName
+		,a.codeDelNy
+		,a.codeSeq
+		,a.codeName
+		,a.codeRegDate
+		,a.codeModDate
+		<include refid="commonSelectCode" />
+		ORDER BY a.codeSeq asc, a.codeName, a.codeSeq
+		<include refid="base.selectFooterMysql" />
 	</select>
-
-	<!-- select a.seq ,a.name ,(select count(*) from code aa where 1=1 and aa.codeGroup_seq 
-		= a.seq) as xcount ,a.delNy ,a.regDate ,a.modDate from codeGroup a -->
-
+	
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectCode" />
+	</select>
+	
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+			select
+		codeSeq
+		,codeName
+		,codeGroupSeqF
+		,codeGroupName as xcodeGroupName
+		where 1=1
+		AND codeDelNy=0
+	</select>
+	
 
 	<select id="selectOne" resultMap="resultMapObj">
 		select

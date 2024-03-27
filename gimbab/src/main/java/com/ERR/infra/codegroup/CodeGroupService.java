@@ -20,14 +20,14 @@ public class CodeGroupService {
 	
 	 
 	//selectList 구현
-	public List<CodeGroupDto> selectList(CodeGroupVo vo) {
-/*
- * 		List<CodeGroupDto> list = codeGroupDao.selectList();
- * 		return list;
- */
-		
-		return codeGroupDao.selectList(vo);
-	}
+//	public List<CodeGroupDto> selectList(CodeGroupVo vo) {
+//
+//  		List<CodeGroupDto> list = codeGroupDao.selectList();
+//  		return list;
+//
+//		
+//		return codeGroupDao.selectList(vo);
+//	}
 
 	public CodeGroupDto selectOne(CodeGroupDto dto) {
 		return codeGroupDao.selectOne(dto);
@@ -65,8 +65,8 @@ public class CodeGroupService {
 	}
 		
 	//개수 리턴
-	public int selectCount() {
-		return codeGroupDao.selectCount();
+	public Integer selectCount(CodeGroupVo vo) {
+		return codeGroupDao.selectCount(vo);
 	}
 		
 }

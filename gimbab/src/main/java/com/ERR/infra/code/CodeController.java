@@ -46,16 +46,13 @@ public class CodeController {
 	
 	@RequestMapping(value="/codeXdmList")
 	public String codeXdmList(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
-		System.out.println(vo.toString());
-		System.out.println("-==================");
-		
-		
-		
-		model.addAttribute("list", service.selectList(vo));
-//		model.addAttribute("vo", vo);
 		setSearch(vo);
-		System.out.println(vo.toString());
-		System.out.println("-==================");
+		
+		vo.setParamsPaging(service.selectCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectListWithPaging(vo));
+		}
 		
 		return XdmCommomPath + "codeXdmList";
 	}

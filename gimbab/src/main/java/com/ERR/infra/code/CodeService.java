@@ -23,14 +23,23 @@ public class CodeService {
 	
 	 
 	//selectList 구현
-	public List<CodeDto> selectList(CodeVo vo) {
+	public List<CodeDto> selectListWithPaging(CodeVo vo) {
 /*
  * 		List<CodeGroupDto> list = codeGroupDao.selectList();
  * 		return list;
  */
-		
-		return codeDao.selectList(vo);
+		return codeDao.selectListWithPaging(vo);
 	}
+	
+	//페이징 처리안된 리스트 
+	public List<CodeDto> selectListWithoutPaging(){
+		return codeDao.selectListWithoutPaging();
+	}
+	
+	// 개수 리턴
+		public Integer selectCount(CodeVo vo) {
+			return codeDao.selectCount(vo);
+		}
 
 	public CodeDto selectOne(CodeDto dto) {
 		return codeDao.selectOne(dto);

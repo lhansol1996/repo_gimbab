@@ -21,5 +21,8 @@ public interface MemberDao {
 
 	// 삭제 버튼(drop)
 	public int delete(MemberDto dto);
+	
+	//로그인
+	public MemberDto selectLogin(MemberDto dto);
 
 }

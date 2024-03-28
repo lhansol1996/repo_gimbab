@@ -47,4 +47,8 @@ public class MemberService {
 		return memberDao.delete(dto);
 	}
 
+	//로그인
+	public MemberDto selectLogin(MemberDto dto) {
+		return memberDao.selectLogin(dto);
+	}
 }

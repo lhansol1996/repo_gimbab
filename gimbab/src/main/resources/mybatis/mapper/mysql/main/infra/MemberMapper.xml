@@ -116,5 +116,16 @@
 		and memberSeq=#{memberSeq}
 	</delete>
 	
+	<select id="selectLogin" resultMap="resultMapObj"> 
+		select 
+			memberID
+			,memberPwd
+			,memberEmail
+			,memberName
+			,memberSeq
+		FROM member 
+		WHERE 1=1
+		 AND memberID = {memberID}
+	</select>
 
 </mapper>

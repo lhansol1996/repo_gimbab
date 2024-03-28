@@ -1,18 +1,27 @@
 package com.ERR.infra.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 public class MemberController {
 private String XdmCommomPath = "xdm/member/";
+private String UsrCommonPath= "usr/";
 	
 	@Autowired
 	MemberService service;
@@ -124,5 +133,43 @@ private String XdmCommomPath = "xdm/member/";
 		return "redirect:/memberXdmList";
 	}
 	
+	@RequestMapping(value="/memberLoginRegisterT")
+	public String memberLoginRegisterT(MemberDto dto ,Model model) throws Exception{
+		
+		
+		return UsrCommonPath + "login-register";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/memberLoginRegister")
+	public Map<String, Object> memberLoginRegister(MemberDto dto, HttpSession httpSession, Model model) throws Exception{
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		String loginId = dto.getMemberID();
+		String loginPwd = dto.getMemberPwd();
+		service.selectLogin(dto);
+//		dto.setMemberPwd(encodeBcrypt(loginPwd, 10));
+		
+//		select memberID, pwd from member where id=""; 값을 가지고 온단. 
+		if(loginPwd.equals(dto.getMemberPwd()) ){
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+			
+		}
+
+		return returnMap;
+	}
+	
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
+	}
 	
 }

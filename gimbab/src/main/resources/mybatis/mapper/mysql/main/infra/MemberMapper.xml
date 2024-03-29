@@ -125,7 +125,36 @@
 			,memberSeq
 		FROM member 
 		WHERE 1=1
-		 AND memberID = {memberID}
+		 AND memberID = #{memberID}
 	</select>
+	
+	<insert id="memberReg">
+		insert into member(
+				memberID,
+				memberPwd,
+				memberName,
+				memberGenderCd,
+				memberBirthday,
+				memberEmail,
+				memberDelNy,
+				memberAdminNy,
+				memberRegDate,
+				memberModDate)
+				VALUES
+				(
+				#{memberID},
+				#{memberPwd},
+				#{memberName},
+				#{memberGenderCd},
+				#{memberBirthday},
+				#{memberEmail},
+				0,
+				#1,
+				now(),
+				now()
+		    )
+	
+	</insert>
+
 
 </mapper>

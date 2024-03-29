@@ -51,4 +51,11 @@ public class MemberService {
 	public MemberDto selectLogin(MemberDto dto) {
 		return memberDao.selectLogin(dto);
 	}
+	//회원가입
+	public MemberDto memberReg(MemberDto dto) {
+		return memberDao.memberReg(dto);
+	}
+	
+	
+	
 }

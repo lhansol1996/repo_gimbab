@@ -17,4 +17,6 @@ public final class Constants {
 	//페이징 처리 상수 - 화면에 보여줄 페이징 번호 갯수
 	public static final int PAGE_NUM_TO_SHOW = 5;
 	
+	
+	public static final int SESSION_MINUTE_XDM = 30;
 }

@@ -6,13 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
-import com.ERR.infra.codegroup.CodeGroupDto;
 import com.ERR.infra.codegroup.CodeGroupService;
 
+
 @Controller
-public class CodeController {
+public class CodeController extends BaseController {
 	
 	private String XdmCommomPath = "xdm/code/";
 	

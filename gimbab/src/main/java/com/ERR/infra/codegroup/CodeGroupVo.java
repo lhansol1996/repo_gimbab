@@ -1,6 +1,6 @@
 package com.ERR.infra.codegroup;
 
-import com.ERR.infra.BaseVo;
+import com.ERR.common.base.BaseVo;
 
 public class CodeGroupVo extends BaseVo {
 	

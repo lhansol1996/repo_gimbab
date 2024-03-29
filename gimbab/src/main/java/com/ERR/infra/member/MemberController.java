@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
 
@@ -19,9 +20,10 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-public class MemberController {
-private String XdmCommomPath = "xdm/member/";
-private String UsrCommonPath= "usr/";
+public class MemberController extends BaseController {
+	
+	private String XdmCommomPath = "xdm/member/";
+	private String UsrCommonPath= "usr/";
 	
 	@Autowired
 	MemberService service;
@@ -99,14 +101,14 @@ private String UsrCommonPath= "usr/";
 	}
 	
 	@RequestMapping(value = "/memberInsertForm")
-	public String memberViewUpdate(Model model) throws Exception {
+	public String memberViewUpdate() throws Exception {
 		return  XdmCommomPath + "memberInsertForm";
 	}
 
 	@RequestMapping(value="/memberInsert")
 	public String memberInsert(MemberDto dto ,Model model) throws Exception{
 	//	System.out.println(dto.toString());
-
+		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.insert(dto);
 		return "redirect:/memberXdmList";
 	}
@@ -133,43 +135,75 @@ private String UsrCommonPath= "usr/";
 		return "redirect:/memberXdmList";
 	}
 	
-	@RequestMapping(value="/memberLoginRegisterT")
-	public String memberLoginRegisterT(MemberDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/memberLoginRegister")
+	public String memberLoginRegister() throws Exception{
 		
 		
 		return UsrCommonPath + "login-register";
 	}
 	
+	@RequestMapping(value="/memberReg")
+	public String memberReg(MemberDto dto ,Model model) throws Exception{
+		
+		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
+		service.memberReg(dto);
+		return "redirect:/memberXdmList";
+	}
+	
 	
 	@ResponseBody
-	@RequestMapping(value="/memberLoginRegister")
-	public Map<String, Object> memberLoginRegister(MemberDto dto, HttpSession httpSession, Model model) throws Exception{
+	@RequestMapping(value="/memberLogin")
+	public Map<String, Object> memberLogin(MemberDto dto, HttpSession httpSession, Model model) throws Exception{
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-
-		String loginId = dto.getMemberID();
-		String loginPwd = dto.getMemberPwd();
-		service.selectLogin(dto);
-//		dto.setMemberPwd(encodeBcrypt(loginPwd, 10));
 		
-//		select memberID, pwd from member where id=""; 값을 가지고 온단. 
-		if(loginPwd.equals(dto.getMemberPwd()) ){
+		MemberDto checkDto = service.selectLogin(dto);
+	
+		if(checkDto!=null) {
+			String loginPwd = dto.getMemberPwd();
+			String checkPwd = checkDto.getMemberPwd();
+			System.out.println("++++++시작+++++++");
+		if(matchesBcrypt(loginPwd, checkPwd, 10)){
+			System.out.println("성공");
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+			httpSession.setAttribute("sessSeqXdm", checkDto.getMemberSeq());
+			httpSession.setAttribute("sessIdXdm", checkDto.getMemberID());
+			httpSession.setAttribute("sessNameXdm", checkDto.getMemberName());
+			
 			returnMap.put("rt", "success");
 		} else {
+			System.out.println("실패");
 			returnMap.put("rt", "fail");
-			
 		}
+			
+		} else {
+			System.out.println("아이디값 없음실패");
+			returnMap.put("rt", "fail");
+		}
+		System.out.println("---------------------");
+		System.out.println("httpSession.getAttribute(\"sessSeqXdm\"): " + httpSession.getAttribute("sessSeqXdm"));
+		System.out.println("httpSession.getAttribute(\"sessIdXdm\"): " + httpSession.getAttribute("sessIdXdm"));
+		System.out.println("httpSession.getAttribute(\"sessNameXdm\"): " + httpSession.getAttribute("sessNameXdm"));
+		System.out.println("---------------------");
 
 		return returnMap;
 	}
 	
-	public String encodeBcrypt(String planeText, int strength) {
-		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	
+	@ResponseBody
+	@RequestMapping(value="/memberLogout")
+	public Map<String, Object> memberLogout(MemberDto dto, HttpSession httpSession, Model model) throws Exception{
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println(httpSession.getAttribute("sessSeqXdm"));
+		httpSession.invalidate();
+		System.out.println(httpSession.getAttribute("sessSeqXdm"));
+		
+		returnMap.put("rt", "success");
+		return returnMap;
 	}
-
-			
-	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
-	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
-	  return passwordEncoder.matches(planeText, hashValue);
-	}
+	
+	
+	
 	
 }

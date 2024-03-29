@@ -1,4 +1,4 @@
-package com.ERR.infra;
+package com.ERR.common.base;
 
 import com.ERR.common.constants.Constants;
 

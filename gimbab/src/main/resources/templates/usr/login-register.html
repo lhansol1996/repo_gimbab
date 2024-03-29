@@ -66,6 +66,7 @@
 							<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
 							<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
 							<li><a class="pinterest" href="#"><i class="icon-pinterest"></i></a></li>
+							<li><button class="btn btn-primary" type="button" id="btnLogout">log-out</button></li>
 						</ul>
 
 					</div>
@@ -289,7 +290,7 @@
 									</div>
 
 									<div class="form-row">
-										<button class="btn btn-primary" id="btnLogin"
+										<button class="btn btn-primary" id="btnLogin" type="button"
 											style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.5rem;">
 											로그인
 										</button>
@@ -419,6 +420,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
+						<h6 class="mt-2 text-black">[[${session.sessNameXdm}]]dd</h6>
 					</div>
 				</div>
 
@@ -501,39 +503,68 @@
 			document.getElementById("btnLogin").onclick = function () {
 				if (validationLogin() == false) return false;
 
-				else {
-					alert('111')
-					$.ajax({
-						async: true
-						, cache: false
-						, type: "post"
-						/* ,dataType:"json" */
-						, url: "/memberLoginRegister"
-						/* ,data : $("#formLogin").serialize() */
-						, data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val(), "autoLogin": $("#autoLogin").is(":checked") }
-						, success: function (response) {
-							if (response.rt == "success") {
-								if (response.changePwd == "true") {
-									location.href = "/codeGroupDView";
-								} else {
-									location.href = "/codeGroupList";
-								}
-							} else {
-								alert('로그인 안됨')
-								// document.getElementById("modalAlertTitle").innerText = "확 인";
-								// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-								// $("#modalAlert").modal("show");
-							}
+				
+				alert('111-------------------');
+				$.ajax({
+					async: true
+					, cache: false
+					, type: "post"
+					/* ,dataType:"json" */
+					, url: "/memberLogin"
+					/* ,data : $("#formLogin").serialize() */
+					, data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
+					, success: function (response) {
+						alert(response.rt);
+						if (response.rt == "success") {
+							alert('로그인 성공');
+								location.href = "/codeGroupXdmList";
+						} else {
+							alert(response.rt);
+							alert('로그인 안됨');
+							// document.getElementById("modalAlertTitle").innerText = "확 인";
+							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+							// $("#modalAlert").modal("show");
 						}
-						, error: function (jqXHR, textStatus, errorThrown) {
-							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-						}
-					});
-				}
+					}
+					, error: function (jqXHR, textStatus, errorThrown) {
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+				
 
 			}
 
 
+			// 로그아웃 버튼
+			document.getElementById("btnLogout").onclick = function () {
+				alert('111--------------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
+				$.ajax({
+					async: true
+					, cache: false
+					, type: "post"
+					/* ,dataType:"json" */
+					, url: "/memberLogout"
+					/* ,data : $("#formLogin").serialize() */
+					// , data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
+					, success: function (response) {
+						alert(response.rt);
+						if (response.rt == "success") {
+							alert('로그아웃 성공');
+								location.href = "/memberLoginRegister";
+						} else {
+							alert('로그아웃 안됨');
+							// document.getElementById("modalAlertTitle").innerText = "확 인";
+							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+							// $("#modalAlert").modal("show");
+						}
+					}
+					, error: function (jqXHR, textStatus, errorThrown) {
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+				
+
+			}
 
 			function validationLogin() {
 				alert('예외처리시작L')

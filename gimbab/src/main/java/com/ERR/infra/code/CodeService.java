@@ -22,7 +22,7 @@ public class CodeService {
 
 	
 	 
-	//selectList 구현
+	//selectList 구현 - 페이징처리
 	public List<CodeDto> selectListWithPaging(CodeVo vo) {
 /*
  * 		List<CodeGroupDto> list = codeGroupDao.selectList();

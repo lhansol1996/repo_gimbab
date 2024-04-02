@@ -13,33 +13,20 @@ import com.ERR.common.util.UtilDateTime;
 @Controller
 public class CodeGroupController extends BaseController{
 	
-	private String XdmCommomPath = "xdm/cdg/";
+	private String XdmCdgCommomPath = "xdm/cdg/";
 	
 	@Autowired
 	CodeGroupService service;
 //	CodeGroupService codeGroupService;
 	
+	
 	public void setSearch(CodeGroupVo vo) throws Exception {
-		/* 최초 화면 로딩시에 세팅은 문제가 없지만 */
-		/*이후 전체적으로 데이터를 조회를 하려면 null 값이 넘어 오는 관계로 문제가 전체 데이터 조회가 되지 못한다.*/
-		/*해서 BaseVo.java 에서 기본값을 주어서 처리*/
-//		vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy());
-//		vo.setShDelNy(vo.getShDelNy() == null ? 0 : vo.getShDelNy());
-//		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
-		
-		/* 초기값 세팅이 있는 경우 사용 */
 		vo.setVoDateStart(vo.getVoDateStart() == null
 		    ? UtilDateTime.calculateDayReplace00TimeString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL)
 		    : UtilDateTime.add00TimeString(vo.getVoDateStart()));
 		vo.setVoDateEnd(vo.getVoDateEnd() == null
 		    ? UtilDateTime.nowString()
 		    : UtilDateTime.addNowTimeString(vo.getVoDateEnd()));		
-		
-//		/* 초기값 세팅이 없는 경우 사용 */
-//		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
-//		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
-		
-		
 	}
 	
 	@RequestMapping(value="/codeGroupXdmList")
@@ -53,7 +40,7 @@ public class CodeGroupController extends BaseController{
 			model.addAttribute("list", service.selectListWithPaging(vo));
 		}
 		
-		return XdmCommomPath + "codeGroupXdmList";
+		return XdmCdgCommomPath + "codeGroupXdmList";
 	}
 	
 	
@@ -79,18 +66,18 @@ public class CodeGroupController extends BaseController{
 		
 		model.addAttribute("item",service.selectOne(dto));
 		
-		return  XdmCommomPath + "codeGroupDView";
+		return  XdmCdgCommomPath + "codeGroupDView";
 	}
 	@RequestMapping(value = "/codeGroupUpdateForm")
 	public String codeGroupUpdateForm(Model model, CodeGroupDto dto) throws Exception {
 		
 		model.addAttribute("item", service.selectOne(dto));
-		return  XdmCommomPath + "codeGroupUpdateForm";
+		return  XdmCdgCommomPath + "codeGroupUpdateForm";
 	}
 	
 	@RequestMapping(value = "/codeGroupInsertForm")
 	public String codeGroupViewUpdate(Model model) throws Exception {
-		return  XdmCommomPath + "codeGroupInsertForm";
+		return  XdmCdgCommomPath + "codeGroupInsertForm";
 	}
 
 	@RequestMapping(value="/codeGroupInsert")
@@ -123,10 +110,4 @@ public class CodeGroupController extends BaseController{
 		return "redirect:/codeGroupXdmList";
 	}
 	
-	@RequestMapping(value="/")
-	public String test() throws Exception{
-		
-		
-		return  XdmCommomPath + "form-validations";
-	}
 }

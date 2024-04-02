@@ -22,8 +22,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MemberController extends BaseController {
 	
-	private String XdmCommomPath = "xdm/member/";
+	private String XdmCommomMemberPath = "xdm/member/";
 	private String UsrCommonPath= "usr/";
+	private String XdmCommomPath = "xdm/";
 	
 	@Autowired
 	MemberService service;
@@ -65,7 +66,7 @@ public class MemberController extends BaseController {
 		System.out.println(vo.toString());
 		System.out.println("-==================");
 		
-		return XdmCommomPath + "memberXdmList";
+		return XdmCommomMemberPath + "memberXdmList";
 	}
 	
 	
@@ -91,18 +92,18 @@ public class MemberController extends BaseController {
 		
 		model.addAttribute("item",service.selectOne(dto));
 		
-		return  XdmCommomPath + "memberView";
+		return  XdmCommomMemberPath + "memberView";
 	}
 	@RequestMapping(value = "/memberUpdateForm")
 	public String memberUpdateForm(Model model, MemberDto dto) throws Exception {
 		
 		model.addAttribute("item", service.selectOne(dto));
-		return  XdmCommomPath + "memberUpdateForm";
+		return  XdmCommomMemberPath + "memberUpdateForm";
 	}
 	
 	@RequestMapping(value = "/memberInsertForm")
 	public String memberViewUpdate() throws Exception {
-		return  XdmCommomPath + "memberInsertForm";
+		return  XdmCommomMemberPath + "memberInsertForm";
 	}
 
 	@RequestMapping(value="/memberInsert")
@@ -140,6 +141,13 @@ public class MemberController extends BaseController {
 		
 		
 		return UsrCommonPath + "login-register";
+	}
+	
+	@RequestMapping(value="/adminLoginRegister")
+	public String adminLoginRegister() throws Exception{
+		
+		
+		return XdmCommomPath + "adminLogin";
 	}
 	
 	@RequestMapping(value="/memberReg")

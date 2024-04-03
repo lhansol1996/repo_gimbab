@@ -97,6 +97,9 @@
 								</div>
 								<!-- 검색 바 끝 -->
 							</div>
+								<!-- 페이징 처리 필요한 검색값 -->
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+								<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
 						</div>
 					</form>
 					<!-- 고정 검색창 끝 -->
@@ -310,6 +313,12 @@ window.addEventListener('load', function () {
 			    form.action = goUrlXdmList;
 			    form.submit();
 		    }
+		}
+
+		goList = function (thisPage) {
+		    document.querySelector("input[name=thisPage]").value = thisPage;
+		    form.action = goUrlXdmList;
+		    form.submit();
 		}
 
 	

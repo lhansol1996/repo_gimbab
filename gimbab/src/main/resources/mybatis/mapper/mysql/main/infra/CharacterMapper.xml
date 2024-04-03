@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.character.CharacterDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.character.CharacterDto"></resultMap>
+	
+	<sql id="commonSelectCharacter">
+		FROM ercharacter a
+		WHERE 1=1
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.characterDelNy = #{voDelNy}</if>
+			
+		<choose>
+			<when test="voOptionDate == 1">AND a.characterRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.characterModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.characterSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.characterName LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</sql>
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+		characterSeq
+		,characterName
+		,characterHp
+		,characterMp
+		,characterDef
+		,characterAtk
+		,characterVideoPath
+		,characterDept
+		,characterRegDate
+		,characterModDate
+		,characterDelNy
+		from
+		ercharacter
+		where 1=1
+		and characterSeq = #{characterSeq}
+	</select>
+	
+	<select id="selectOneByName" resultMap="resultMapObj">
+		select
+		characterSeq
+		,characterName
+		,characterHp
+		,characterMp
+		,characterDef
+		,characterAtk
+		,characterVideoPath
+		,characterDept
+		,characterRegDate
+		,characterModDate
+		,characterDelNy
+		from
+		ercharacter
+		where 1=1
+		and characterName = #{XtopBarSearchInputValue}
+	</select>
+	
+
+	<insert id="insert">
+		insert into ercharacter(
+		characterName
+		,characterHp
+		,characterMp
+		,characterDef
+		,characterAtk
+		,characerVideoPath
+		,characterDept
+		,characterDelNy
+		,characterRegDate
+		,characterModDate
+		)values(
+		#{characterName}
+		,#{characterHp}
+		,#{characterMp}
+		,#{characterDef}
+		,#{characterAtk}
+		,#{characterVideoPath}
+		,#{characterDept}
+		,0
+		,now()
+		,now()
+		);
+
+<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="characterSeq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
+		UPDATE ercharacter
+		SET
+		characterName = #{characterName}
+		,characterHp = #{characterHp}
+		,characterMp = #{characterMp}
+		,characterDept = #{characterDept}
+		,characterVideoPath = #{characterVideoPath}
+		,characterModDate = now()
+		where
+		1=1
+		and characterSeq = #{characterSeq}
+	</update>
+
+	<update id="uelete">
+		UPDATE ercharacter
+		SET
+		characterDelNy=1
+		where 1=1
+		and characterSeq=#{characterSeq}
+	</update>
+
+	<delete id="delete">
+		Delete from ercharacter
+		where 1=1
+		and characterSeq = #{characterSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		select 
+		characterSeq
+		,characterName
+		,characterHp
+		,characterMp
+		,characterVideoPath
+		,characterDept
+		,characterModDate
+		,characterRegDate
+		from ercharacter
+		where 1=1
+			AND characterDelNy=0
+	</select>
+	
+	<select id="selectListWithPaging"  resultMap="resultMapObj">
+			<include refid="base.selectHeader" />
+			SELECT
+				  a.characterSeq
+			    , a.characterName
+			    , a.characterHp
+			    , a.characterMp
+			    , a.characterDef
+			    , a.characterAtk
+			    , a.characterVideoPath
+			    , a.characterDept
+				, a.characterDelNy
+				, a.characterRegDate
+				, a.characterModDate
+			<include refid="commonSelectCharacter" />
+			
+			ORDER BY a.characterSeq asc, a.characterName, a.characterSeq
+			<include refid="base.selectFooterMysql" />
+	
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectCharacter" />
+	</select>
+
+
+</mapper>

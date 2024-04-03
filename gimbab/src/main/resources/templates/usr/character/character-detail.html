@@ -235,7 +235,7 @@
 
 						<a href="listings-list-with-sidebar.html" class="back-to-listings"></a>
 						<div class="property-title">
-							<h2>캐릭터 이름</h2>
+							<h2 th:text="${item.characterName}">캐릭터 이름</h2>
 						</div>
 
 
@@ -276,20 +276,17 @@
 
 						<!-- Main Features -->
 						<ul class="property-main-features">
-							<li>시작 hp <span>555 아이콘 찾아보고 갠찬은거있음 넣음</span></li>
-							<li>시작 mp <span>555</span></li>
-							<li>시작 공격력 <span>55</span></li>
-							<li>시작 방어력 <span>55</span></li>
+							<li>시작 hp <span th:text="${item.characterHp}">555 아이콘 찾아보고 갠찬은거있음 넣음</span></li>
+							<li>시작 mp <span th:text="${item.characterMp}">555</span></li>
+							<li>시작 공격력 <span th:text="${item.characterAtk}">55</span></li>
+							<li>시작 방어력 <span th:text="${item.characterDef}">55</span></li>
 						</ul>
 
 
 						<!-- Description -->
 						<h3 class="desc-headline">캐릭터 상세설명 (스토리일화)</h3>
 						<div class="show-more">
-							<p>
-								블라블라블라
-							</p>
-
+							<p th:text="${item.characterDept}"></p>
 							<a href="#" class="show-more-button">Show More <i class="fa fa-angle-down"></i></a>
 						</div>
 
@@ -299,6 +296,7 @@
 						<div class="responsive-iframe">
 							<iframe width="560" height="315"
 								src="https://www.youtube-nocookie.com/embed/UPBJKppEXoQ?rel=0&amp;showinfo=0"
+								th:src="${item.characterVideoPath}"
 								frameborder="0" allowfullscreen></iframe>
 						</div>
 					</div>
@@ -401,50 +399,9 @@
 	<script type="text/javascript" src="/usr/assets/scripts/masonry.min.js"></script>
 	<script type="text/javascript" src="/usr/assets/scripts/custom.js"></script>
 
-	<!-- Maps -->
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-	<script type="text/javascript" src="scripts/infobox.min.js"></script>
-	<script type="text/javascript" src="scripts/markerclusterer.js"></script>
-	<script type="text/javascript" src="scripts/maps.js"></script>
 
-	<!-- Date Range Picker - docs: http://www.daterangepicker.com/ -->
-	<script src="scripts/moment.min.js"></script>
-	<script src="scripts/daterangepicker.js"></script>
-	<script>
-		// Calendar Init
-		$(function () {
-			$('#date-picker').daterangepicker({
-				"opens": "left",
-				// singleDatePicker: true,
+	
 
-				// Disabling Date Ranges
-				isInvalidDate: function (date) {
-					// Disabling Date Range
-					var disabled_start = moment('09/02/2018', 'MM/DD/YYYY');
-					var disabled_end = moment('09/06/2018', 'MM/DD/YYYY');
-					return date.isAfter(disabled_start) && date.isBefore(disabled_end);
-
-					// Disabling Single Day
-					// if (date.format('MM/DD/YYYY') == '08/08/2018') {
-					//     return true; 
-					// }
-				}
-			});
-		});
-
-		// Calendar animation
-		$('#date-picker').on('showCalendar.daterangepicker', function (ev, picker) {
-			$('.daterangepicker').addClass('calendar-animated');
-		});
-		$('#date-picker').on('show.daterangepicker', function (ev, picker) {
-			$('.daterangepicker').addClass('calendar-visible');
-			$('.daterangepicker').removeClass('calendar-hidden');
-		});
-		$('#date-picker').on('hide.daterangepicker', function (ev, picker) {
-			$('.daterangepicker').removeClass('calendar-visible');
-			$('.daterangepicker').addClass('calendar-hidden');
-		});
-	</script>
 
 
 

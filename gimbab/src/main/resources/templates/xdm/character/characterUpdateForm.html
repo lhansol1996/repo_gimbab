@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<div th:replace="~{include/xdmHead :: xdmHead}"></div>
+	</head>
+
+	<body>
+
+		<!-- Page wrapper start -->
+		<div class="page-wrapper">
+
+			<!-- Main container start -->
+			<div class="main-container">
+
+				<div th:replace="~{include/xdmAside :: xdmAside}"></div>
+
+				<div th:replace="~{include/xdmHeader :: xdmHeader}"></div>
+
+					<!-- App hero header starts -->
+					<div class="app-hero-header d-flex align-items-start">
+
+						<!-- Breadcrumb start -->
+						<ol class="breadcrumb d-none d-lg-flex align-items-center">
+							<li class="breadcrumb-item">
+								<i class="bi bi-house"></i>
+								<a href="index.html">Home</a>
+							</li>
+							<li class="breadcrumb-item">tables</li>
+							<li class="breadcrumb-item" aria-current="page">
+								수정222
+							</li>
+						</ol>
+						<!-- Breadcrumb end -->
+
+						
+
+					</div>
+					<!-- App Hero header ends -->
+
+					<!-- App body starts -->
+					<div class="app-body">
+
+						<!-- Row start -->
+						<div class="row">
+							<div class="col-xxl-12">
+								<div class="card mb-4">
+									<div class="card-body">
+										<form name="formUpdate" id="formUpdate" 
+										class="row g-3"
+											action="/characterUpdt" method="post">
+											
+											<input type="hidden" name="characterSeq" th:value="${item.characterSeq}" id="characterSeq">
+											<!-- 수정 폼 -->
+											<div class="col-md-3">
+												<label for="characterName" class="form-label">캐릭터 이름:<span th:text="${item.characterName}"></span></label>
+												<input type="text" class="form-control" name="characterName" id="characterName" th:value="${item.characterName}"  />
+												<div class="invalid-feedback" id="characterNameFeedback"></div>
+											</div>
+											<div class="col-md-3">
+												<label for="characterHp" class="form-label">캐릭터 체력:<span th:text="${item.characterHp}"></span></label>
+												<input type="text" class="form-control" name="characterHp" id="characterHp" th:value="${item.characterHp}"  />
+												<div class="invalid-feedback" id="characterHpFeedback"></div>
+											</div>
+											<div class="col-md-3">
+												<label for="characterMp" class="form-label">캐릭터 마나:<span th:text="${item.characterMp}"></span></label>
+												<input type="text" class="form-control" name="characterMp" id="characterMp" th:value="${item.characterMp}"  />
+												<div class="invalid-feedback" id="characterMpFeedback"></div>
+											</div>
+											<div class="col-md-3">
+												<label for="characterDef" class="form-label">캐릭터 방어력:<span th:text="${item.characterDef}"></span></label>
+												<input type="text" class="form-control" name="characterDef" id="characterDef" th:value="${item.characterDef}"  />
+												<div class="invalid-feedback" id="characterDefFeedback"></div>
+											</div>
+											<div class="col-md-3">
+												<label for="characterAtk" class="form-label">캐릭터 공격력:<span th:text="${item.characterAtk}"></span></label>
+												<input type="text" class="form-control" name="characterAtk" id="characterAtk" th:value="${item.characterAtk}"  />
+												<div class="invalid-feedback" id="characterAtkFeedback"></div>
+											</div>
+											<div class="col-md-9">
+												<label for="characterVideoPath" class="form-label">캐릭터 유튜브경로:<span th:text="${item.characterVideoPath}"></span></label>
+												<input type="text" class="form-control" name="characterVideoPath" id="characterVideoPath" th:value="${item.characterVideoPath}"  />
+												<div class="invalid-feedback" id="characterVideoPathFeedback"></div>
+											</div>
+
+											<div class="col-md-6">
+												<label for="characterDept" class="form-label">캐릭터 Seq:<span th:text="${item.characterSeq}"></span>
+													<span th:text="${item.characterName}"></span><span>&nbsp;상세설명</span></label>
+												<textarea class="form-control" name="characterDept" id="characterDept" th:text="${item.characterDept}"  style="height: 300px"></textarea>
+												<div class="invalid-feedback" id="characterDeptFeedback"></div>
+											</div>
+
+											
+											<div class="d-flex justify-content-between col-12">
+												<a href="#" th:href="@{/characterXdmList}" class="btn btn-primary" role="button">
+													뒤로가기
+												</a>
+
+												<button class="btn btn-primary" id="btnUpdate">
+													수정
+												</button>
+											</div>
+										</form>
+										
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Row end -->
+
+						
+
+					</div>
+					<!-- App body ends -->
+
+					<!-- App footer start -->
+					<div class="app-footer">
+						<span>© Bootstrap Gallery 2023</span>
+					</div>
+					<!-- App footer end -->
+
+				</div>
+				<!-- App container ends -->
+
+			</div>
+			<!-- Main container end -->
+
+		</div>
+		<!-- Page wrapper end -->
+
+		<div th:replace="~{include/commonjs :: commonjs}"></div>
+		
+		<script>
+
+		let form = document.querySelector("form[name=formUpdate]");
+		let seq = document.querySelector("input[name=seq]");
+		let goUrlXdmList = "/characterXdmList";
+		let goUrlXdmInstForm = "/characterInsert";
+		let goUrlXdmUpdtForm = "/characterUpdt";
+		let goUrlXdmView = "/characterXdmView";
+
+		// 등록버튼
+		document.getElementById("btnUpdate").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlXdmUpdtForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!checkOnlyKoreanEnglishNumber('characterName',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkOnlyKoreanEnglishNumber('characterDpt',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkOnlyNumber('characterHp',2,0,0,1,9999,'숫자만 가능합니다')) return false;
+			if (!checkOnlyNumber('characterMp',2,0,0,1,9999,'숫자만 가능합니다')) return false;
+			if (!checkOnlyNumber('characterDef',2,0,0,1,9999,'숫자만 가능합니다')) return false;
+			if (!checkOnlyNumber('characterAtk',2,0,0,1,9999,'숫자만 가능합니다')) return false;
+		
+		}
+
+		nullToEmpty = function (value) {
+			if (value == null || value == 'null' || value.length == 0) {
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+	</script>
+		
+	</body>
+
+</html>

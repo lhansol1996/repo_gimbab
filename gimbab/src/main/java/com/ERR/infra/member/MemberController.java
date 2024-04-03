@@ -140,14 +140,14 @@ public class MemberController extends BaseController {
 	public String memberLoginRegister() throws Exception{
 		
 		
-		return UsrCommonPath + "login-register";
+		return UsrCommonPath + "member/login-register";
 	}
 	
 	@RequestMapping(value="/adminLoginRegister")
 	public String adminLoginRegister() throws Exception{
 		
 		
-		return XdmCommomPath + "adminLogin";
+		return XdmCommomPath + "member/adminLogin";
 	}
 	
 	@RequestMapping(value="/memberReg")

@@ -74,19 +74,17 @@
 						<!-- 날짜 검색 끝 -->
 						<!-- 검색 select 시작 -->
 						<div class="ms-auto d-flex flex-row justify-content-end pt-2">
-							<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom">
+							<!--리셋버튼-->
+							<!-- <button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom">
 								<i class="fa-solid fa-rotate-right fa-lg"></i>
-							</button>
+							</button> -->
 
 							<div class="col-2 ms-1 mt-1">
 								<select class="form-select" aria-label="Default select example" id="voOption"
 									name="voOption">
 									<option value="" th:selected="${vo.voOption == null}">검색구분</option>
-									<option value="1" th:selected="${vo.voOption == 1}">멤버코드</option>
-									<option value="2" th:selected="${vo.voOption == 2}">성별</option>
-									<option value="3" th:selected="${vo.voOption == 3}">생일</option>
-									<option value="4" th:selected="${vo.voOption == 4}">이름</option>
-									<option value="5" th:selected="${vo.voOption == 5}">아이디</option>
+									<option value="1" th:selected="${vo.voOption == 1}">캐릭터 코드</option>
+									<option value="2" th:selected="${vo.voOption == 2}">캐릭터 이름</option>
 								</select>
 							</div>
 
@@ -100,11 +98,11 @@
 										&nbsp; &nbsp; &nbsp; <i class="bi bi-search"></i>
 									</button>
 								</div>
+									<!-- 페이징 처리 필요한 검색값 -->
+							<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+							<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
 								<!-- 검색 바 끝 -->
 							</div>
-								<!-- 페이징 처리 필요한 검색값 -->
-								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
-								<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
 						</div>
 					</form>
 					<!-- 고정 검색창 끝 -->
@@ -123,8 +121,8 @@
 								<div class="container row m-auto">
 									<div class="fw-bold border-bottom col-3 mt-3 ms-5"
 										style="text-align: center; font-size: large;"
-										th:text="${vo.totalRows}">Total :
-										2222</div>
+										>Total :
+										<span th:text="${vo.totalRows}"></span></div>
 
 									<div class="col-md-2 offset-md-6 mt-3">
 										<select class="form-select" aria-label="Default select example">
@@ -142,13 +140,13 @@
 												<tr>
 													<th scope="col-1"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></th>
-													<th scope="col">Seq</th>
-													<th scope="col-2">Name</th>
-													<th scope="col">delNy</th>
-													<th scope="col-2">Email</th>
-													<th scope="col">gender</th>
-													<th scope="col-2">modDate</th>
-													<th scope="col-2">regDate</th>
+													<th scope="col">chSeq</th>
+													<th scope="col-2">chName</th>
+													<th scope="col">chHp</th>
+													<th scope="col">chMp</th>
+													<th scope="col">chDelNy</th>
+													<th scope="col-2">chModDate</th>
+													<th scope="col-2">chRegDate</th>
 													<th scope="col"></th>
 												</tr>
 											</thead>
@@ -157,48 +155,49 @@
 													<td scope="row"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></td>
 													<td class="col"><a href="#"
-															th:href="@{/memberView(memberSeq=${list.memberSeq},memberName=${list.memberName},memberDelNy=${list.memberDelNy}, memberDpt=${list.memberDpt})}"
-															th:text="${list.memberSeq}">#001</a></td>
+															th:href="@{/characterView(characterSeq=${list.characterSeq},characterName=${list.characterName},characterDelNy=${list.characterDelNy},
+															characterDept=${list.characterDept} ,characterHp=${list.characterHp}, characterMp=${list.characterMp}, 
+															characterVideoPath=${list.characterVideoPath})}"
+															th:text="${list.characterSeq}">#001</a></td>
 													<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
 																alt="Bootstrap Gallery" />
 														</th> -->
-													<td class="col-2" th:text="${list.memberName}">first1</td>
-													<td class="col" th:text="${list.memberDelNy}">Last1</td>
-													<td class="col-2" th:text="${list.memberEmail}">Last1</td>
-													<td th:if="${list.memberGenderCd != null}" th:text="${@codeService.selectOneCachedCode(list.memberGenderCd)}" class="memberGenderCd align-middle col-1"></td>
-														<td th:unless="${list.memberGenderCd != null}" class="memberGenderCd align-middle col-1"></td>
+													<td class="col-2" th:text="${list.characterName}"></td>
+													<td class="col" th:text="${list.characterHp}"></td>
+													<td class="col" th:text="${list.characterMp}"></td>
+													<td class="col" th:text="${list.characterDelNy}"></td>
 													<td class="col-2"
-														th:text="${#dates.format(list.memberModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+														th:text="${#dates.format(list.characterModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
 													<td class="col-2"
-														th:text="${#dates.format(list.memberRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+														th:text="${#dates.format(list.characterRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 													</td>
 													<td class="col">
 														<!-- uelete 버튼 시작 -->
 														<button class="btn btn-danger btn-sm mb-1"
 															data-bs-toggle="modal"
-															th:data-bs-target="'#ueleteModal' + ${list['memberSeq']}"
+															th:data-bs-target="'#ueleteModal' + ${list['characterSeq']}"
 															data-bs-target="#ueleteModal">
 															<i class="bi bi-trash"></i>
 														</button>
 														<!-- uelete Modal -->
-														<div class="modal fade" th:id="'ueleteModal' + ${list['memberSeq']}"
+														<div class="modal fade" th:id="'ueleteModal' + ${list['characterSeq']}"
 															id="ueleteModal" tabindex="-1"
 															aria-labelledby="ueleteModalLabel" aria-hidden="true">
 															<div class="modal-dialog">
 																<div class="modal-content">
 																	<div class="modal-header">
 																		<h5 class="modal-title" id="ueleteModalLabel">
-																			uelete 삭제 테스트</h5>
+																			uelete 삭제</h5>
 																		<button type="button" class="btn-close"
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/memberUelete" method="post">
+																	<form action="/characterUelete" method="post">
 																		<div class="modal-body">
-																			<input type="hidden" name="memberSeq"
-																				th:value="${list.memberSeq}">
+																			<input type="hidden" name="characterSeq"
+																				th:value="${list.characterSeq}">
 																			<span>정말 삭제하시겠습니까 ?</span>
 																		</div>
 																		<div class="modal-footer">
@@ -231,7 +230,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/memberInsertForm}" id="btnInsert">
+													th:href="@{/characterInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -284,19 +283,21 @@ window.addEventListener('load', function () {
 		});
 
 		let form = document.querySelector("form[name=formList]");
-		let goUrlXdmList = "/memberXdmList";								
-		let goUrlXdmInstForm = "/memberInsertForm";							
-		let goUrlXdmView = "/memberXdmView";								
+		let goUrlXdmList = "/characterXdmList";								
+		let goUrlXdmInstForm = "/characterInsertForm";							
+		let goUrlXdmView = "/characterXdmView";							
+			
+		let seq = document.querySelector("input[name=characterSeq]");									/* ### */
 /*
 		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
 		let goUrlXdmMultiDele = "/infra/codegroup/codeGroupXdmMultiDele";			
 		*/
 
-		let seq = document.querySelector("input[name=memberSeq]");									/* ### */
-
+/*
 		document.getElementById("btnReset").onclick = function () {
 			location.href = goUrlXdmList;
 		}
+*/
 
 /*
 		document.getElementById("btnForm").onclick = function () {

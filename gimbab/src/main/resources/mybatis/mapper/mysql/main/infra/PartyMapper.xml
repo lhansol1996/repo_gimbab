@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.party.PartyDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.party.PartyDto"></resultMap>
+	
+	<sql id="commonSelectParty">
+		FROM party a
+		WHERE 1=1
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
+			
+		<choose>
+			<when test="voOptionDate == 1">AND a.partyRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.partyModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.partySeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.partyName LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</sql>
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+		partySeq
+		,partyName
+		,partyDept
+		,partyOwnerTierCd
+		,partyMatchTypeCd
+		,partyOwnerRate
+		,partyOwnerKDA
+		,partyDelNy
+		,partyRegDate
+		,partyModDate
+		from
+		party
+		where 1=1
+		and partySeq = #{partySeq}
+	</select>
+
+	<insert id="insert">
+		insert into party(
+		partyName
+		,partyOwnerKDA
+		,partyOwnerTierCd
+		,partyMatchTypeCd
+		,partyDept
+		,partyDelNy
+		)values(
+		#{partyName}
+		,#{partyOwnerKDA}
+		,#{partyOwnerTierCd}
+		,#{partyMatchTypeCd}
+		,#{partyDept}
+		,0
+		);
+
+<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="partySeq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
+		UPDATE party
+		SET
+		partyName = #{partyName}
+		,partyDept = #{partyDept}
+		,partyOwnerKDA = #{partyOwnerKDA}
+		,partyOwnerTierCd = #{partyOwnerTierCd}
+		,partyMatchTypeCd = #{partyMatchTypeCd}
+		,partyModDate = now()
+		where
+		1=1
+		and partySeq = #{partySeq}
+	</update>
+
+	<update id="uelete">
+		UPDATE party
+		SET
+		partyDelNy=1
+		where 1=1
+		and partySeq=#{partySeq}
+	</update>
+
+	<delete id="delete">
+		Delete from party
+		where 1=1
+		and partySeq = #{partySeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		select 
+		partySeq,
+		partyName
+		from party
+		where 1=1
+			AND partyDelNy=0
+	</select>
+	
+	<select id="selectListWithPaging"  resultMap="resultMapObj">
+			<include refid="base.selectHeader" />
+			SELECT
+				  a.partySeq
+			    , a.partyName
+			    , a.partyDept
+			    , a.partyOwnerTierCd
+			    , a.partyOwnerRate
+			    , a.partyOwnerKDA
+			    , a.partyMatchTypeCd
+				, a.partyDelNy
+				, a.partyRegDate
+				, a.partyModDate
+			<include refid="commonSelectParty" />
+			
+			ORDER BY a.partySeq asc, a.partyName, a.partySeq
+			<include refid="base.selectFooterMysql" />
+	
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectParty" />
+	</select>
+
+
+</mapper>

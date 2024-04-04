@@ -48,28 +48,58 @@
 									<div class="card-body">
 										<form name="formUpdate" id="formUpdate" 
 										class="row g-3 needs-validation"
-											action="/codeUpdt" method="post">
+											action="/partyUpdt" method="post">
 											
 											<!-- 수정 폼 -->
+											<input type="hidden" name="partySeq" id="partySeq" th:value="${item.partySeq}" />
 											<div class="col-md-3">
-												<label for="codeName" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeSeq}"></span></label>
-												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" />
-												<input type="hidden" name="codeSeq" th:value="${item.codeSeq}" id="codeSeq">
-												<div class="invalid-feedback" id="codeNameFeedback"></div>
+												<label for="partyName" class="form-label">파티이름</span></label> <input type="text"
+													class="form-control" name="partyName" id="partyName"
+													 th:value="${item.partyName}" />
+												<div class="invalid-feedback" id="partyNameFeedback"></div>
 											</div>
-
+		
+											
 											<div class="col-md-3">
-												<label for="codeGroupSeqF" class="form-label">코드그룹 지정</span></label>
-												<select class="form-select" name="codeGroupSeqF" id="codeGroupSeqF">
-													<option value="" selected>코드 그룹을 선택하세요</option>
-													<option th:each="codeGroupList : ${@codeGroupService.selectListWithoutPaging()}" 
-													th:value="${codeGroupList.codeGroupSeq}" th:text="${codeGroupList.codeGroupName}"></option>
+												<label for="partyOwnerKDA" class="form-label">본인(파티장) KDA</span></label> <input type="text"
+												class="form-control" name="partyOwnerKDA" id="partyOwnerKDA" th:value="${item.partyOwnerKDA}"
+												placeholder="KDA를 넣어주십시오" />
+												<div class="invalid-feedback" id="partyOwnerKDAFeedback"></div>
+											</div>
+		
+											<div class="col-md-3">
+												<label for="partyOwnerTierCd" class="form-label">본인(파티장) 티어</span></label>
+												<select class="form-select" name="partyOwnerTierCd" id="partyOwnerTierCd">
+													<option value="" selected>파티 타입을 선택하세요</option>
+													<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
+													th:value="${codeList.codeSeq}"
+													th:text="${codeList.codeName}">
+													</option>
 												</select>
-												<div class="invalid-feedback" id="codeGroupSeqFFeedback"></div>
+												<div class="invalid-feedback" id="partyOwnerTierCdFeedback"></div>
+											</div>
+		
+											<div class="col-md-3">
+												<label for="partyMatchTypeCd" class="form-label">파티타입 지정</span></label>
+												<select class="form-select" name="partyMatchTypeCd" id="partyMatchTypeCd">
+													<option value="" selected>파티 타입을 선택하세요</option>
+													<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
+														th:value="${codeList.codeSeq}"
+														th:text="${codeList.codeName}" >
+													</option>
+												</select>
+												<div class="invalid-feedback" id="partyTypeCdFeedback"></div>
+											</div>
+		
+											<div class="col-md-6">
+												<label for="partyDept" class="form-label"><span>상세설명 :</span></label>
+												<textarea class="form-control" name="partyDept" id="partyDept"
+												th:value="${item.partyDept}" style="height: 300px"></textarea>
+												<div class="invalid-feedback" id="partyDeptFeedback"></div>
 											</div>
 											
 											<div class="d-flex justify-content-between col-12">
-												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
+												<a href="#" th:href="@{/partyXdmList}" class="btn btn-primary" role="button">
 													뒤로가기
 												</a>
 
@@ -112,10 +142,10 @@
 
 		let form = document.querySelector("form[name=formUpdate]");
 		let seq = document.querySelector("input[name=seq]");
-		let goUrlXdmList = "/codeXdmList";
-		let goUrlXdmInstForm = "/codeInsert";
-		let goUrlXdmUpdtForm = "/codeUpdt";
-		let goUrlXdmView = "/codeXdmView";
+		let goUrlXdmList = "/partyXdmList";
+		let goUrlXdmInstForm = "/partyInsert";
+		let goUrlXdmUpdtForm = "/partyUpdt";
+		let goUrlXdmView = "/partyXdmView";
 
 		// 등록버튼
 		document.getElementById("btnUpdate").onclick = function () {
@@ -135,7 +165,7 @@
 		}
 
 		function validationUpdt() {
-			if (!checkOnlyKoreanEnglish('codeName',2,0,'한글과 영어만 가능합니다.')) return false;
+			if (!checkOnlyKoreanEnglish('partyName',2,0,'한글과 영어만 가능합니다.')) return false;
 		}
 
 		nullToEmpty = function (value) {

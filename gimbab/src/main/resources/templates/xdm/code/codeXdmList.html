@@ -121,11 +121,10 @@
 										2222</div>
 
 									<div class="col-md-2 offset-md-6 mt-3">
-										<select class="form-select" aria-label="Default select example">
-											<option selected>10</option>
-											<option value="1">5</option>
-											<option value="2">15</option>
-											<option value="3">20</option>
+										<select class="form-select" aria-label="Default select example" id="rowNumToShow" name="rowNumToShow" th:onchange="javascript:goList(1)">
+											<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+											<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>													
+											<option value="50" th:selected="${vo.rowNumToShow == 50}">50</option>
 										</select>
 									</div>
 								</div>

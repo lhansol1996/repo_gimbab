@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<div th:replace="~{include/xdmHead :: xdmHead}"></div>
+</head>
+
+<body>
+
+	<!-- Page wrapper start -->
+	<div class="page-wrapper">
+
+		<!-- Main container start -->
+		<div class="main-container">
+
+			<div th:replace="~{include/xdmAside :: xdmAside}"></div>
+
+			<div th:replace="~{include/xdmHeader :: xdmHeader}"></div>
+
+			
+
+				<!-- App hero header starts -->
+				<div class="app-hero-header d-flex align-items-start">
+
+					<!-- Breadcrumb start -->
+					<ol class="breadcrumb d-none d-lg-flex align-items-center">
+						<li class="breadcrumb-item">
+							<i class="bi bi-house"></i>
+							<a href="index.html">Home</a>
+						</li>
+						<li class="breadcrumb-item">tables</li>
+						<li class="breadcrumb-item" aria-current="page">
+							view
+						</li>
+					</ol>
+					<!-- Breadcrumb end -->
+
+
+
+				</div>
+				<!-- App Hero header ends -->
+
+				<!-- App body starts -->
+				<div class="app-body">
+
+					<!-- Row start -->
+					<div class="row">
+						<div class="col-xxl-12">
+							<div class="card mb-4">
+								<div class="card-body">
+									<table class="table align-middle table-hover m-0">
+										<thead>
+											<tr>
+												<th scope="col-2">seq</th>
+												<th scope="col-2">Name</th>
+												<th scope="col-2">modDate</th>
+												<th scope="col-2">regDate</th>
+												<th scope="col-2">delNy</th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="col-1" th:text="${item.partySeq}">#001</td>
+												<!-- <th>
+															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
+																alt="Bootstrap Gallery" />
+														</th> -->
+												<td class="col-2" th:text="${item.partyName}">first1</td>
+												<td class="col-3"
+													th:text="${#dates.format(item.partyModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+												</td>
+												<td class="col-3"
+													th:text="${#dates.format(item.partyRegDate, 'yyyy-MM-dd일 HH:mm:ss')}">
+												</td>
+												<td class="col-1" th:text="${item.partyDelNy}">
+												</td>
+
+											</tr>
+
+										</tbody>
+									</table>
+
+									<!-- 테이블 아래 쪽 뒤로가기 -->
+									<div class="d-flex justify-content-between flex-row ms-5 pt-5">
+										<div class="col-2">
+											<a class="btn btn-danger btn-icon btn-sm mb-1" href="#"
+												th:href="@{/partyXdmList}"><i class="bi bi-arrow-left"></i></a>
+										</div>
+										<!-- 테이블 아래 쪽 수정 버튼 -->
+
+										<div class="col-2">
+											<a class="btn btn-info btn-sm mb-1" href="#"
+												th:href="@{/partyUpdateForm(partySeq=${item.partySeq}, partyName=${item.partyName},
+												partyDept=${item.partyDept}, partyOwnerKda=${item.partyOwnerKDA}, 
+												partyOwnerTierCd=${item.partyOwnerTierCd}, partyMatchTypeCd=${item.partyMatchTypeCd})}">
+												<i class="bi bi-pencil"></i>
+											</a>
+
+											<!-- uelete 버튼 시작 -->
+											<button class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal"
+												th:data-bs-target="'#ueleteModal' + ${item['partySeq']}"
+												data-bs-target="#ueleteModal">
+												<i class="bi bi-trash"></i>
+											</button>
+											<!-- uelete Modal -->
+											<div class="modal fade" th:id="'ueleteModal' + ${item['partySeq']}"
+												id="ueleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="ueleteModalLabel">
+																uelete 삭제 테스트</h5>
+															<button type="button" class="btn-close"
+																data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<form action="/partyUelete" method="post">
+															<div class="modal-body">
+																<input type="hidden" name="partySeq" th:value="${item.partySeq}">
+																<span>정말 삭제하시겠습니까 ?</span>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">
+																	uelete삭제</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+											<!-- delete 버튼 시작 -->
+											<button class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal"
+												th:data-bs-target="'#deleteModal' + ${item['partySeq']}"
+												data-bs-target="#deleteModal">
+												<i class="bi bi-x-lg"></i>
+											</button>
+											<!-- delete Modal -->
+											<div class="modal fade" th:id="'deleteModal' + ${item['partySeq']}"
+												id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="deleteModalLabel">
+																delete 삭제 테스트</h5>
+															<button type="button" class="btn-close"
+																data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<form action="/partyDelete" method="post">
+															<div class="modal-body">
+																<input type="hidden" name="partySeq" th:value="${item.partySeq}">
+																<span>정말 삭제하시겠습니까 ?</span>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">
+																	delete삭제</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Row end -->
+
+
+
+				</div>
+				<!-- App body ends -->
+
+				<!-- App footer start -->
+				<div class="app-footer">
+					<span>© Bootstrap Gallery 2023</span>
+				</div>
+				<!-- App footer end -->
+
+			</div>
+			<!-- App container ends -->
+
+		</div>
+		<!-- Main container end -->
+
+	</div>
+	<!-- Page wrapper end -->
+
+	<div th:replace="~{include/commonjs :: commonjs}"></div>
+	
+</body>
+
+</html>

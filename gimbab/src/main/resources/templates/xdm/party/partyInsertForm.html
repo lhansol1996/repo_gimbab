@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<div th:replace="~{include/xdmHead :: xdmHead}"></div>
+</head>
+
+<body>
+
+	<!-- Page wrapper start -->
+	<div class="page-wrapper">
+
+		<!-- Main container start -->
+		<div class="main-container">
+
+			<div th:replace="~{include/xdmAside :: xdmAside}"></div>
+			<div th:replace="~{include/xdmHeader :: xdmHeader}"></div>
+
+			<!-- App hero header starts -->
+			<div class="app-hero-header d-flex align-items-start">
+
+				<!-- Breadcrumb start -->
+				<ol class="breadcrumb d-none d-lg-flex align-items-center">
+					<li class="breadcrumb-item"><i class="bi bi-house"></i> <a href="index.html">Home</a></li>
+					<li class="breadcrumb-item">tables</li>
+					<li class="breadcrumb-item" aria-current="page">수정</li>
+				</ol>
+				<!-- Breadcrumb end -->
+
+
+
+			</div>
+			<!-- App Hero header ends -->
+
+			<!-- App body starts -->
+			<div class="app-body">
+
+				<!-- Row start -->
+				<div class="row">
+					<div class="col-xxl-12">
+						<div class="card mb-4">
+							<div class="card-body">
+								<form name="formInsert" id="formInsert" class="row g-3 needs-validation" method="post">
+
+									<div class="col-md-3">
+										<label for="partyName" class="form-label">파티이름</span></label> <input type="text"
+											class="form-control" name="partyName" id="partyName"
+											placeholder="이름을 넣어주십시오" />
+										<div class="invalid-feedback" id="partyNameFeedback"></div>
+									</div>
+
+									
+									<div class="col-md-3">
+										<label for="partyOwnerKDA" class="form-label">본인(파티장) KDA</span></label> <input type="text"
+										class="form-control" name="partyOwnerKDA" id="partyOwnerKDA"
+										placeholder="KDA를 넣어주십시오" />
+										<div class="invalid-feedback" id="partyOwnerKDAFeedback"></div>
+									</div>
+
+									<div class="col-md-3">
+										<label for="partyOwnerTierCd" class="form-label">본인(파티장) 티어</span></label>
+										<select class="form-select" name="partyOwnerTierCd" id="partyOwnerTierCd">
+											<option value="" selected>파티 타입을 선택하세요</option>
+											<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
+											th:value="${codeList.codeSeq}"
+											th:text="${codeList.codeName}">
+											</option>
+										</select>
+										<div class="invalid-feedback" id="partyOwnerTierCdFeedback"></div>
+									</div>
+
+									<div class="col-md-3">
+										<label for="partyMatchTypeCd" class="form-label">파티타입 지정</span></label>
+										<select class="form-select" name="partyMatchTypeCd" id="partyMatchTypeCd">
+											<option value="" selected>파티 타입을 선택하세요</option>
+											<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
+												th:value="${codeList.codeSeq}"
+												th:text="${codeList.codeName}" >
+											</option>
+										</select>
+										<div class="invalid-feedback" id="partyMatchTypeCdFeedback"></div>
+									</div>
+
+									<div class="col-md-6">
+										<label for="partyDept" class="form-label"><span>상세설명 :</span></label>
+										<textarea class="form-control" name="partyDept" id="partyDept" style="height: 300px"></textarea>
+										<div class="invalid-feedback" id="partyDeptFeedback"></div>
+									</div>
+
+									<div class="d-flex justify-content-between col-12">
+										<a href="#" th:href="@{/partyXdmList}" class="btn btn-primary" role="button">
+											뒤로가기 </a>
+
+										<button class="btn btn-primary" id="btnInsert">등록</button>
+									</div>
+								</form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Row end -->
+
+
+
+			</div>
+			<!-- App body ends -->
+
+
+			<!-- App footer start -->
+			<div class="app-footer">
+				<span>© Bootstrap Gallery 2023</span>
+			</div>
+			<!-- App footer end -->
+
+		</div>
+		<!-- App container ends -->
+
+	</div>
+	<!-- Main container end -->
+
+	</div>
+	<!-- Page wrapper end -->
+
+	<div th:replace="~{include/commonjs :: commonjs}"></div>
+
+	<script>
+
+		let form = document.querySelector("form[name=formInsert]");
+		let seq = document.querySelector("input[name=seq]");
+		let goUrlXdmList = "/partyXdmList";
+		let goUrlXdmInstForm = "/partyInsert";
+		let goUrlXdmView = "/partyXdmView";
+
+		// 등록버튼
+		document.getElementById("btnInsert").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlXdmInstForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!checkOnlyKoreanEnglish('partyName', 2, 0, '한글과 영어만 사용가능합니다.')) return false;
+
+		}
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

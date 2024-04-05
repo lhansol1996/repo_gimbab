@@ -13,6 +13,12 @@ public class PartyDto {
 	private int partyDelNy;
 	private Date partyRegDate;
 	private Date partyModDate;
+	
+	private String xMemberName;
+	private String xPartySeqF;
+	private String xMemberSeqF;
+	
+	
 	public String getPartySeq() {
 		return partySeq;
 	}
@@ -73,6 +79,25 @@ public class PartyDto {
 	public void setPartyModDate(Date partyModDate) {
 		this.partyModDate = partyModDate;
 	}
+	public String getxMemberName() {
+		return xMemberName;
+	}
+	public void setxMemberName(String xMemberName) {
+		this.xMemberName = xMemberName;
+	}
+	public String getxPartySeqF() {
+		return xPartySeqF;
+	}
+	public void setxPartySeqF(String xPartySeqF) {
+		this.xPartySeqF = xPartySeqF;
+	}
+	public String getxMemberSeqF() {
+		return xMemberSeqF;
+	}
+	public void setxMemberSeqF(String xMemberSeqF) {
+		this.xMemberSeqF = xMemberSeqF;
+	}
 
+	
 	
 }

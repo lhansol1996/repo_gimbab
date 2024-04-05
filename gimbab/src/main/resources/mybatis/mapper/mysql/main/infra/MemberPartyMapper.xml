@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.memberParty.MemberPartyDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.memberParty.MemberPartyDto"></resultMap>
+	
+	
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+		memberPartySeq
+		,memberSeqF
+		,partySeqF
+		,masterNy
+		,partyJoinNy
+		,partyOutNy
+		,partyJoinDate
+		,partyOutDate
+		from
+		memberParty
+		where 1=1
+		and memberPartySeq = #{memberPartySeq}
+	</select>
+
+	<insert id="insert">
+		insert into memberParty(
+		memberSeqF
+		,partySeqF
+		,masterNy
+		,partyJoinNy
+		,partyOutNy
+		)values(
+		#{memberSeqF}
+		,#{partySeqF}
+		,1
+		,1
+		,0
+		);
+
+<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="memberSeqF"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	
+
+
+</mapper>

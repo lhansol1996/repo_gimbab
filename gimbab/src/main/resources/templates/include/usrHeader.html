@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="usrHeader">
+    <header id="header-container">
+
+        <!-- Topbar -->
+        <div id="top-bar">
+            <div class="container">
+                <div class="right-side">
+                    <!-- 헤더 오른쪽 검색 창 -->
+                    <form name="formTop" id="formTop" method="get" autocomplete="off">
+                        <div class="main-search-form">
+                            <div class="top-search-input larger-input">
+                                <input type="text" class="ico-01" id="XtopBarSearchInputValue"
+                                    name="XtopBarSearchInputValue"
+                                    placeholder="닉네임, 캐릭터 ex&#41; 재키 검색" value="" />
+                                <button class="button border" type="button" id="searchBtn1"
+                                    style="background-color: rgb(93, 136, 255);">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- Topbar / End -->
+
+
+        <!-- Header -->
+        <div id="header">
+            <div class="container">
+
+                <!-- Left Side Content -->
+                <div class="left-side">
+
+                    <!-- Logo -->
+                    <div id="logo">
+                        <a href="index.html"><img src="xdm/assets/images/logoERR-dark.svg" alt=""></a>
+                    </div>
+
+
+
+                    <!-- Main Navigation -->
+                    <nav id="navigation" class="style-1"></nav>
+                    <div class="clearfix"></div>
+                    <!-- Main Navigation / End -->
+
+                </div>
+                <!-- Left Side Content / End -->
+
+                <!-- Right Side Content / End -->
+                <div class="right-side">
+                    <!-- Header Widget -->
+                    <div class="header-widget">
+                        <a href="login-register.html" th:href="@{/memberLoginRegister}" class="sign-in"><i
+                            class="fa fa-user"></i> Log In / Register</a> <a
+                            href="submit-property.html" class="button border">my account
+                            가기</a>
+                    </div>
+                    <!-- Header Widget / End -->
+                </div>
+                <!-- Right Side Content / End -->
+
+            </div>
+        </div>
+        <!-- Header / End -->
+
+    </header>
+    <div class="clearfix"></div>
+	
+</th:block>

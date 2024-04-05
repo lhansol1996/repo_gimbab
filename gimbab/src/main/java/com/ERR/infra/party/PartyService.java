@@ -5,20 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ERR.infra.memberParty.MemberPartyDao;
+import com.ERR.infra.memberParty.MemberPartyDto;
+
 @Service
 public class PartyService {
 
 	@Autowired
 	PartyDao partyDao;
+	@Autowired
+	MemberPartyDao memberPartyDao;
 
 	// DTO 중 하나를 리턴
 	public PartyDto selectOne(PartyDto dto) {
 		return partyDao.selectOne(dto);
 	}
+	
+	//seq 호출
+	public String selectPartySeq(PartyDto partyDto) {
+		return partyDao.selectPartySeq(partyDto);
+	}
 
 	// 등록 버튼
-	public int insert(PartyDto dto) {
-		return partyDao.insert(dto);
+	public int insert(PartyDto partyDto, MemberPartyDto memberPartyDto) {
+		partyDao.insert(partyDto);
+		memberPartyDto.setPartySeqF(partyDao.selectOne(partyDto).getPartySeq());
+		memberPartyDao.insert(memberPartyDto);
+		return 1;
 	}
 
 	// 수정 버튼

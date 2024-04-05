@@ -9,6 +9,9 @@ public interface PartyDao {
 
 	// 등록 버튼
 	public int insert(PartyDto dto);
+	
+	//등록을 위한 파티 seq 호출
+	public String selectPartySeq(PartyDto dto);
 
 	// 수정 버튼
 	public int update(PartyDto dto);

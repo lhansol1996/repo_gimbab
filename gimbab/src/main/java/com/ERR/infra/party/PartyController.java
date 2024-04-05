@@ -10,10 +10,14 @@ import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
 import com.ERR.infra.code.CodeService;
+import com.ERR.infra.memberParty.MemberPartyDto;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PartyController extends BaseController {
 	private String XdmPartyCommomPath = "xdm/party/";
+	private String UsrPartyCommonPath = "usr/party/";
 
 	@Autowired
 	PartyService partyservice;
@@ -63,16 +67,11 @@ public class PartyController extends BaseController {
 	}
 
 	@RequestMapping(value = "/partyInsert")
-	public String partyInsert(PartyDto dto, Model model) throws Exception {
+	public String partyInsert(PartyDto partyDto, MemberPartyDto memberPartyDto,HttpSession httpSession, Model model) throws Exception {
+		System.out.println(httpSession.getAttribute("sessSeqXdm")+"================================================");
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessSeqXdm"))));
 
-		System.out.println("인서트 시작================");
-		System.out.println("인서트 시작================");
-		System.out.println(dto.getPartyOwnerTierCd());
-		System.out.println(dto.getPartyMatchTypeCd());
-		partyservice.insert(dto);
-		System.out.println("인서트 끝================");
-		System.out.println("인서트 시작================");
-		System.out.println("인서트 시작================");
+		partyservice.insert(partyDto, memberPartyDto);
 		return "redirect:/partyXdmList";
 	}
 
@@ -96,5 +95,19 @@ public class PartyController extends BaseController {
 		partyservice.delete(dto);
 		return "redirect:/partyXdmList";
 	}
+	
+	@RequestMapping(value="/userPartySearchList")
+	public String userParty(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception{
+		setSearch(vo);
+		vo.setParamsPaging(partyservice.selectCount(vo));
+
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", partyservice.selectListWithPaging(vo));
+		}
+		
+		
+		return UsrPartyCommonPath + "userPartySearchList";
+	}
+	
 
 }

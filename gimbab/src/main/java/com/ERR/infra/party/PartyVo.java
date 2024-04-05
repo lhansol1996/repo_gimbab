@@ -3,32 +3,60 @@ package com.ERR.infra.party;
 import com.ERR.common.base.BaseVo;
 
 public class PartyVo extends BaseVo {
-	private String partySeq;
-	private String partyName;
-	private String MatchType;
-
-	public String getPartySeq() {
-		return partySeq;
+	private String voPartySeq;
+	private String voPartyName;
+	private String voMatchTypeCd;
+	private String voPartyOwnerTierCd;
+	
+	private String voXMemberName;
+	private String voXPartySeqF;
+	private String voXMemberSeqF;
+	public String getVoPartySeq() {
+		return voPartySeq;
 	}
-
-	public void setPartySeq(String partySeq) {
-		this.partySeq = partySeq;
+	public void setVoPartySeq(String voPartySeq) {
+		this.voPartySeq = voPartySeq;
 	}
-
-	public String getPartyName() {
-		return partyName;
+	public String getVoPartyName() {
+		return voPartyName;
 	}
-
-	public void setPartyName(String partyName) {
-		this.partyName = partyName;
+	public void setVoPartyName(String voPartyName) {
+		this.voPartyName = voPartyName;
 	}
-
-	public String getMatchType() {
-		return MatchType;
+	public String getVoMatchTypeCd() {
+		return voMatchTypeCd;
 	}
-
-	public void setMatchType(String matchType) {
-		MatchType = matchType;
+	public void setVoMatchTypeCd(String voMatchTypeCd) {
+		this.voMatchTypeCd = voMatchTypeCd;
 	}
+	public String getVoPartyOwnerTierCd() {
+		return voPartyOwnerTierCd;
+	}
+	public void setVoPartyOwnerTierCd(String voPartyOwnerTierCd) {
+		this.voPartyOwnerTierCd = voPartyOwnerTierCd;
+	}
+	public String getVoXMemberName() {
+		return voXMemberName;
+	}
+	public void setVoXMemberName(String voXMemberName) {
+		this.voXMemberName = voXMemberName;
+	}
+	public String getVoXPartySeqF() {
+		return voXPartySeqF;
+	}
+	public void setVoXPartySeqF(String voXPartySeqF) {
+		this.voXPartySeqF = voXPartySeqF;
+	}
+	public String getVoXMemberSeqF() {
+		return voXMemberSeqF;
+	}
+	public void setVoXMemberSeqF(String voXMemberSeqF) {
+		this.voXMemberSeqF = voXMemberSeqF;
+	}
+	
+	
+
+	
+	
 
 }

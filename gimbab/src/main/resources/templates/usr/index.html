@@ -1,18 +1,8 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-
-<!-- Basic Page Needs
-================================================== -->
-<title>Findeo</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<!-- CSS
-================================================== -->
-<link rel="stylesheet" href="/usr/assets/css/style.css">
-<link rel="stylesheet" href="/usr/assets/css/color.css">
-
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
 </head>
 
 <body>
@@ -20,104 +10,12 @@
 	<!-- Wrapper -->
 	<div id="wrapper">
 
-		<!-- Header Container
-================================================== -->
-		<header id="header-container">
-
-			<!-- Topbar -->
-			<div id="top-bar">
-				<div class="container">
-
-
-
-
-					<!-- Left Side Content -->
-					<div class="right-side">
-
-
-						<!-- 헤더 오른쪽 검색 창 -->
-						<form name="formTop" id="formTop" method="get" autocomplete="off">
-							<div class="main-search-form">
-
-								<!-- Main Search Input -->
-								<div class="top-search-input larger-input">
-									<input type="text" class="ico-01" id="XtopBarSearchInputValue"
-										name="XtopBarSearchInputValue"
-										placeholder="닉네임, 캐릭터 ex&#41; 재키 검색" value="" />
-									<button class="button border" type="button" id="searchBtn1"
-										style="background-color: rgb(93, 136, 255);">Search</button>
-								</div>
-							</div>
-						</form>
-
-
-					</div>
-					<!-- Left Side Content / End -->
-
-				</div>
-			</div>
-			<div class="clearfix"></div>
-			<!-- Topbar / End -->
-
-
-			<!-- Header -->
-			<div id="header">
-				<div class="container">
-
-					<!-- Left Side Content -->
-					<div class="left-side">
-
-						<!-- Logo -->
-						<div id="logo">
-							<a href="index.html"><img src="images/logo.png" alt=""></a>
-						</div>
-
-
-						<!-- Mobile Navigation -->
-						<div class="mmenu-trigger">
-							<button class="hamburger hamburger--collapse" type="button">
-								<span class="hamburger-box"> <span
-									class="hamburger-inner"></span>
-								</span>
-							</button>
-						</div>
-
-
-						<!-- Main Navigation -->
-						<nav id="navigation" class="style-1"></nav>
-						<div class="clearfix"></div>
-						<!-- Main Navigation / End -->
-
-					</div>
-					<!-- Left Side Content / End -->
-
-					<!-- Right Side Content / End -->
-					<div class="right-side">
-						<!-- Header Widget -->
-						<div class="header-widget">
-							<a href="login-register.html" class="sign-in"><i
-								class="fa fa-user"></i> Log In / Register</a> <a
-								href="submit-property.html" class="button border">my account
-								가기</a>
-						</div>
-						<!-- Header Widget / End -->
-					</div>
-					<!-- Right Side Content / End -->
-
-				</div>
-			</div>
-			<!-- Header / End -->
-
-		</header>
-		<div class="clearfix"></div>
-		<!-- Header Container / End -->
-
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
 
 		<!-- Banner
 ================================================== -->
-		<div class="parallax" data-background="images/home-parallax.jpg"
-			data-color="#36383e" data-color-opacity="0.45" data-img-width="2500"
-			data-img-height="1600">
+		<div class="parallax" data-background="images/home-parallax.jpg" data-color="#36383e" data-color-opacity="0.45"
+			data-img-width="2500" data-img-height="1600">
 			<div class="parallax-content">
 
 				<div class="container">
@@ -133,10 +31,9 @@
 
 									<!-- Type -->
 									<div class="search-type">
-										<label class="active"><input class="first-tab"
-											name="tab" checked="checked" type="radio">정규 시즌 3</label> <label><input
-											name="tab" type="radio">정규 시즌 2</label> <label><input
-											name="tab" type="radio">정규 시즌 1</label>
+										<label class="active"><input class="first-tab" name="tab" checked="checked"
+												type="radio">정규 시즌 3</label> <label><input name="tab" type="radio">정규 시즌
+											2</label> <label><input name="tab" type="radio">정규 시즌 1</label>
 										<div class="search-type-arrow"></div>
 									</div>
 
@@ -185,8 +82,8 @@
 						<div class="carousel-item">
 							<div class="listing-item">
 
-								<a href="single-property-page-1.html"
-									class="listing-img-container"> <!-- 모스트 3캐릭터 이미지 -->
+								<a href="single-property-page-1.html" class="listing-img-container">
+									<!-- 모스트 3캐릭터 이미지 -->
 									<div class="listing-carousel">
 										<div>
 											<img src="images/listing-01.jpg" alt="">
@@ -218,7 +115,7 @@
 
 									<div class="listing-footer">
 										<a href="#"><i class="fa fa-user"></i> 유저 인게임닉네임</a> <span><i
-											class="fa fa-calendar-o"></i> 제작일</span>
+												class="fa fa-calendar-o"></i> 제작일</span>
 									</div>
 
 								</div>
@@ -232,8 +129,7 @@
 						<div class="carousel-item">
 							<div class="listing-item">
 
-								<a href="single-property-page-2.html"
-									class="listing-img-container">
+								<a href="single-property-page-2.html" class="listing-img-container">
 
 									<div class="listing-badges"></div> <!-- 모스트 3캐릭터 이미지 -->
 									<div class="listing-carousel">
@@ -256,10 +152,9 @@
 										<h4>
 											<a href="single-property-page-2.html">Serene Uptown</a>
 										</h4>
-										<a
-											href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i
-											class="fa fa-map-marker"></i> 6 Bishop Ave. Perkasie, PA
+										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 6
+											Bishop Ave. Perkasie, PA
 										</a>
 									</div>
 
@@ -271,7 +166,7 @@
 
 									<div class="listing-footer">
 										<a href="#"><i class="fa fa-user"></i> Harriette Clark</a> <span><i
-											class="fa fa-calendar-o"></i> 2 days ago</span>
+												class="fa fa-calendar-o"></i> 2 days ago</span>
 									</div>
 
 								</div>
@@ -285,8 +180,7 @@
 						<div class="carousel-item">
 							<div class="listing-item">
 
-								<a href="single-property-page-1.html"
-									class="listing-img-container">
+								<a href="single-property-page-1.html" class="listing-img-container">
 
 									<div class="listing-badges">
 										<span class="featured">Featured</span> <span>For Rent</span>
@@ -294,10 +188,8 @@
 
 									<div class="listing-img-content">
 										<span class="listing-price">$1700 <i>monthly</i></span> <span
-											class="like-icon with-tip"
-											data-tip-content="Add to Bookmarks"></span> <span
-											class="compare-button with-tip"
-											data-tip-content="Add to Compare"></span>
+											class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span> <span
+											class="compare-button with-tip" data-tip-content="Add to Compare"></span>
 									</div> <img src="images/listing-03.jpg" alt="">
 
 								</a>
@@ -308,10 +200,9 @@
 										<h4>
 											<a href="single-property-page-1.html">Meridian Villas</a>
 										</h4>
-										<a
-											href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i
-											class="fa fa-map-marker"></i> 778 Country St. Panama City, FL
+										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 778
+											Country St. Panama City, FL
 										</a>
 									</div>
 
@@ -323,7 +214,7 @@
 
 									<div class="listing-footer">
 										<a href="#"><i class="fa fa-user"></i> Chester Miller</a> <span><i
-											class="fa fa-calendar-o"></i> 4 days ago</span>
+												class="fa fa-calendar-o"></i> 4 days ago</span>
 									</div>
 
 								</div>
@@ -339,8 +230,7 @@
 							<div class="listing-item">
 
 
-								<a href="single-property-page-3.html"
-									class="listing-img-container">
+								<a href="single-property-page-3.html" class="listing-img-container">
 
 									<div class="listing-badges">
 										<span>For Sale</span>
@@ -350,8 +240,7 @@
 										<span class="listing-price">$420,000 <i>$770 / sq
 												ft</i></span> <span class="like-icon with-tip"
 											data-tip-content="Add to Bookmarks"></span> <span
-											class="compare-button with-tip"
-											data-tip-content="Add to Compare"></span>
+											class="compare-button with-tip" data-tip-content="Add to Compare"></span>
 									</div>
 
 									<div class="listing-carousel">
@@ -371,10 +260,9 @@
 										<h4>
 											<a href="single-property-page-3.html">Selway Apartments</a>
 										</h4>
-										<a
-											href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i
-											class="fa fa-map-marker"></i> 33 William St. Northbrook, IL
+										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 33
+											William St. Northbrook, IL
 										</a>
 									</div>
 
@@ -386,7 +274,7 @@
 
 									<div class="listing-footer">
 										<a href="#"><i class="fa fa-user"></i> Kristen Berry</a> <span><i
-											class="fa fa-calendar-o"></i> 3 days ago</span>
+												class="fa fa-calendar-o"></i> 3 days ago</span>
 									</div>
 
 								</div>
@@ -402,8 +290,7 @@
 							<div class="listing-item">
 
 
-								<a href="single-property-page-1.html"
-									class="listing-img-container">
+								<a href="single-property-page-1.html" class="listing-img-container">
 									<div class="listing-badges">
 										<span>For Sale</span>
 									</div>
@@ -412,8 +299,7 @@
 										<span class="listing-price">$535,000 <i>$640 / sq
 												ft</i></span> <span class="like-icon with-tip"
 											data-tip-content="Add to Bookmarks"></span> <span
-											class="compare-button with-tip"
-											data-tip-content="Add to Compare"></span>
+											class="compare-button with-tip" data-tip-content="Add to Compare"></span>
 									</div> <img src="images/listing-05.jpg" alt="">
 								</a>
 
@@ -423,10 +309,9 @@
 										<h4>
 											<a href="single-property-page-1.html">Oak Tree Villas</a>
 										</h4>
-										<a
-											href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i
-											class="fa fa-map-marker"></i> 71 Lower River Dr. Bronx, NY
+										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 71
+											Lower River Dr. Bronx, NY
 										</a>
 									</div>
 
@@ -438,7 +323,7 @@
 
 									<div class="listing-footer">
 										<a href="#"><i class="fa fa-user"></i> Mabel Gagnon</a> <span><i
-											class="fa fa-calendar-o"></i> 4 days ago</span>
+												class="fa fa-calendar-o"></i> 4 days ago</span>
 									</div>
 
 								</div>
@@ -460,8 +345,7 @@
 
 
 		<!-- Fullwidth Section -->
-		<section class="fullwidth margin-top-105"
-			data-background-color="#f7f7f7">
+		<section class="fullwidth margin-top-105" data-background-color="#f7f7f7">
 
 			<!-- Box Headline -->
 			<h3 class="headline-box">실시간 in 1000</h3>
@@ -500,14 +384,13 @@
 
 
 		<!-- Flip banner -->
-		<a href="listings-half-map-grid-standard.html"
-			class="flip-banner parallax"
-			data-background="images/flip-banner-bg.jpg" data-color="#274abb"
-			data-color-opacity="0.9" data-img-width="2500" data-img-height="1600">
+		<a href="listings-half-map-grid-standard.html" class="flip-banner parallax"
+			data-background="images/flip-banner-bg.jpg" data-color="#274abb" data-color-opacity="0.9"
+			data-img-width="2500" data-img-height="1600">
 			<div class="flip-banner-content">
 				<h2 class="flip-visible">전적검색은</h2>
 				<h2 class="flip-hidden">
-					여기서 <i class="sl sl-icon-arrow-right"></i>
+					ERR <i class="sl sl-icon-arrow-right"></i>
 				</h2>
 			</div>
 		</a>
@@ -516,103 +399,12 @@
 
 
 
-		<!-- Footer
-================================================== -->
-		<div id="footer" class="sticky-footer">
-			<!-- Main -->
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-6">
-						<img class="footer-logo" src="images/logo.png" alt=""> <br>
-						<br>
-						<p>Morbi convallis bibendum urna ut viverra. Maecenas quis
-							consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi
-							ultricies laoreet ullamcorper phasellus semper.</p>
-					</div>
-
-					<div class="col-md-4 col-sm-6 ">
-						<h4>Helpful Links</h4>
-						<ul class="footer-links">
-							<li><a href="#">Login</a></li>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Add Property</a></li>
-							<li><a href="#">Pricing</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-
-						<ul class="footer-links">
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">Our Agents</a></li>
-							<li><a href="#">How It Works</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-
-					<div class="col-md-3  col-sm-12">
-						<h4>Contact Us</h4>
-						<div class="text-widget">
-							<span>12345 Little Lonsdale St, Melbourne</span> <br> Phone:
-							<span>(123) 123-456 </span><br> E-Mail:<span> <a
-								href="#">office@example.com</a>
-							</span><br>
-						</div>
-
-						<ul class="social-icons margin-top-20">
-							<li><a class="facebook" href="#"><i
-									class="icon-facebook"></i></a></li>
-							<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-							<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-							<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-						</ul>
-
-					</div>
-
-				</div>
-
-				<!-- Copyright -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-		<!-- Footer / End -->
-
-
-		<!-- Back To Top Button -->
-		<div id="backtotop">
-			<a href="#"></a>
-		</div>
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
 
 
 		<!-- Scripts
 ================================================== -->
-		<script type="text/javascript"
-			src="/usr/assets/scripts/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/jquery-migrate-3.3.2.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/chosen.min.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/magnific-popup.min.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/owl.carousel.min.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/rangeSlider.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/sticky-kit.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/slick.min.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/masonry.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/mmenu.min.js"></script>
-		<script type="text/javascript"
-			src="/usr/assets/scripts/tooltips.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/custom.js"></script>
+		<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 		<!-- Google Autocomplete -->
 		<script>
@@ -620,18 +412,17 @@
 				var input = document.getElementById('autocomplete-input');
 				var autocomplete = new google.maps.places.Autocomplete(input);
 
-				autocomplete.addListener('place_changed', function() {
+				autocomplete.addListener('place_changed', function () {
 					var place = autocomplete.getPlace();
 					if (!place.geometry) {
 						window.alert("No details available for input: '"
-								+ place.name + "'");
+							+ place.name + "'");
 						return;
 					}
 				});
 			}
 		</script>
-		<script
-			src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
 
 	</div>
 	<!-- Wrapper / End -->
@@ -643,20 +434,14 @@
 		let goUrlXdmList = "/characterXdmList";
 		let goUrlCharacterDetail = "/characterDetail";
 
-		document.getElementById("searchBtn1").onclick = function() {
+		document.getElementById("searchBtn1").onclick = function () {
 			alert("버튼클릭됨");
-			searchTopBar();
-
-		}
-		function searchTopBar() {
-			var searchInput = document
-					.getElementById("XtopBarSearchInputValue").value;
+			var searchInput = document.getElementById("XtopBarSearchInputValue").value;
 			alert("값 들어옴")
 			goFormTop(searchInput);
-
 		}
 
-		goFormTop = function() {
+		goFormTop = function () {
 			alert("goformTop 시작");
 			formTop.action = goUrlCharacterDetail;
 			formTop.submit();
@@ -672,4 +457,5 @@
 
 
 </body>
+
 </html>

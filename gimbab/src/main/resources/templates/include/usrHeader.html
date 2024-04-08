@@ -14,8 +14,8 @@
                             <div class="top-search-input larger-input">
                                 <input type="text" class="ico-01" id="XtopBarSearchInputValue"
                                     name="XtopBarSearchInputValue"
-                                    placeholder="닉네임, 캐릭터 ex&#41; 재키 검색" value="" />
-                                <button class="button border" type="button" id="searchBtn1"
+                                    placeholder="닉네임, 캐릭터 ex&#41; 재키 검색" value="" onkeypress="enterkeyTop(event)"  />
+                                <button class="button border" type="button" id="searchTopBtn"
                                     style="background-color: rgb(93, 136, 255);">Search</button>
                             </div>
                         </div>
@@ -53,10 +53,11 @@
                 <div class="right-side">
                     <!-- Header Widget -->
                     <div class="header-widget">
-                        <a href="login-register.html" th:href="@{/memberLoginRegister}" class="sign-in"><i
-                            class="fa fa-user"></i> Log In / Register</a> <a
-                            href="submit-property.html" class="button border">my account
-                            가기</a>
+                        <a th:if="${session.sessMemberSeq == null}" href="login-register.html" th:href="@{/memberLoginRegister}" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a> 
+                        <button th:unless="${session.sessMemberSeq == null}" class="btn btn-primary mb-5" type="button" id="btnLogout" 
+							style="--bs-btn-padding-y: 1.5rem; --bs-btn-padding-x: 1.5rem; --bs-btn-font-size: 1rem;">log-out</button>
+							
+                            <a href="submit-property.html" th:href="@{/memberProfileUpdate}" class="button border">my account 가기</a>
                     </div>
                     <!-- Header Widget / End -->
                 </div>

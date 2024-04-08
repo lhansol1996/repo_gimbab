@@ -404,56 +404,13 @@
 
 		<!-- Scripts
 ================================================== -->
-		<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
-		<!-- Google Autocomplete -->
-		<script>
-			function initAutocomplete() {
-				var input = document.getElementById('autocomplete-input');
-				var autocomplete = new google.maps.places.Autocomplete(input);
 
-				autocomplete.addListener('place_changed', function () {
-					var place = autocomplete.getPlace();
-					if (!place.geometry) {
-						window.alert("No details available for input: '"
-							+ place.name + "'");
-						return;
-					}
-				});
-			}
-		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
 
 	</div>
 	<!-- Wrapper / End -->
 
-
-
-	<script>
-		let formTop = document.querySelector("form[name=formTop]");
-		let goUrlXdmList = "/characterXdmList";
-		let goUrlCharacterDetail = "/characterDetail";
-
-		document.getElementById("searchBtn1").onclick = function () {
-			alert("버튼클릭됨");
-			var searchInput = document.getElementById("XtopBarSearchInputValue").value;
-			alert("값 들어옴")
-			goFormTop(searchInput);
-		}
-
-		goFormTop = function () {
-			alert("goformTop 시작");
-			formTop.action = goUrlCharacterDetail;
-			formTop.submit();
-		}
-
-		function enterkey() {
-			if (window.event.keyCode == 13) {
-				formTop.action = goUrlCharacterDetail;
-				formTop.submit();
-			}
-		}
-	</script>
+	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 
 </body>

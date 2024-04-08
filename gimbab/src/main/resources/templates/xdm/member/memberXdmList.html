@@ -294,9 +294,9 @@ window.addEventListener('load', function () {
 
 		let seq = document.querySelector("input[name=memberSeq]");									/* ### */
 
-		document.getElementById("btnReset").onclick = function () {
-			location.href = goUrlXdmList;
-		}
+		// document.getElementById("btnReset").onclick = function () {
+		// 	location.href = goUrlXdmList;
+		// }
 
 /*
 		document.getElementById("btnForm").onclick = function () {
@@ -316,16 +316,16 @@ window.addEventListener('load', function () {
 		};
 		
 		function enterkey() {
-			if (window.event.keyCode == 13) {
-			    form.action = goUrlXdmList;
-			    form.submit();
-		    }
+				if (window.event.keyCode == 13) {
+				form.action = goUrlXdmList;
+				form.submit();
+			}
 		}
 
 		goList = function (thisPage) {
-		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    form.action = goUrlXdmList;
-		    form.submit();
+		document.querySelector("input[name=thisPage]").value = thisPage;
+		form.action = goUrlXdmList;
+		form.submit();
 		}
 
 	

@@ -39,4 +39,63 @@
 
 
 	<script src="/xdm/assets/js/validations.js"></script>
+
+	
+	<script>
+		let formTop = document.querySelector("form[name=formTop]");
+		let goUrlCharacterDetail = "/characterDetail";
+		let searchInput = document.getElementById("XtopBarSearchInputValue").value;
+
+		document.getElementById("searchTopBtn").onclick = function () {
+			alert("버튼클릭됨");
+			alert("값 들어옴")
+			goFormTop(searchInput);
+		}
+
+		goFormTop = function () {
+			alert("goformTop 시작");
+			formTop.action = goUrlCharacterDetail;
+			formTop.submit();
+		}
+
+		function enterkeyTop(event) {
+			if (event.key === 'Enter') {
+				goFormTop(searchInput);
+			}
+		}
+
+		// 로그아웃 버튼
+		document.getElementById("btnLogout").onclick = function () {
+				alert('111--------------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
+				$.ajax({
+					async: true
+					, cache: false
+					, type: "post"
+					/* ,dataType:"json" */
+					, url: "/memberLogout"
+					/* ,data : $("#formLogin").serialize() */
+					// , data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
+					, success: function (response) {
+						alert(response.rt);
+						if (response.rt == "success") {
+							alert('로그아웃 성공');
+								location.href = "/memberLoginRegister";
+						} else {
+							alert('로그아웃 안됨');
+							// document.getElementById("modalAlertTitle").innerText = "확 인";
+							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+							// $("#modalAlert").modal("show");
+						}
+					}
+					, error: function (jqXHR, textStatus, errorThrown) {
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+				
+
+			}
+
+
+	</script>
+
 </th:block>

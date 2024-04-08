@@ -99,6 +99,9 @@ public class PartyController extends BaseController {
 	@RequestMapping(value="/userPartySearchList")
 	public String userParty(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception{
 		setSearch(vo);
+		System.out.println(vo.getVoPartyMatchTypeCd()+"================================");
+		System.out.println(vo.getVoPartyMatchTypeCd()+"================================");
+		System.out.println(vo.getVoPartyMatchTypeCd()+"================================");
 		vo.setParamsPaging(partyservice.selectCount(vo));
 
 		if (vo.getTotalRows() > 0) {

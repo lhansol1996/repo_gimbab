@@ -3,43 +3,49 @@
 
 <mapper namespace="com.ERR.infra.member.MemberDao">
 
-	<resultMap id="resultMapObj"
-		type="com.ERR.infra.member.MemberDto"></resultMap>
-
-	<select id="selectList" resultMap="resultMapObj">
-			select
-		memberSeq
-		,memberID
-		,memberPwd
-		,memberName
-		,memberBirthday
-		,memberEmail
-		,memberDpt
-		,memberDelNy
-		,memberGenderCd
-		,memberRegDate
-		,memberModDate
-		From member
+	<resultMap id="resultMapObj" type="com.ERR.infra.member.MemberDto"></resultMap>
+	<sql id="commonSelectMember">
+		From member a
 		WHERE 1=1
-		<if test="voDelNy != null and !voDelNy.equals('')">AND memberDelNy = #{voDelNy}</if>
+		<if test="voDelNy != null and !voDelNy.equals('')">AND a.memberDelNy = #{voDelNy}</if>
 
 		<choose>
-			<when test="voOptionDate == 1">AND memberRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-			<when test="voOptionDate == 2">AND memberModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 1">AND a.memberRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.memberModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
 		</choose>
 
 		<choose>
-			<when test="voOption == 1">AND memberSeq = #{voValue}</when>
-			<when test="voOption == 2">AND memberGenderCd = #{voValue}</when>
-			<when test="voOption == 3">AND memberBirthday LIKE CONCAT('%',#{voValue},'%')</when>
-			<when test="voOption == 4">AND memberName LIKE CONCAT('%',#{voValue},'%')</when>
-			<when test="voOption == 5">AND memberID LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 1">AND a.memberSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.memberGenderCd = #{voValue}</when>
+			<when test="voOption == 3">AND a.memberBirthday LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 4">AND a.memberName LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 5">AND a.memberID LIKE CONCAT('%',#{voValue},'%')</when>
 		</choose>
+	</sql>
+
+	<select id="selectListWithPaging" resultMap="resultMapObj">
+		<include refid="base.selectHeader" />
+		SELECT
+			a.memberSeq
+			,a.memberID
+			,a.memberPwd
+			,a.memberName
+			,a.memberBirthday
+			,a.memberEmail
+			,a.memberDpt
+			,a.memberDelNy
+			,a.memberGenderCd
+			,a.memberRegDate
+			,a.memberModDate
+				<include refid="commonSelectMember" />
+			ORDER BY a.memberSeq desc , a.memberName, a.memberID 
+			<include refid="base.selectFooterMysql" />
 	</select>
 
-	<!-- select a.seq ,a.name ,(select count(*) from code aa where 1=1 and aa.codeGroup_seq 
-		= a.seq) as xcount ,a.delNy ,a.regDate ,a.modDate from codeGroup a -->
-
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectMember" />
+	</select>
 
 	<select id="selectOne" resultMap="resultMapObj">
 		select
@@ -123,6 +129,7 @@
 			,memberEmail
 			,memberName
 			,memberSeq
+			,memberAdminNy
 		FROM member 
 		WHERE 1=1
 		 AND memberID = #{memberID}

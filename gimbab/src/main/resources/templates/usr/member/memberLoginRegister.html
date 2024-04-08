@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-	<!-- Basic Page Needs
-================================================== -->
-	<title>Findeo</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-	<!-- CSS
-================================================== -->
-	<link rel="stylesheet" href="/usr/assets/css/style.css">
-	<link rel="stylesheet" href="/usr/assets/css/color.css">
-	
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
 </head>
 
 <body>
@@ -35,21 +21,9 @@
 
 						<!-- Logo -->
 						<div id="logo">
-							<a href="index.html"><img src="images/logo.png" alt=""></a>
+							<a href="index.html"><img src="images/logoERR-dark.svg" alt=""></a>
 						</div>
 
-
-						<!-- Mobile Navigation -->
-						<div class="mmenu-trigger">
-							<button class="hamburger hamburger--collapse" type="button">
-								<span class="hamburger-box">
-									<span class="hamburger-inner"></span>
-								</span>
-							</button>
-						</div>
-
-
-						
 						<div class="clearfix"></div>
 						<!-- Main Navigation / End -->
 
@@ -207,98 +181,9 @@
 		</div>
 		<!-- Container / End -->
 
-		<!-- Footer
-================================================== -->
-		<div class="margin-top-55"></div>
-
-		<div id="footer">
-			<!-- Main -->
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-6">
-						<img class="footer-logo" src="images/logo.png" alt="">
-						<br><br>
-						<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros.
-							Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-					</div>
-
-					<div class="col-md-4 col-sm-6 ">
-						<h4>Helpful Links</h4>
-						<ul class="footer-links">
-							<li><a href="#">Login</a></li>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Add Property</a></li>
-							<li><a href="#">Pricing</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-
-						<ul class="footer-links">
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">Our Agents</a></li>
-							<li><a href="#">How It Works</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-
-					<div class="col-md-3  col-sm-12">
-						<h4>Contact Us</h4>
-						<div class="text-widget">
-							<span>12345 Little Lonsdale St, Melbourne</span> <br>
-							Phone: <span>(123) 123-456 </span><br>
-							E-Mail:<span> <a href="#">office@example.com</a> </span><br>
-						</div>
-
-						<ul class="social-icons margin-top-20">
-							<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-							<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-							<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-							<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-						</ul>
-
-					</div>
-
-				</div>
-
-				<!-- Copyright -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
-						<h6 class="mt-2 text-black">[[${session.sessNameXdm}]]dd</h6>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-		<!-- Footer / End -->
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
 
 
-		<!-- Back To Top Button -->
-		<div id="backtotop"><a href="#"></a></div>
-
-
-		<!-- Scripts
-================================================== -->
-		<script type="text/javascript" src="/usr/assets/scripts/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/jquery-migrate-3.3.2.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/chosen.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/magnific-popup.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/rangeSlider.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/sticky-kit.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/slick.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/masonry.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/mmenu.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/tooltips.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/custom.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-			</script>
-
-		<script src="/xdm/assets/js/validations.js"></script>
 
 		<script>
 
@@ -363,7 +248,7 @@
 						alert(response.rt);
 						if (response.rt == "success") {
 							alert('로그인 성공');
-								location.href = "/codeGroupXdmList";
+								location.href = "/userIndex";
 						} else {
 							alert(response.rt);
 							alert('로그인 안됨');
@@ -381,36 +266,7 @@
 			}
 
 
-			// 로그아웃 버튼
-			document.getElementById("btnLogout").onclick = function () {
-				alert('111--------------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
-				$.ajax({
-					async: true
-					, cache: false
-					, type: "post"
-					/* ,dataType:"json" */
-					, url: "/memberLogout"
-					/* ,data : $("#formLogin").serialize() */
-					// , data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
-					, success: function (response) {
-						alert(response.rt);
-						if (response.rt == "success") {
-							alert('로그아웃 성공');
-								location.href = "/memberLoginRegister";
-						} else {
-							alert('로그아웃 안됨');
-							// document.getElementById("modalAlertTitle").innerText = "확 인";
-							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-							// $("#modalAlert").modal("show");
-						}
-					}
-					, error: function (jqXHR, textStatus, errorThrown) {
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					}
-				});
-				
-
-			}
+			
 
 			function validationLogin() {
 				alert('예외처리시작L')
@@ -439,7 +295,8 @@
 
 
 	</div>
-	<!-- Wrapper / End -->
+	<!--wrapper 끝 -->
+	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 
 </body>

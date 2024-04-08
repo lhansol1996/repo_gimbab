@@ -5,7 +5,7 @@ import com.ERR.common.base.BaseVo;
 public class PartyVo extends BaseVo {
 	private String voPartySeq;
 	private String voPartyName;
-	private String voMatchTypeCd;
+	private String voPartyMatchTypeCd;
 	private String voPartyOwnerTierCd;
 	
 	private String voXMemberName;
@@ -23,11 +23,11 @@ public class PartyVo extends BaseVo {
 	public void setVoPartyName(String voPartyName) {
 		this.voPartyName = voPartyName;
 	}
-	public String getVoMatchTypeCd() {
-		return voMatchTypeCd;
+	public String getVoPartyMatchTypeCd() {
+		return voPartyMatchTypeCd;
 	}
-	public void setVoMatchTypeCd(String voMatchTypeCd) {
-		this.voMatchTypeCd = voMatchTypeCd;
+	public void setVoPartyMatchTypeCd(String voPartyMatchTypeCd) {
+		this.voPartyMatchTypeCd = voPartyMatchTypeCd;
 	}
 	public String getVoPartyOwnerTierCd() {
 		return voPartyOwnerTierCd;

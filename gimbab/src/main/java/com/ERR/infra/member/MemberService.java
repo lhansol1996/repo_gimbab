@@ -18,9 +18,9 @@ public class MemberService {
 	MemberDao memberDao;
 
 	// selectList 구현
-	public List<MemberDto> selectList(MemberVo vo) {
+	public List<MemberDto> selectListWithPaging(MemberVo vo) {
 
-		return memberDao.selectList(vo);
+		return memberDao.selectListWithPaging(vo);
 	}
 
 	public MemberDto selectOne(MemberDto dto) {
@@ -47,15 +47,19 @@ public class MemberService {
 		return memberDao.delete(dto);
 	}
 
-	//로그인
+	// 로그인
 	public MemberDto selectLogin(MemberDto dto) {
 		return memberDao.selectLogin(dto);
 	}
-	//회원가입
+
+	// 회원가입
 	public MemberDto memberReg(MemberDto dto) {
 		return memberDao.memberReg(dto);
 	}
-	
-	
-	
+
+	// 개수 리턴
+	public Integer selectCount(MemberVo vo) {
+		return memberDao.selectCount(vo);
+	}
+
 }

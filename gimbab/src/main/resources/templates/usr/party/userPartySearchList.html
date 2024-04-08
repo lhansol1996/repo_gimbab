@@ -24,41 +24,44 @@
 						<h3 class="search-title">Search</h3>
 
 						<!-- Form -->
-					<form name="formParty" id="formParty" method="get" autocomplete="off">
-						<div class="main-search-box no-shadow">
-							<!-- Row With Forms -->
-							<div class="row with-forms">
-								<!-- Status -->
-								<div class="col-md-3">
-									<select data-placeholder="티어" class="chosen-select-no-single" id="voPartyOwnerTierCd" name="voPartyOwnerTierCd">
-										<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
-										th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
-									</option>
-									</select>
-								</div>
-								<!-- Property Type -->
-								<div class="col-md-3">
-									<select data-placeholder="랭크/일반" class="chosen-select-no-single" id="partyMatchTypeCd" name="partyMatchTypeCd">
-										<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
+						<form name="formParty" id="formParty" method="get" autocomplete="off">
+							<div class="main-search-box no-shadow">
+								<!-- Row With Forms -->
+								<div class="row with-forms">
+									<!-- Status -->
+									<div class="col-md-3">
+										<select data-placeholder="티어" class="chosen-select-no-single"
+											id="voPartyOwnerTierCd" name="voPartyOwnerTierCd">
+											<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
 												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
 											</option>
-									</select>
-								</div>
-								<!-- Main Search Input -->
-								<div class="col-md-6">
-									<div class="main-search-input">
-										<input type="text" placeholder="이름검색" value="" name="partyName" id="partyName"/>
-										<button class="button" type="button" id="searchPartyBtn">Search</button>
+										</select>
 									</div>
-								</div>
+									<!-- Property Type -->
+									<div class="col-md-3">
+										<select data-placeholder="랭크/일반" class="chosen-select-no-single"
+											id="voPartyMatchTypeCd" name="voPartyMatchTypeCd">
+											<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
+												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
+											</option>
+										</select>
+									</div>
+									<!-- Main Search Input -->
+									<div class="col-md-6">
+										<div class="main-search-input">
+											<input type="text" placeholder="이름검색" name="voPartyName" id="voPartyName" />
+											<button class="button" type="button" id="searchPartyBtn">Search</button>
+										</div>
+									</div>
 
+								</div>
+								<!-- Row With Forms / End -->
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" />
+								<input type="hidden" id="rowNumToShowD" name="rowNumToShowD"
+									th:value="${vo.rowNumToShow}" />
 							</div>
-							<!-- Row With Forms / End -->
-							<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
-							<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
-						</div>
-						<!-- Box / End -->
-					</form>
+							<!-- Box / End -->
+						</form>
 
 					</div>
 				</div>
@@ -128,13 +131,16 @@
 								</div>
 
 								<ul class="listing-details">
-									<li>티어 <span th:text="${@codeService.selectOneCachedCode(list.partyOwnerTierCd)}">다이아</span></li>
+									<li>티어 <span
+											th:text="${@codeService.selectOneCachedCode(list.partyOwnerTierCd)}">다이아</span>
+									</li>
 									<li>승률 <span th:text="${list.partyOwnerRate}">ㅁㄴ%</span></li>
 									<li>평균 kda <span th:text="${list.partyOwnerKDA}">2</span></li>
 								</ul>
 
 								<div class="listing-footer">
-									<a href="#"><i class="fa fa-user"><span th:text="${list.xMemberName}"></span></i></a>
+									<a href="#"><i class="fa fa-user"><span
+												th:text="${list.xMemberName}"></span></i></a>
 									<span th:text="${#dates.format(list.partyRegDate, 'yyyy-MM-dd일 HH:mm:ss')}"></span>
 									<span><i class="fa fa-calendar-o"></i></span>
 								</div>
@@ -145,36 +151,16 @@
 						<!-- Listing Item / End -->
 
 
-					
 
-						
+
+
 
 					</div>
 					<!-- Listings Container / End -->
 
 					<div class="clearfix"></div>
 					<!-- Pagination -->
-						<nav aria-label="Page Navigation" class="mt-3">
-		<ul class="pagination justify-content-center">
-			<li th:if="${vo.startPage > vo.pageNumToShow}" class="page-item">
-				<a class="page-link" href="#" th:onclick="'javascript:goList(' + (${vo.startPage - 1}) + ')'" aria-label="Previous">
-					<span aria-hidden="true"><i class="bi bi-arrow-left"></i></span>
-				</a>
-			</li>
-			
-			<li th:each="num : ${#numbers.sequence(vo.startPage, vo.endPage)}"
-				th:classappend="${num eq vo.thisPage} ? 'active' : ''" class="page-item">
-				<a class="page-link" th:onclick="'javascript:goList(' + ${num} + ')'" th:text="${num}" href="#">nums</a>
-			</li>
-			
-			<li th:if="${vo.endPage != vo.totalPages}" class="page-item">
-				<a class="page-link" th:onclick="'javascript:goList(' + (${vo.endPage + 1}) + ')'" aria-label="Next">
-					<span aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-
+					<div th:replace="~{include/pagination :: pagination}"></div>
 
 					<!-- Pagination / End -->
 
@@ -187,58 +173,34 @@
 
 
 
-	<div th:replace="~{include/usrFooter :: usrFooter}"></div>
-
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+	</div>
+	<!-- Wrapper / End -->
 
 
 	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 
-
-
-
-	</div>
-	<!-- Wrapper / End -->
-
-	
 	<script>
-		let formTop = document.querySelector("form[name=formTop]");
 		let formParty = document.querySelector("form[name=formParty]");
 		let goUrlXdmList = "/characterXdmList";
 		let goUrlUsrPartyList = "/userPartySearchList";
-		let goUrlCharacterDetail = "/characterDetail";
 
-		document.getElementById("searchBtn1").onclick = function () {
-			alert("버튼클릭됨");
-			var searchInput = document.getElementById("XtopBarSearchInputValue").value;
-			alert("값 들어옴")
-			goFormTop(searchInput);
-
-		}
+		
 
 		document.getElementById("searchPartyBtn").onclick = function () {
 			alert("222");
 			formParty.action = goUrlUsrPartyList;
 			formParty.submit();
 		};
-		goFormTop = function () {
-			alert("goformTop 시작");
-			formTop.action = goUrlCharacterDetail;
-			formTop.submit();
+
+		goList = function (thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			formParty.action = goUrlUsrPartyList;
+			formParty.submit();
 		}
 
-		function enterkey() {
-			if (window.event.keyCode == 13) {
-				formTop.action = goUrlCharacterDetail;
-				formTop.submit();
-			}
-		}
-			goList = function (thisPage) {
-		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    formParty.action = goUrlUsrPartyList;
-		    formParty.submit();
-		}
-	
+
 
 	</script>
 

@@ -7,18 +7,12 @@
 	
 	<sql id="commonSelectParty">
 		FROM party a
+			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
-			<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
-			
-		<choose>
-			<when test="voOptionDate == 1">AND a.partyRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-			<when test="voOptionDate == 2">AND a.partyModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-		</choose>
-
-		<choose>
-			<when test="voOption == 1">AND a.partySeq = #{voValue}</when>
-			<when test="voOption == 2">AND a.partyName LIKE CONCAT('%',#{voValue},'%')</when>
-		</choose>
+			<if test="voPartyOwnerTierCd != null and !voPartyOwnerTierCd.equals('')">AND a.partyOwnerTierCd = #{voPartyOwnerTierCd}</if>
+			<if test="voPartyMatchTypeCd != null and !voPartyMatchTypeCd.equals('')">AND a.partyMatchTypeCd = #{voPartyMatchTypeCd}</if>
+			<if test="voPartyName !=null and !voPartyName.equals('')">AND a.partyName LIKE CONCAT('%',#{voPartyName},'%')</if>
 	</sql>
 
 
@@ -127,23 +121,10 @@
 				, a.partyModDate
 				, m.memberName as xMemberName
 				, mp.masterNy
-			FROM party a
-			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-		WHERE 1=1
-			<if test="voPartyOwnerTierCd != null and voPartyOwnerTierCd.equals('')">AND a.partyOwnerTierCd = #{voPartyOwnerTierCd}</if>
-			<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
-			<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
+				
+			<include refid="commonSelectParty" />
 			
-		<choose>
-			<when test="voOptionDate == 1">AND a.partyRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-			<when test="voOptionDate == 2">AND a.partyModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-		</choose>
-
-		<choose>
-			<when test="voOption == 1">AND a.partyOwnerTierCd = #{voValue}</when>
-			<when test="voOption == 2">AND a.partyName LIKE CONCAT('%',#{voValue},'%')</when>
-		</choose>
+ 
 			
 			ORDER BY a.partySeq desc, a.partyName, a.partySeq
 			<include refid="base.selectFooterMysql" />

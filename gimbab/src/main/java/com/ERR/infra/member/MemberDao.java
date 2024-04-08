@@ -2,10 +2,12 @@ package com.ERR.infra.member;
 
 import java.util.List;
 
+import com.ERR.infra.codegroup.CodeGroupVo;
+
 public interface MemberDao {
 
 	// 수많은 DTO 목록들을 리스트로 리턴
-	public List<MemberDto> selectList(MemberVo vo);
+	public List<MemberDto> selectListWithPaging(MemberVo vo);
 
 	// DTO 중 하나를 리턴
 	public MemberDto selectOne(MemberDto dto);
@@ -27,6 +29,9 @@ public interface MemberDao {
 
 	//회원가입
 	public MemberDto memberReg(MemberDto dto);
+	
+	//개수 리턴
+	public Integer selectCount(MemberVo vo);
 	
 	
 }

@@ -13,6 +13,9 @@ import com.ERR.infra.code.CodeService;
 import com.ERR.infra.memberParty.MemberPartyDto;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class PartyController extends BaseController {
@@ -97,11 +100,8 @@ public class PartyController extends BaseController {
 	}
 	
 	@RequestMapping(value="/userPartySearchList")
-	public String userParty(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception{
+	public String userPartySearchList(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception{
 		setSearch(vo);
-		System.out.println(vo.getVoPartyMatchTypeCd()+"================================");
-		System.out.println(vo.getVoPartyMatchTypeCd()+"================================");
-		System.out.println(vo.getVoPartyMatchTypeCd()+"================================");
 		vo.setParamsPaging(partyservice.selectCount(vo));
 
 		if (vo.getTotalRows() > 0) {
@@ -110,6 +110,13 @@ public class PartyController extends BaseController {
 		
 		
 		return UsrPartyCommonPath + "userPartySearchList";
+	}
+	
+	@RequestMapping(value = "/userPartyDetail")
+	public String userPartyDetail(PartyDto dto, Model model) throws Exception {
+		model.addAttribute("item", partyservice.selectOne(dto));
+
+		return UsrPartyCommonPath + "party-detail";
 	}
 	
 

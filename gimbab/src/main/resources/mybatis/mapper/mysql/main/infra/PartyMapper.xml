@@ -10,7 +10,7 @@
 			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
 			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
-			<if test="voPartyOwnerTierCd != null and !voPartyOwnerTierCd.equals('')">AND a.partyOwnerTierCd = #{voPartyOwnerTierCd}</if>
+			<if test="voXMemberTierCd != null and voXMemberTierCd.equals('')">AND m.memberTierCd = #{voXMemberTierCd}</if>
 			<if test="voPartyMatchTypeCd != null and !voPartyMatchTypeCd.equals('')">AND a.partyMatchTypeCd = #{voPartyMatchTypeCd}</if>
 			<if test="voPartyName !=null and !voPartyName.equals('')">AND a.partyName LIKE CONCAT('%',#{voPartyName},'%')</if>
 	</sql>
@@ -21,10 +21,7 @@
 		partySeq
 		,partyName
 		,partyDept
-		,partyOwnerTierCd
 		,partyMatchTypeCd
-		,partyOwnerRate
-		,partyOwnerKDA
 		,partyDelNy
 		,partyRegDate
 		,partyModDate
@@ -112,15 +109,15 @@
 				  a.partySeq
 			    , a.partyName
 			    , a.partyDept
-			    , a.partyOwnerTierCd
-			    , a.partyOwnerRate
-			    , a.partyOwnerKDA
 			    , a.partyMatchTypeCd
 				, a.partyDelNy
 				, a.partyRegDate
 				, a.partyModDate
 				, m.memberName as xMemberName
-				, mp.masterNy
+				,m.memberTierCd as xMemberTierCd
+				,m.memberKDA as xMemberKDA
+				,m.memberVitoryRate as xMemberVitoryRate
+				,mp.masterNy as xMasterNy
 				
 			<include refid="commonSelectParty" />
 			
@@ -135,6 +132,50 @@
 		SELECT COUNT(*)
 			<include refid="commonSelectParty" />
 	</select>
+
+	<select id="searchPartyForRecent5">
+		SELECT 
+			a.partySeq
+			,a.partyName
+			,a.partyMatchTypeCd
+			,a.partyRegDate
+			,a.partyModDate
+			,a.partyDept
+			,m.memberName as xMemberName
+			,m.memberTierCd as xMemberTierCd
+			,m.memberKDA as xMemberKDA
+			,m.memberVitoryRate as xMemberVitoryRate
+		FROM party a
+			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1	
+			ORDER BY partyRegDate DESC
+		LIMIT 0, 5;
+	
+	</select>
+
+	<select id="partyDetail">
+		SELECT 
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA
+		,m.memberVitoryRate
+		,mp.masterNy as xMasterNy
+		,mp.partyJoinNy as xPartyJoinNy
+		,mp.partyOutNy as xPartyOutNy
+		,m.memberName
+		
+		FROM party a
+			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1	
+			and	xPartyJoinNy = 1
+			and xMasterNy = 0
+	</select>
+
 
 
 </mapper>

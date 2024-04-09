@@ -18,7 +18,39 @@
 	<script src="/xdm/assets/js/custom.js"></script>
 	<script src="/xdm/assets/js/validations.js"></script>
 
+		<script>
+	// 로그아웃 버튼 - xdm
+	document.getElementById("btnXdmLogout").onclick = function () {
+			alert('111----xdm--------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
+			$.ajax({
+				async: true
+				, cache: false
+				, type: "post"
+				/* ,dataType:"json" */
+				, url: "/memberLogout"
+				/* ,data : $("#formLogin").serialize() */
+				// , data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
+				, success: function (response) {
+					alert(response.rt);
+					if (response.rt == "success") {
+						alert('로그아웃 성공');
+							location.href = "/adminLoginRegister";
+					} else {
+						alert('로그아웃 안됨');
+						// document.getElementById("modalAlertTitle").innerText = "확 인";
+						// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+						// $("#modalAlert").modal("show");
+					}
+				}
+				, error: function (jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+			
 
+		}
+
+		</script>
 
 </th:block>
 
@@ -64,9 +96,9 @@
 			}
 		}
 
-		// 로그아웃 버튼
+		// 로그아웃 버튼 - usr
 		document.getElementById("btnLogout").onclick = function () {
-				alert('111--------------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
+				alert('111-------usr------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
 				$.ajax({
 					async: true
 					, cache: false
@@ -94,6 +126,8 @@
 				
 
 			}
+
+		
 
 
 	</script>

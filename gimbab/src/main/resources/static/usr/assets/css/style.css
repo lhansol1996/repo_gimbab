@@ -277,6 +277,12 @@ header.fullwidth .container {
 	width: 35%;
 	display: inline-block;
 }
+.right-side-top {
+	float: right;
+	width: 60%;
+	display: inline-block;
+}
+
 
 #logo,
 #navigation { float: left; }

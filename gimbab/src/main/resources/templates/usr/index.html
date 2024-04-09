@@ -24,7 +24,7 @@
 
 							<!-- Main Search Container -->
 							<div class="main-search-container">
-								<h2>사이트 이름</h2>
+								<h2>ERR 전적 검색</h2>
 
 								<!-- Main Search -->
 								<form class="main-search-form">
@@ -44,7 +44,7 @@
 										<!-- Main Search Input -->
 										<div class="main-search-input larger-input">
 											<input type="text" class="ico-01" id="autocomplete-input"
-												placeholder="닉네임, 캐릭터 ex&#41; 재키 검색" value="" />
+												placeholder="닉네임 검색" value="" />
 											<button class="button">Search</button>
 										</div>
 									</div>
@@ -79,7 +79,7 @@
 					<div class="carousel">
 
 						<!-- Listing Item -->
-						<div class="carousel-item">
+						<div class="carousel-item"  th:if="${!#lists.isEmpty(partyRecentList)}" th:each="partyRecentList:${partyRecentList}">
 							<div class="listing-item">
 
 								<a href="single-property-page-1.html" class="listing-img-container">
@@ -102,20 +102,20 @@
 
 									<div class="listing-title">
 										<h4>
-											<a href="single-property-page-1.html"></a>파티이름
+											<a href="single-property-page-1.html" th:href="@{/}">[[${partyRecentList.partyName}]]</a>
 										</h4>
-										<i class="fa fa-caret-right"></i> 디아몬드 티어 </a>
+										<i class="fa fa-caret-right"></i>파티장 티어 : [[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</a>
 									</div>
 
 									<ul class="listing-features">
-										<li>승률 <span>ㅁㄴ%</span></li>
-										<li>평균 kda <span>2</span></li>
-										<li>평균 딜량 <span>1</span></li>
+										<li>파티장 승률 <span>[[${partyRecentList.xMemberVitoryRate}]]</span></li>
+										<li>파티장 KDA <span>[[${partyRecentList.xMemberKDA}]]</span></li>
+										<li>파티 타입 <span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span></li>
 									</ul>
 
 									<div class="listing-footer">
-										<a href="#"><i class="fa fa-user"></i> 유저 인게임닉네임</a> <span><i
-												class="fa fa-calendar-o"></i> 제작일</span>
+										<a href="#"><i class="fa fa-user"></i>닉네임 : [[${partyRecentList.xMemberName}]]</a> <span><i
+												class="fa fa-calendar-o"></i> 등록일 : [[${#dates.format(partyRecentList.partyRegDate, 'yyyy-MM-dd일')}]]</span>
 									</div>
 
 								</div>
@@ -123,217 +123,6 @@
 							</div>
 						</div>
 						<!-- Listing Item / End -->
-
-
-						<!-- Listing Item -->
-						<div class="carousel-item">
-							<div class="listing-item">
-
-								<a href="single-property-page-2.html" class="listing-img-container">
-
-									<div class="listing-badges"></div> <!-- 모스트 3캐릭터 이미지 -->
-									<div class="listing-carousel">
-										<div>
-											<img src="images/listing-01.jpg" alt="">
-										</div>
-										<div>
-											<img src="images/listing-01b.jpg" alt="">
-										</div>
-										<div>
-											<img src="images/listing-01c.jpg" alt="">
-										</div>
-									</div>
-
-								</a>
-
-								<div class="listing-content">
-
-									<div class="listing-title">
-										<h4>
-											<a href="single-property-page-2.html">Serene Uptown</a>
-										</h4>
-										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 6
-											Bishop Ave. Perkasie, PA
-										</a>
-									</div>
-
-									<ul class="listing-features">
-										<li>Area <span>440 sq ft</span></li>
-										<li>Bedrooms <span>2</span></li>
-										<li>Bathrooms <span>1</span></li>
-									</ul>
-
-									<div class="listing-footer">
-										<a href="#"><i class="fa fa-user"></i> Harriette Clark</a> <span><i
-												class="fa fa-calendar-o"></i> 2 days ago</span>
-									</div>
-
-								</div>
-
-							</div>
-						</div>
-						<!-- Listing Item / End -->
-
-
-						<!-- Listing Item -->
-						<div class="carousel-item">
-							<div class="listing-item">
-
-								<a href="single-property-page-1.html" class="listing-img-container">
-
-									<div class="listing-badges">
-										<span class="featured">Featured</span> <span>For Rent</span>
-									</div>
-
-									<div class="listing-img-content">
-										<span class="listing-price">$1700 <i>monthly</i></span> <span
-											class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span> <span
-											class="compare-button with-tip" data-tip-content="Add to Compare"></span>
-									</div> <img src="images/listing-03.jpg" alt="">
-
-								</a>
-
-								<div class="listing-content">
-
-									<div class="listing-title">
-										<h4>
-											<a href="single-property-page-1.html">Meridian Villas</a>
-										</h4>
-										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 778
-											Country St. Panama City, FL
-										</a>
-									</div>
-
-									<ul class="listing-features">
-										<li>Area <span>1450 sq ft</span></li>
-										<li>Bedrooms <span>2</span></li>
-										<li>Bathrooms <span>3</span></li>
-									</ul>
-
-									<div class="listing-footer">
-										<a href="#"><i class="fa fa-user"></i> Chester Miller</a> <span><i
-												class="fa fa-calendar-o"></i> 4 days ago</span>
-									</div>
-
-								</div>
-								<!-- Listing Item / End -->
-
-							</div>
-						</div>
-						<!-- Listing Item / End -->
-
-
-						<!-- Listing Item -->
-						<div class="carousel-item">
-							<div class="listing-item">
-
-
-								<a href="single-property-page-3.html" class="listing-img-container">
-
-									<div class="listing-badges">
-										<span>For Sale</span>
-									</div>
-
-									<div class="listing-img-content">
-										<span class="listing-price">$420,000 <i>$770 / sq
-												ft</i></span> <span class="like-icon with-tip"
-											data-tip-content="Add to Bookmarks"></span> <span
-											class="compare-button with-tip" data-tip-content="Add to Compare"></span>
-									</div>
-
-									<div class="listing-carousel">
-										<div>
-											<img src="images/listing-04.jpg" alt="">
-										</div>
-										<div>
-											<img src="images/listing-04b.jpg" alt="">
-										</div>
-									</div>
-
-								</a>
-
-								<div class="listing-content">
-
-									<div class="listing-title">
-										<h4>
-											<a href="single-property-page-3.html">Selway Apartments</a>
-										</h4>
-										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 33
-											William St. Northbrook, IL
-										</a>
-									</div>
-
-									<ul class="listing-features">
-										<li>Area <span>540 sq ft</span></li>
-										<li>Bedrooms <span>2</span></li>
-										<li>Bathrooms <span>2</span></li>
-									</ul>
-
-									<div class="listing-footer">
-										<a href="#"><i class="fa fa-user"></i> Kristen Berry</a> <span><i
-												class="fa fa-calendar-o"></i> 3 days ago</span>
-									</div>
-
-								</div>
-								<!-- Listing Item / End -->
-
-							</div>
-						</div>
-						<!-- Listing Item / End -->
-
-
-						<!-- Listing Item -->
-						<div class="carousel-item">
-							<div class="listing-item">
-
-
-								<a href="single-property-page-1.html" class="listing-img-container">
-									<div class="listing-badges">
-										<span>For Sale</span>
-									</div>
-
-									<div class="listing-img-content">
-										<span class="listing-price">$535,000 <i>$640 / sq
-												ft</i></span> <span class="like-icon with-tip"
-											data-tip-content="Add to Bookmarks"></span> <span
-											class="compare-button with-tip" data-tip-content="Add to Compare"></span>
-									</div> <img src="images/listing-05.jpg" alt="">
-								</a>
-
-								<div class="listing-content">
-
-									<div class="listing-title">
-										<h4>
-											<a href="single-property-page-1.html">Oak Tree Villas</a>
-										</h4>
-										<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-											class="listing-address popup-gmaps"> <i class="fa fa-map-marker"></i> 71
-											Lower River Dr. Bronx, NY
-										</a>
-									</div>
-
-									<ul class="listing-features">
-										<li>Area <span>350 sq ft</span></li>
-										<li>Bedrooms <span>2</span></li>
-										<li>Bathrooms <span>1</span></li>
-									</ul>
-
-									<div class="listing-footer">
-										<a href="#"><i class="fa fa-user"></i> Mabel Gagnon</a> <span><i
-												class="fa fa-calendar-o"></i> 4 days ago</span>
-									</div>
-
-								</div>
-								<!-- Listing Item / End -->
-
-							</div>
-						</div>
-						<!-- Listing Item / End -->
-
-
 
 					</div>
 				</div>

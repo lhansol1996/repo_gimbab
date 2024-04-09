@@ -74,9 +74,9 @@
 						<!-- 날짜 검색 끝 -->
 						<!-- 검색 select 시작 -->
 						<div class="ms-auto d-flex flex-row justify-content-end pt-2">
-							<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom">
+							<!-- <button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom">
 								<i class="fa-solid fa-rotate-right fa-lg"></i>
-							</button>
+							</button> -->
 
 							<div class="col-2 ms-1 mt-1">
 								<select class="form-select" aria-label="Default select example" id="voOption"
@@ -87,6 +87,7 @@
 									<option value="3" th:selected="${vo.voOption == 3}">생일</option>
 									<option value="4" th:selected="${vo.voOption == 4}">이름</option>
 									<option value="5" th:selected="${vo.voOption == 5}">아이디</option>
+									<option value="6" th:selected="${vo.voOption == 6}">멤버티어</option>
 								</select>
 							</div>
 

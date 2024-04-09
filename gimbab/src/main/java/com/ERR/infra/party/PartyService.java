@@ -58,5 +58,9 @@ public class PartyService {
 	public Integer selectCount(PartyVo vo) {
 		return partyDao.selectCount(vo);
 	}
+	//usrIndex에 쓰일 최근 5개 나열 리스트
+	public List<PartyDto> searchPartyForRecent5(PartyDto dto){
+		return partyDao.searchPartyForRecent5(dto);
+	}
 
 }

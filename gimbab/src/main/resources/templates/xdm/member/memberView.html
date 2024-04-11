@@ -49,12 +49,13 @@
 									<table class="table align-middle table-hover m-0">
 										<thead>
 											<tr>
-												<th scope="col-2">seq</th>
-												<th scope="col-2">Name</th>
-												<th scope="col-2">Gender</th>
+												<th scope="col-1">seq</th>
+												<th scope="col">Name</th>
+												<th scope="col-1">Gender</th>
+												<th scope="col-1">Tier</th>
 												<th scope="col-2">modDate</th>
 												<th scope="col-2">regDate</th>
-												<th scope="col-2">delNy</th>
+												<th scope="col-1">delNy</th>
 
 											</tr>
 										</thead>
@@ -68,6 +69,8 @@
 												<td class="col-2" th:text="${item.memberName}">first1</td>
 												<td th:if="${item.memberGenderCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}" class="memberGenderCd align-middle col-2"></td>
 														<td th:unless="${item.memberGenderCd != null}" class="memberGenderCd align-middle col-2"></td>
+												<td th:if="${item.memberTierCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}" class="memberTierCd align-middle col-2"></td>
+														<td th:unless="${item.memberTierCd != null}" class="memberTierCd align-middle col-2"></td>
 												<td class="col-3"
 													th:text="${#dates.format(item.memberModDate, 'yyyy-MM-dd일 HH:mm:ss')}">
 												</td>
@@ -88,7 +91,7 @@
 											<a class="btn btn-danger btn-icon btn-sm mb-1" href="#"
 												th:href="@{/memberXdmList}"><i class="bi bi-arrow-left"></i></a>
 										</div>
-										<!-- 테이블 아래 쪽 등록 버튼 -->
+										<!-- 테이블 아래 쪽 수정 버튼 -->
 
 										<div class="col-2">
 											<a class="btn btn-info btn-sm mb-1" href="#"

@@ -75,27 +75,16 @@
 				</div>
 
 				<!-- Carousel -->
-				<div class="col-md-12">
-					<div class="carousel">
+				<div class="col-md-12" >
+					<div class="carousel"  >
 
-						<!-- Listing Item -->
-						<div class="carousel-item"  th:if="${!#lists.isEmpty(partyRecentList)}" th:each="partyRecentList:${partyRecentList}">
-							<div class="listing-item">
+						<div class="carousel-item" th:if="${!#lists.isEmpty(partyRecentList)}" th:each="partyRecentList:${partyRecentList}">
+							<div class="listing-item" >
+								
+								<a href="single-property-page-2.html" class="listing-img-container">
 
-								<a href="single-property-page-1.html" class="listing-img-container">
-									<!-- 모스트 3캐릭터 이미지 -->
-									<div class="listing-carousel">
-										<div>
-											<img src="images/listing-01.jpg" alt="">
-										</div>
-										<div>
-											<img src="images/listing-01b.jpg" alt="">
-										</div>
-										<div>
-											<img src="images/listing-01c.jpg" alt="">
-										</div>
-									</div>
-
+									<img src="xdm/assets/images/listing-01.jpg" alt="">
+									
 								</a>
 
 								<div class="listing-content">
@@ -108,21 +97,20 @@
 									</div>
 
 									<ul class="listing-features">
-										<li>파티장 승률 <span>[[${partyRecentList.xMemberVitoryRate}]]</span></li>
-										<li>파티장 KDA <span>[[${partyRecentList.xMemberKDA}]]</span></li>
-										<li>파티 타입 <span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span></li>
+										<li>파티장 승률 :<span>[[${partyRecentList.xMemberVictoryRate}]] %</span></li>
+										<li>파티장 KDA :<span>[[${partyRecentList.xMemberKDA}]]</span></li>
+										<li>파티 타입 :<span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span></li>
 									</ul>
 
 									<div class="listing-footer">
-										<a href="#"><i class="fa fa-user"></i>닉네임 : [[${partyRecentList.xMemberName}]]</a> <span><i
-												class="fa fa-calendar-o"></i> 등록일 : [[${#dates.format(partyRecentList.partyRegDate, 'yyyy-MM-dd일')}]]</span>
+										<a href="#"><i class="fa fa-user"></i> : [[${partyRecentList.xMemberName}]]</a>
+										<span><i class="fa fa-calendar-o"></i> : [[${#dates.format(partyRecentList.partyRegDate, 'yy.MM.dd')}]]</span>
 									</div>
 
 								</div>
 
 							</div>
 						</div>
-						<!-- Listing Item / End -->
 
 					</div>
 				</div>

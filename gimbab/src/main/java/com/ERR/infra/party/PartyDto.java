@@ -17,7 +17,7 @@ public class PartyDto {
 	private String xMasterNy;
 	private String xPartyJoinNy;
 	private Integer xMemberTierCd;
-	private Integer xMemberVitoryRate;
+	private Integer xMemberVictoryRate;
 	private double xMemberKDA;
 
 	public String getPartySeq() {
@@ -124,12 +124,12 @@ public class PartyDto {
 		this.xMemberTierCd = xMemberTierCd;
 	}
 
-	public Integer getxMemberVitoryRate() {
-		return xMemberVitoryRate;
+	public Integer getxMemberVictoryRate() {
+		return xMemberVictoryRate;
 	}
 
-	public void setxMemberVitoryRate(Integer xMemberVitoryRate) {
-		this.xMemberVitoryRate = xMemberVitoryRate;
+	public void setxMemberVictoryRate(Integer xMemberVictoryRate) {
+		this.xMemberVictoryRate = xMemberVictoryRate;
 	}
 
 	public double getxMemberKDA() {
@@ -140,16 +140,4 @@ public class PartyDto {
 		this.xMemberKDA = xMemberKDA;
 	}
 
-	@Override
-	public String toString() {
-		return "PartyDto [partySeq=" + partySeq + ", partyName=" + partyName + ", partyDept=" + partyDept
-				+ ", partyMatchTypeCd=" + partyMatchTypeCd + ", partyDelNy=" + partyDelNy + ", partyRegDate="
-				+ partyRegDate + ", partyModDate=" + partyModDate + ", xMemberName=" + xMemberName + ", xPartySeqF="
-				+ xPartySeqF + ", xMemberSeqF=" + xMemberSeqF + ", xMasterNy=" + xMasterNy + ", xPartyJoinNy="
-				+ xPartyJoinNy + ", xMemberTierCd=" + xMemberTierCd + ", xMemberVitoryRate=" + xMemberVitoryRate
-				+ ", xMemberKDA=" + xMemberKDA + "]";
-	}
-
-	
-	
 }

@@ -79,8 +79,9 @@
 							<select class="form-select" aria-label="Default select example" id="voOption"
 								name="voOption">
 								<option value="" th:selected="${vo.voOption == null}">검색구분</option>
-								<option value="1" th:selected="${vo.voOption == 1}">코드</option>
-								<option value="2" th:selected="${vo.voOption == 2}">이름</option>
+								<option value="1" th:selected="${vo.voOption == 1}">파티SEQ</option>
+								<option value="2" th:selected="${vo.voOption == 2}">파티이름</option>
+								<option value="3" th:selected="${vo.voOption == 3}">파티타입</option>
 							</select>
 						</div>
 
@@ -147,8 +148,7 @@
 														id="flexCheckDefault" /></td>
 												<td class="col"><a href="#"
 														th:href="@{/partyView(partySeq=${list.partySeq},partyName=${list.partyName},partyDelNy=${list.partyDelNy}
-														,partyDept=${list.partyDept}, partyOwnerKDA=${list.partyOwnerKDA}, partyOwnerTierCd=${list.partyOwnerTierCd}
-														,partyMatchTypeCd=${partyMatchTypeCd})}"
+														,partyDept=${list.partyDept}, partyMatchTypeCd=${partyMatchTypeCd})}"
 														th:text="${list.partySeq}">#001</a></td>
 												<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"

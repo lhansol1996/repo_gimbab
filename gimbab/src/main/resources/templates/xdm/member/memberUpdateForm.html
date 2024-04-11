@@ -52,31 +52,49 @@
 											
 											<input type="hidden" name="memberSeq" th:value="${item.memberSeq}" id="memberSeq">
 											<!-- 수정 폼 -->
-											<div class="col-md-3">
-												<label for="memberDpt" class="form-label">멤버 Seq:<span th:text="${item.memberSeq}"></span><span>&nbsp;상세설명</span></label>
-												<textarea class="form-control" name="memberDpt" id="memberDpt" th:text="${item.memberDpt}"  style="height: 100px"></textarea>
-												<div class="invalid-feedback" id="memberDptFeedback"></div>
-											</div>
-
-
-											<div class="col-md-3">
-												<label for="memberPwd" class="form-label">멤버 비밀번호:<span th:text="${item.memberPwd}"></span></label>
-												<input type="text" class="form-control" name="memberPwd" id="memberPwd" th:value="${item.memberPwd}"  />
-												<div class="invalid-feedback" id="memberPwdFeedback"></div>
-											</div>
-
+											
 											<div class="col-md-3">
 												<label for="memberEmail" class="form-label">멤버 이메일:<span th:text="${item.memberEmail}"></span></label>
 												<input type="text" class="form-control" name="memberEmail" id="memberEmail" th:value="${item.memberEmail}"  />
 												<div class="invalid-feedback" id="memberEmailFeedback"></div>
 											</div>
 
+											<div class="col-md-3">
+												<label for="memberTierCd" class="form-label">티어</span></label>
+												<select class="form-select" name="memberTierCd" id="memberTierCd">
+													<option value="" selected>티어를 선택하세요</option>
+													<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
+													th:value="${codeList.codeSeq}"
+													th:text="${codeList.codeName}">
+												</option>
+												</select>
+												<div class="invalid-feedback" id="memberTierCdFeedback"></div>
+											</div>
+	
+											<div class="col-md-3">
+												<label for="memberKDA" class="form-label">KDA</span></label> 
+												<input type="text" class="form-control" name="memberKDA" id="memberKDA"
+												placeholder="KDA를 넣어주십시오" />
+												<div class="invalid-feedback" id="memberKDAFeedback"></div>
+											</div>
+	
+											<div class="col-md-3">
+												<label for="memberVictoryRate" class="form-label">승률</span></label> 
+												<input type="text" class="form-control" name="memberVictoryRate" id="memberVictoryRate"
+												placeholder="승률을 넣어주십시오" />
+												<div class="invalid-feedback" id="memberVictoryRateFeedback"></div>
+											</div>
 											
+											<div class="col-md-6">
+												<label for="memberDpt" class="form-label">멤버 Seq:<span th:text="${item.memberSeq}"></span><span>&nbsp;상세설명</span></label>
+												<textarea class="form-control" name="memberDpt" id="memberDpt" th:text="${item.memberDpt}"  style="height: 100px"></textarea>
+												<div class="invalid-feedback" id="memberDptFeedback"></div>
+											</div>
 											<div class="d-flex justify-content-between col-12">
 												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
 													뒤로가기
 												</a>
-
+												
 												<button class="btn btn-primary" id="btnUpdate">
 													수정
 												</button>
@@ -140,19 +158,11 @@
 
 		function validationUpdt() {
 			if (!checkOnlyKoreanEnglishNumber('memberDpt',2,0,'한글 영어 숫자만 가능합니다')) return false;
-			if (!checkOnlyKoreanEnglishNumber('memberPwd',2,0,'한글 영어 숫자만 가능합니다')) return false;
 			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
 		
 		}
 
-		nullToEmpty = function (value) {
-			if (value == null || value == 'null' || value.length == 0) {
-				return false;
-			} else {
-				return true;
-			}
-
-		}
+		
 
 	</script>
 		

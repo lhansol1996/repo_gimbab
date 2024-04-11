@@ -195,10 +195,12 @@
 
 			// 등록버튼
 			document.getElementById("btnReg").onclick = function () {
-				if (validationReg() == false) return false;
-
-				else {
-					alert('111')
+				
+				if (validationReg() == false) {
+					alert('밸리데이션 작업완료')
+					return false;
+				} else {
+					alert('안걸림')
 					// $.ajax({
 					// 	async: true 
 					// 	,cache: false

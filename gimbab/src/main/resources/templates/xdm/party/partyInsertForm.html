@@ -42,35 +42,16 @@
 						<div class="card mb-4">
 							<div class="card-body">
 								<form name="formInsert" id="formInsert" class="row g-3 needs-validation" method="post">
+									<input type="hidden" id="memberSeq" name="memberSeq" th:value="${session.sessMemberSeq}" />
 
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<label for="partyName" class="form-label">파티이름</span></label> <input type="text"
 											class="form-control" name="partyName" id="partyName"
 											placeholder="이름을 넣어주십시오" />
 										<div class="invalid-feedback" id="partyNameFeedback"></div>
 									</div>
 
-									
-									<div class="col-md-3">
-										<label for="partyOwnerKDA" class="form-label">본인(파티장) KDA</span></label> <input type="text"
-										class="form-control" name="partyOwnerKDA" id="partyOwnerKDA"
-										placeholder="KDA를 넣어주십시오" />
-										<div class="invalid-feedback" id="partyOwnerKDAFeedback"></div>
-									</div>
-
-									<div class="col-md-3">
-										<label for="partyOwnerTierCd" class="form-label">본인(파티장) 티어</span></label>
-										<select class="form-select" name="partyOwnerTierCd" id="partyOwnerTierCd">
-											<option value="" selected>파티 타입을 선택하세요</option>
-											<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
-											th:value="${codeList.codeSeq}"
-											th:text="${codeList.codeName}">
-											</option>
-										</select>
-										<div class="invalid-feedback" id="partyOwnerTierCdFeedback"></div>
-									</div>
-
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<label for="partyMatchTypeCd" class="form-label">파티타입 지정</span></label>
 										<select class="form-select" name="partyMatchTypeCd" id="partyMatchTypeCd">
 											<option value="" selected>파티 타입을 선택하세요</option>
@@ -82,7 +63,7 @@
 										<div class="invalid-feedback" id="partyMatchTypeCdFeedback"></div>
 									</div>
 
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<label for="partyDept" class="form-label"><span>상세설명 :</span></label>
 										<textarea class="form-control" name="partyDept" id="partyDept" style="height: 300px"></textarea>
 										<div class="invalid-feedback" id="partyDeptFeedback"></div>

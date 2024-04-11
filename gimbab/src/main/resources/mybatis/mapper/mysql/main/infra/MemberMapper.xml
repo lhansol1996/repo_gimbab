@@ -20,6 +20,7 @@
 			<when test="voOption == 3">AND a.memberBirthday LIKE CONCAT('%',#{voValue},'%')</when>
 			<when test="voOption == 4">AND a.memberName LIKE CONCAT('%',#{voValue},'%')</when>
 			<when test="voOption == 5">AND a.memberID LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 6">AND a.memberTierCd LIKE CONCAT('%',#{voValue},'%')</when>
 		</choose>
 	</sql>
 
@@ -35,6 +36,8 @@
 			,a.memberDpt
 			,a.memberDelNy
 			,a.memberGenderCd
+			,a.memberTierCd
+			,a.memberVictoryRate
 			,a.memberRegDate
 			,a.memberModDate
 				<include refid="commonSelectMember" />
@@ -58,6 +61,8 @@
 			,memberDpt
 			,memberDelNy
 			,memberGenderCd
+			,memberTierCd
+			,memberVictoryRate
 			,memberRegDate
 			,memberModDate
 			From member
@@ -74,6 +79,9 @@
 				memberEmail,
 				memberDelNy,
 				memberAdminNy,
+				memberTierCd,
+				memberVictoryRate,
+				memberKDA,
 				memberGenderCd,
 				memberRegDate,
 				memberModDate)
@@ -86,6 +94,9 @@
 				#{memberEmail},
 				0,
 				#{memberAdminNy},
+				#{memberTierCd},
+				#{memberVictoryRate},
+				#{memberKDA},
 				#{memberGenderCd},
 				now(),
 				now()
@@ -102,6 +113,9 @@
 		UPDATE member
 		<set>
             <if test="memberEmail != null or memberEmail != ''">memberEmail = #{memberEmail},</if>
+            <if test="memberTierCd != null or memberTierCd != ''">memberTierCd = #{memberTierCd},</if>
+            <if test="memberKDA != null or memberKDA != ''">memberKDA = #{memberKDA},</if>
+            <if test="memberVictoryRate != null or memberVictoryRate != ''">memberVictoryRate = #{memberVictoryRate},</if>
             <if test="memberDpt != null or memberDpt != ''">memberDpt = #{memberDpt},</if>
         </set>
 		where 1=1

@@ -71,8 +71,8 @@ public class PartyController extends BaseController {
 
 	@RequestMapping(value = "/partyInsert")
 	public String partyInsert(PartyDto partyDto, MemberPartyDto memberPartyDto,HttpSession httpSession, Model model) throws Exception {
-		System.out.println(httpSession.getAttribute("sessSeqXdm")+"================================================");
-		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessSeqXdm"))));
+		System.out.println(httpSession.getAttribute("sessMemberSeq")+"================================================");
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
 		partyservice.insert(partyDto, memberPartyDto);
 		return "redirect:/partyXdmList";
@@ -116,7 +116,7 @@ public class PartyController extends BaseController {
 	public String userPartyDetail(PartyDto dto, Model model) throws Exception {
 		model.addAttribute("item", partyservice.selectOne(dto));
 
-		return UsrPartyCommonPath + "party-detail";
+		return UsrPartyCommonPath + "userPartyDetail";
 	}
 	
 

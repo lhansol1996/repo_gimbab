@@ -13,7 +13,7 @@ public class MemberDto {
 	private Integer memberDelNy;
 	private Integer memberAdminNy;
 	private Integer memberTierCd;
-	private Integer memberVitoryRate;
+	private double memberVictoryRate;
 	private double memberKDA;
 	private Integer memberGenderCd;
 	private Date memberRegDate;
@@ -99,12 +99,12 @@ public class MemberDto {
 		this.memberTierCd = memberTierCd;
 	}
 
-	public Integer getMemberVitoryRate() {
-		return memberVitoryRate;
+	public double getMemberVictoryRate() {
+		return memberVictoryRate;
 	}
 
-	public void setMemberVitoryRate(Integer memberVitoryRate) {
-		this.memberVitoryRate = memberVitoryRate;
+	public void setMemberVictoryRate(double memberVictoryRate) {
+		this.memberVictoryRate = memberVictoryRate;
 	}
 
 	public double getMemberKDA() {

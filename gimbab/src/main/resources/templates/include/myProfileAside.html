@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="myProfileAside">
+    <div class="col-md-4">
+        <div class="sidebar left">
+
+            <div class="my-account-nav-container">
+
+                <ul class="my-account-nav">
+                    <li class="sub-nav-title">Manage Account</li>
+                    <li><a th:href="@{/myProfileUpdate}" href="#"><i class="sl sl-icon-user" ></i> My Profile</a></li>
+                    <li><a th:href="@{/myProfileMyPartys}" href="#"><i class="fa fa-legal" ></i> 내가 참가한 파티</a></li>
+                    <li><a th:href="@{/myProfilePartyMake}" href="#"><i class="sl sl-icon-star"></i> 파티 만들기</a></li>
+                </ul>
+
+
+                <ul class="my-account-nav">
+                    <li><a th:href="@{/memberChangePwd}" href="#"><i class="sl sl-icon-lock"></i> Change Password</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</th:block>

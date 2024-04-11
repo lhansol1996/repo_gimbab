@@ -13,6 +13,18 @@
 			<if test="voXMemberTierCd != null and voXMemberTierCd.equals('')">AND m.memberTierCd = #{voXMemberTierCd}</if>
 			<if test="voPartyMatchTypeCd != null and !voPartyMatchTypeCd.equals('')">AND a.partyMatchTypeCd = #{voPartyMatchTypeCd}</if>
 			<if test="voPartyName !=null and !voPartyName.equals('')">AND a.partyName LIKE CONCAT('%',#{voPartyName},'%')</if>
+		
+		<choose>
+			<when test="voOptionDate == 1">AND a.partyRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.partyModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.partySeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.partyName LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 3">AND a.partyMatchTypeCd LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	
 	</sql>
 
 
@@ -31,7 +43,7 @@
 		and partySeq = #{partySeq}
 	</select>
 	
-		<select id="selectPartySeq" resultMap="resultMapObj">
+	<select id="selectPartySeq" resultMap="resultMapObj">
 		select
 		partySeq
 		from
@@ -44,15 +56,11 @@
 	<insert id="insert">
 		insert into party(
 		partyName
-		,partyOwnerKDA
-		,partyOwnerTierCd
 		,partyMatchTypeCd
 		,partyDept
 		,partyDelNy
 		)values(
 		#{partyName}
-		,#{partyOwnerKDA}
-		,#{partyOwnerTierCd}
 		,#{partyMatchTypeCd}
 		,#{partyDept}
 		,0
@@ -71,8 +79,6 @@
 		SET
 		partyName = #{partyName}
 		,partyDept = #{partyDept}
-		,partyOwnerKDA = #{partyOwnerKDA}
-		,partyOwnerTierCd = #{partyOwnerTierCd}
 		,partyMatchTypeCd = #{partyMatchTypeCd}
 		,partyModDate = now()
 		where
@@ -116,7 +122,7 @@
 				, m.memberName as xMemberName
 				,m.memberTierCd as xMemberTierCd
 				,m.memberKDA as xMemberKDA
-				,m.memberVitoryRate as xMemberVitoryRate
+				,m.memberVictoryRate as xMemberVictoryRate
 				,mp.masterNy as xMasterNy
 				
 			<include refid="commonSelectParty" />
@@ -144,7 +150,7 @@
 			,m.memberName as xMemberName
 			,m.memberTierCd as xMemberTierCd
 			,m.memberKDA as xMemberKDA
-			,m.memberVitoryRate as xMemberVitoryRate
+			,m.memberVictoryRate as xMemberVictoryRate
 		FROM party a
 			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
 			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
@@ -162,11 +168,10 @@
 		,m.memberName as xMemberName
 		,m.memberTierCd as xMemberTierCd
 		,m.memberKDA
-		,m.memberVitoryRate
+		,m.memberVictoryRate
 		,mp.masterNy as xMasterNy
 		,mp.partyJoinNy as xPartyJoinNy
 		,mp.partyOutNy as xPartyOutNy
-		,m.memberName
 		
 		FROM party a
 			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF

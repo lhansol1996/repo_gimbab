@@ -23,7 +23,6 @@ public class MemberController extends BaseController {
 
 	private String XdmCommomMemberPath = "xdm/member/";
 	private String UsrCommomMemberPath = "usr/member/";
-	private String UsrCommonPath = "usr/";
 	private String XdmCommomPath = "xdm/";
 
 	@Autowired
@@ -81,9 +80,6 @@ public class MemberController extends BaseController {
 	@RequestMapping(value = "/memberView")
 	public String memberView(MemberDto dto, Model model) throws Exception {
 
-		System.out.println("받아온 객체 ================");
-		System.out.println(dto.toString());
-
 		model.addAttribute("item", service.selectOne(dto));
 
 		return XdmCommomMemberPath + "memberView";
@@ -130,18 +126,6 @@ public class MemberController extends BaseController {
 
 		service.delete(dto);
 		return "redirect:/memberXdmList";
-	}
-
-	@RequestMapping(value = "/memberLoginRegister")
-	public String memberLoginRegister() throws Exception {
-
-		return UsrCommomMemberPath + "memberLoginRegister";
-	}
-
-	@RequestMapping(value = "/memberProfileUpdate")
-	public String memberProfileUpdate() throws Exception {
-
-		return UsrCommomMemberPath + "memberProfileUpdate";
 	}
 
 	@RequestMapping(value = "/adminLoginRegister")

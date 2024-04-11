@@ -55,28 +55,8 @@
 											<div class="col-md-3">
 												<label for="partyName" class="form-label">파티이름</span></label> <input type="text"
 													class="form-control" name="partyName" id="partyName"
-													 th:value="${item.partyName}" />
+													th:value="${item.partyName}" />
 												<div class="invalid-feedback" id="partyNameFeedback"></div>
-											</div>
-		
-											
-											<div class="col-md-3">
-												<label for="partyOwnerKDA" class="form-label">본인(파티장) KDA</span></label> <input type="text"
-												class="form-control" name="partyOwnerKDA" id="partyOwnerKDA" th:value="${item.partyOwnerKDA}"
-												placeholder="KDA를 넣어주십시오" />
-												<div class="invalid-feedback" id="partyOwnerKDAFeedback"></div>
-											</div>
-		
-											<div class="col-md-3">
-												<label for="partyOwnerTierCd" class="form-label">본인(파티장) 티어</span></label>
-												<select class="form-select" name="partyOwnerTierCd" id="partyOwnerTierCd">
-													<option value="" selected>파티 타입을 선택하세요</option>
-													<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
-													th:value="${codeList.codeSeq}"
-													th:text="${codeList.codeName}">
-													</option>
-												</select>
-												<div class="invalid-feedback" id="partyOwnerTierCdFeedback"></div>
 											</div>
 		
 											<div class="col-md-3">

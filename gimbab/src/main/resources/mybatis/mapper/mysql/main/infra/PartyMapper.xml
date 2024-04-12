@@ -160,27 +160,50 @@
 	
 	</select>
 
-	<select id="partyDetail">
-		SELECT 
-		a.partySeq
-		,a.partyName
-		,a.partyMatchTypeCd
-		,m.memberName as xMemberName
-		,m.memberTierCd as xMemberTierCd
-		,m.memberKDA
-		,m.memberVictoryRate
-		,mp.masterNy as xMasterNy
-		,mp.partyJoinNy as xPartyJoinNy
-		,mp.partyOutNy as xPartyOutNy
-		
-		FROM party a
-			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-		WHERE 1=1	
-			and	xPartyJoinNy = 1
-			and xMasterNy = 0
+	<select id="profilePartyListWithPagigng">
+		<include refid="base.selectHeader" />
+			SELECT 
+			a.partySeq
+			,a.partyName
+			,a.partyMatchTypeCd
+			,a.partyRegDate
+			,m.memberName as xMemberName
+			,m.memberTierCd as xMemberTierCd
+			,m.memberKDA as xMemberKDA
+			,m.memberVictoryRate xMemberVictoryRate
+			,mp.masterNy as xMasterNy
+			,mp.partyJoinNy as xPartyJoinNy
+			,mp.partyOutNy as xPartyOutNy
+			
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+			WHERE 1=1	
+				and	mp.PartyJoinNy = 1
+			ORDER BY a.partyRegDate DESC
+			<include refid="base.selectFooterMysql" />
 	</select>
 
-
+	<select id="selectOneDetail" resultMap="resultMapObj">
+			SELECT 
+			a.partySeq
+			,a.partyName
+			,a.partyMatchTypeCd
+			,a.partyRegDate
+			,m.memberName as xMemberName
+			,m.memberTierCd as xMemberTierCd
+			,m.memberKDA as xMemberKDA
+			,m.memberVictoryRate xMemberVictoryRate
+			,mp.masterNy as xMasterNy
+			,mp.partyJoinNy as xPartyJoinNy
+			,mp.partyOutNy as xPartyOutNy
+			
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		where 1=1
+		and partySeq = #{partySeq}
+		and mp.PartyJoinNy = 1
+	</select>
 
 </mapper>

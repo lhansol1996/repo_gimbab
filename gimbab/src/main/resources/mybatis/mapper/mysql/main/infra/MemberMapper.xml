@@ -33,7 +33,7 @@
 			,a.memberName
 			,a.memberBirthday
 			,a.memberEmail
-			,a.memberDpt
+			,a.memberDept
 			,a.memberDelNy
 			,a.memberGenderCd
 			,a.memberTierCd
@@ -58,7 +58,7 @@
 			,memberName
 			,memberBirthday
 			,memberEmail
-			,memberDpt
+			,memberDept
 			,memberDelNy
 			,memberGenderCd
 			,memberTierCd
@@ -116,7 +116,17 @@
             <if test="memberTierCd != null or memberTierCd != ''">memberTierCd = #{memberTierCd},</if>
             <if test="memberKDA != null or memberKDA != ''">memberKDA = #{memberKDA},</if>
             <if test="memberVictoryRate != null or memberVictoryRate != ''">memberVictoryRate = #{memberVictoryRate},</if>
-            <if test="memberDpt != null or memberDpt != ''">memberDpt = #{memberDpt},</if>
+            <if test="memberDept != null or memberDept != ''">memberDept = #{memberDept},</if>
+        </set>
+		where 1=1
+			and memberSeq=#{memberSeq}
+	</update>
+	
+	<update id="updateProfile">
+		UPDATE member
+		<set>
+            <if test="memberEmail != null or memberEmail != ''">memberEmail = #{memberEmail},</if>
+            <if test="memberDept != null or memberDept != ''">memberDept = #{memberDept}</if>
         </set>
 		where 1=1
 			and memberSeq=#{memberSeq}

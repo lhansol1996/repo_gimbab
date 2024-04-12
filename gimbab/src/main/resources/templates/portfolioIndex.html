@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,11 +45,11 @@
                     <p class="section-subtitle">Who Am I ?</p>
                     <h2 class="section-title mb-3">About Me</h2>
                     
-                    <div>Name : 이한솔</div> 
+                    <div> 이한솔</div> 
                     <div> Birth : 1996.08.25</div> 
                     <div> Email : lhansol1996@gmail.com </div> 
-                    <div> GitHub 주소 :</div> 
-                    <div> Notion 주소 :</div> 
+                    <div> GitHub 주소 :<a href="https://github.com/lhansol1996"> https://github.com/lhansol1996</a></div> 
+                    <div> Notion 주소 : <a href="https://www.notion.so/50c0e7618b4440928fcf712b6c07c5f8" alt="">https://www.notion.so/50c0e7618b4440928fcf712b6c07c5f8</a></div> 
                     <div> 자기소개</div> 
                     
                 </div>
@@ -121,7 +120,7 @@
     <section class="section" id="portfolio">
         <div class="container text-center">
             <p class="section-subtitle">What I Did ?</p>
-            <h6 class="section-title mb-6">Portfolio</h6>
+            <h6 class="section-title mb-6">Personal Portfolio 2024.03 ~ 2024.04</h6>
             <!-- row -->
             <div class="row mt-5">
                 <div class="col-md-6">
@@ -130,8 +129,8 @@
                             alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
-                                <h4 class="black-han sans-regular">User</h5>
-                                    <p class="font-weight-normal black-han">Category: Log-in</p>
+                                <h4 class="black-han sans-regular">User Page</h5>
+                                    <p class="font-weight-normal black-han">Category: User Index</p>
                             </span>
                         </span>
                     </a>
@@ -142,7 +141,7 @@
                             alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
-                                <h4 class="black-han sans-regular">Admin</h5>
+                                <h4 class="black-han sans-regular">Admin Page</h5>
                                     <p class="font-weight-normal black-han">Category: Log-in</p>
                             </span>
                         </span>
@@ -150,63 +149,46 @@
                 </div>
             </div><!-- end of row -->
 
+            
+        </div><!-- end of container -->
+    </section> <!-- end of portfolio section -->
+
+    <!-- portfolio section2 -->
+    <section class="section" id="portfolio2">
+        <div class="container text-center">
+            <p class="section-subtitle"></p>
+            <h6 class="section-title mb-6">Team Portfolio</h6>
             <!-- row -->
             <div class="row mt-5">
                 <div class="col-md-6">
-                    <a href="#" class="portfolio-card">
-                        <img src="index/imgs/folio-1.jpg" class="img-responsive rounded portfolio-card-img"
+                    <a href="#" th:href="@{/userIndex}" class="portfolio-card">
+                        <img src="index/imgs/folio-1.jpg" class="portfolio-card-img img-responsive rounded"
                             alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
-                                <h4 class="black-han sans-regular">User</h5>
-                                    <p class="font-weight-normal">Category: Web Templates</p>
+                                <h4 class="black-han sans-regular">User Page</h5>
+                                    <p class="font-weight-normal black-han">Category: User Index</p>
                             </span>
                         </span>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <a href="#" class="portfolio-card">
+                    <a href="#" th:href="@{/adminLoginRegister}"  class="portfolio-card">
                         <img class="img-responsive rounded portfolio-card-img" src="index/imgs/folio-2.jpg"
                             alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
-                                <h4>Admin</h5>
-                                    <p class="font-weight-normal">Category: Web Templates</p>
+                                <h4 class="black-han sans-regular">Admin Page</h5>
+                                    <p class="font-weight-normal black-han">Category: Log-in</p>
                             </span>
                         </span>
                     </a>
                 </div>
             </div><!-- end of row -->
 
-            <!-- row -->
-            <div class="row mt-5">
-                <div class="col-md-6">
-                    <a href="#" class="portfolio-card">
-                        <img src="index/imgs/folio-1.jpg" class="portfolio-card-img img-responsive rounded"
-                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>User</h5>
-                                    <p class="font-weight-normal">Category: Web Templates</p>
-                            </span>
-                        </span>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="#" class="portfolio-card">
-                        <img class="img-responsive rounded portfolio-card-img" src="index/imgs/folio-2.jpg"
-                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Admin</h5>
-                                    <p class="font-weight-normal">Category: Web Templates</p>
-                            </span>
-                        </span>
-                    </a>
-                </div>
-            </div><!-- end of row -->
-        </div><!-- end of container -->
-    </section> <!-- end of portfolio section -->
+        
+    </div><!-- end of container -->
+</section> <!-- end of portfolio section -->
 
     <!-- footer -->
     <div class="container">

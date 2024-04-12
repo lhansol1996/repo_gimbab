@@ -10,7 +10,7 @@ public class MemberVo extends BaseVo {
 	private String memberName;
 	private String memberBirthday;
 	private String memberEmail;
-	private String memberDpt;
+	private String memberDept;
 
 	// 관리자 , 사용자 구분자
 	private Integer memberAdminNy = 1;
@@ -64,12 +64,12 @@ public class MemberVo extends BaseVo {
 		this.memberEmail = memberEmail;
 	}
 
-	public String getMemberDpt() {
-		return memberDpt;
+	public String getMemberDept() {
+		return memberDept;
 	}
 
-	public void setMemberDpt(String memberDpt) {
-		this.memberDpt = memberDpt;
+	public void setMemberDept(String memberDept) {
+		this.memberDept = memberDept;
 	}
 
 	public Integer getMemberAdminNy() {

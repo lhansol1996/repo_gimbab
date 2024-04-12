@@ -31,4 +31,10 @@ public interface PartyDao {
 	// usrIndex에 쓰일 최근 5개 나열 리스트
 	public List<PartyDto> searchPartyForRecent5(PartyDto dto);
 
+	// 페이징 처리 리스트 (프로파일 나의파티)
+	public List<PartyDto> profilePartyListWithPagigng(PartyVo vo);
+
+	// 파티 디테일 불러오기
+	public PartyDto selectOneDetail(PartyDto dto);
+	
 }

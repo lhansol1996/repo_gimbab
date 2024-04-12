@@ -61,5 +61,10 @@ public class MemberService {
 	public Integer selectCount(MemberVo vo) {
 		return memberDao.selectCount(vo);
 	}
+	
+	//profile 수정
+	public int updateProfile(MemberDto dto) {
+		return memberDao.updateProfile(dto);
+	}
 
 }

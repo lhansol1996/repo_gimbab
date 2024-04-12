@@ -86,9 +86,9 @@
 											</div>
 											
 											<div class="col-md-6">
-												<label for="memberDpt" class="form-label">멤버 Seq:<span th:text="${item.memberSeq}"></span><span>&nbsp;상세설명</span></label>
-												<textarea class="form-control" name="memberDpt" id="memberDpt" th:text="${item.memberDpt}"  style="height: 100px"></textarea>
-												<div class="invalid-feedback" id="memberDptFeedback"></div>
+												<label for="memberDept" class="form-label">멤버 Seq:<span th:text="${item.memberSeq}"></span><span>&nbsp;상세설명</span></label>
+												<textarea class="form-control" name="memberDept" id="memberDept" th:text="${item.memberDept}"  style="height: 100px"></textarea>
+												<div class="invalid-feedback" id="memberDeptFeedback"></div>
 											</div>
 											<div class="d-flex justify-content-between col-12">
 												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
@@ -157,7 +157,7 @@
 		}
 
 		function validationUpdt() {
-			if (!checkOnlyKoreanEnglishNumber('memberDpt',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkOnlyKoreanEnglishNumber('memberDept',2,0,'한글 영어 숫자만 가능합니다')) return false;
 			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
 		
 		}

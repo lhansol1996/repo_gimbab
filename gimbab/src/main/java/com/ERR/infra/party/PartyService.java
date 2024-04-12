@@ -20,8 +20,8 @@ public class PartyService {
 	public PartyDto selectOne(PartyDto dto) {
 		return partyDao.selectOne(dto);
 	}
-	
-	//seq 호출
+
+	// seq 호출
 	public String selectPartySeq(PartyDto partyDto) {
 		return partyDao.selectPartySeq(partyDto);
 	}
@@ -58,9 +58,20 @@ public class PartyService {
 	public Integer selectCount(PartyVo vo) {
 		return partyDao.selectCount(vo);
 	}
-	//usrIndex에 쓰일 최근 5개 나열 리스트
-	public List<PartyDto> searchPartyForRecent5(PartyDto dto){
+
+	// usrIndex에 쓰일 최근 5개 나열 리스트
+	public List<PartyDto> searchPartyForRecent5(PartyDto dto) {
 		return partyDao.searchPartyForRecent5(dto);
+	}
+
+	// 페이징 처리 리스트 (프로파일 나의파티)
+	public List<PartyDto> profilePartyListWithPagigng(PartyVo vo) {
+		return partyDao.profilePartyListWithPagigng(vo);
+	}
+
+	// 파티 디테일 불러오기
+	public PartyDto selectOneDetail(PartyDto dto) {
+		return partyDao.selectOneDetail(dto);
 	}
 
 }

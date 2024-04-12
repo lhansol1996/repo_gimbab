@@ -2,8 +2,6 @@ package com.ERR.infra.member;
 
 import java.util.List;
 
-import com.ERR.infra.codegroup.CodeGroupVo;
-
 public interface MemberDao {
 
 	// 수많은 DTO 목록들을 리스트로 리턴
@@ -32,6 +30,9 @@ public interface MemberDao {
 	
 	//개수 리턴
 	public Integer selectCount(MemberVo vo);
+	
+	//profile 수정
+	public int updateProfile(MemberDto dto);
 	
 	
 }

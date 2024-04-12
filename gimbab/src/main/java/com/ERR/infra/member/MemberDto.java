@@ -9,7 +9,7 @@ public class MemberDto {
 	private String memberName;
 	private String memberBirthday;
 	private String memberEmail;
-	private String memberDpt;
+	private String memberDept;
 	private Integer memberDelNy;
 	private Integer memberAdminNy;
 	private Integer memberTierCd;
@@ -67,12 +67,12 @@ public class MemberDto {
 		this.memberEmail = memberEmail;
 	}
 
-	public String getMemberDpt() {
-		return memberDpt;
+	public String getMemberDept() {
+		return memberDept;
 	}
 
-	public void setMemberDpt(String memberDpt) {
-		this.memberDpt = memberDpt;
+	public void setMemberDept(String memberDept) {
+		this.memberDept = memberDept;
 	}
 
 	public Integer getMemberDelNy() {

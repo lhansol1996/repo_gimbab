@@ -13,9 +13,6 @@ import com.ERR.infra.code.CodeService;
 import com.ERR.infra.memberParty.MemberPartyDto;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class PartyController extends BaseController {
@@ -65,13 +62,15 @@ public class PartyController extends BaseController {
 
 	@RequestMapping(value = "/partyInsertForm")
 	public String partyViewUpdate(Model model) throws Exception {
-		
+
 		return XdmPartyCommomPath + "partyInsertForm";
 	}
 
 	@RequestMapping(value = "/partyInsert")
-	public String partyInsert(PartyDto partyDto, MemberPartyDto memberPartyDto,HttpSession httpSession, Model model) throws Exception {
-		System.out.println(httpSession.getAttribute("sessMemberSeq")+"================================================");
+	public String partyInsert(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+			throws Exception {
+		System.out.println(
+				httpSession.getAttribute("sessMemberSeq") + "================================================");
 		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
 		partyservice.insert(partyDto, memberPartyDto);
@@ -98,26 +97,24 @@ public class PartyController extends BaseController {
 		partyservice.delete(dto);
 		return "redirect:/partyXdmList";
 	}
-	
-	@RequestMapping(value="/userPartySearchList")
-	public String userPartySearchList(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception{
+
+	@RequestMapping(value = "/userPartySearchList")
+	public String userPartySearchList(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
 		setSearch(vo);
 		vo.setParamsPaging(partyservice.selectCount(vo));
 
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", partyservice.selectListWithPaging(vo));
 		}
-		
-		
+
 		return UsrPartyCommonPath + "userPartySearchList";
 	}
-	
+
 	@RequestMapping(value = "/userPartyDetail")
 	public String userPartyDetail(PartyDto dto, Model model) throws Exception {
-		model.addAttribute("item", partyservice.selectOne(dto));
+		model.addAttribute("item", partyservice.selectOneDetail(dto));
 
 		return UsrPartyCommonPath + "userPartyDetail";
 	}
-	
 
 }

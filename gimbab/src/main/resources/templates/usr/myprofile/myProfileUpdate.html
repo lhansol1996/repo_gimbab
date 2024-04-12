@@ -48,94 +48,105 @@
 				<!--프로파일 aside 끝-->
 
 				<div class="col-md-8">
-					<div class="row">
+						<form name="formUpdt" id="formUpdt">
+							<div class="row">
 
 
-						<div class="col-md-8 my-profile">
-							<h4 class="margin-top-0 margin-bottom-30">My Account</h4>
+								<div class="col-md-8 my-profile">
+									<h4 class="margin-top-0 margin-bottom-30">My Account</h4>
 
-							<label>Your ID</label>
-							<input value="도라에몽" type="text">
+									<label>Your ID</label>
+									<input name="memberID" id="memberID" th:value="${session.sessMemberId}" type="text" disabled />
 
-							<label>Your InGameNickName</label>
-							<div class="main-search-box">
+									<label>Your InGameNickName</label>
+									<div class="main-search-box">
 
-								<!-- Main Search Input -->
-								<div class="main-search-input larger-input">
-									<input type="text" class="ico-01" id="autocomplete-input" placeholder="닉네임 검색"
-										value="" />
-									<button class="button">Search</button>
-								</div>
-							</div>
-
-							<label>Your Most 3 Character</label>
-							<div class="style-2">
-
-								<!-- Toggle 1 -->
-								<div class="toggle-wrap">
-									<span class="trigger "><a href="#">1번재 캐릭터 이름<i
-												class="sl sl-icon-plus"></i></a></span>
-									<ul class="toggle-container" style="list-style: none;">
-										<li>평균 딜량 : </li>
-										<li>승률 : </li>
-										<li>An item : </li>
-									</ul>
-								</div>
-
-								<!-- Toggle 2 -->
-								<div class="toggle-wrap">
-									<span class="trigger"><a href="#"> 2번재 캐릭터 이름 <i
-												class="sl sl-icon-plus"></i></a></span>
-									<div class="toggle-container">
-										<p>Seded ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-											doloremque laudantium, totam rem aperiam. Donec ut volutpat metus. Aliquam
-											tortor lorem, fringilla tempor dignissim at, pretium et arcu.</p>
+										<!-- Main Search Input -->
+										<div class="main-search-input larger-input">
+											<input type="text" class="ico-01" id="autocomplete-input" placeholder="닉네임 검색"
+												value="" />
+											<button class="button">Search</button>
+										</div>
 									</div>
+
+									<label>Your Most 3 Character</label>
+									<div class="style-2">
+
+										<!-- Toggle 1 -->
+										<div class="toggle-wrap">
+											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
+														class="sl sl-icon-plus"></i></a></span>
+											<ul class="toggle-container" style="list-style: none;">
+												<li>평균 딜량 : </li>
+												<li>승률 : </li>
+												<li>An item : </li>
+											</ul>
+										</div>
+
+										<!-- Toggle 2 -->
+										<div class="toggle-wrap">
+											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
+														class="sl sl-icon-plus"></i></a></span>
+											<ul class="toggle-container" style="list-style: none;">
+												<li>평균 딜량 : </li>
+												<li>승률 : </li>
+												<li>An item : </li>
+											</ul>
+										</div>
+
+										<!-- Toggle 3 -->
+										<div class="toggle-wrap">
+											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
+														class="sl sl-icon-plus"></i></a></span>
+											<ul class="toggle-container" style="list-style: none;">
+												<li>평균 딜량 : </li>
+												<li>승률 : </li>
+												<li>An item : </li>
+											</ul>
+										</div>
+
+									</div>
+
+									<label>티어</label>
+									<span th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}"></span>
+
+								
+									<label>Your Email</label>
+									<input type="text" id="memberEmail" name="memberEmail" th:value="${item.memberEmail}" />
+									<div class="invalid-feedback" id="memberEmailFeedback"></div>
+									
+
+									<label>성별</label>
+									<span th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
+
+									<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
+									<textarea name="memberDept" id="memberDept" cols="30" rows="10" th:text="${item.memberDept}"></textarea>
+									<div class="invalid-feedback" id="memberDeptFeedback"></div>
+
+									<input type="hidden" name="memberSeq" id="memberSeq" th:value="${item.memberSeq}" />
+									<!-- 저장 버튼 -->
+									<button class="button margin-top-20 margin-bottom-20" type="button" id="btnUpdate">
+										변경
+									</button>
 								</div>
 
-								<!-- Toggle 3 -->
-								<div class="toggle-wrap">
-									<span class="trigger"><a href="#">3번재 캐릭터 이름 <i class="sl sl-icon-plus"></i>
-										</a></span>
-									<div class="toggle-container">
-										<p>Seded ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-											doloremque laudantium, totam rem aperiam. Donec ut volutpat metus. Aliquam
-											tortor lorem, fringilla tempor dignissim at, pretium et arcu.</p>
+								<div class="col-md-4">
+									<!-- Avatar -->
+									<div class="edit-profile-photo">
+										<img src="xdm/assets/images/user1.png" alt="">
+										<div class="change-photo-btn">
+											<div class="photoUpload">
+												<span><i class="fa fa-upload"></i> Upload Photo</span>
+												<input type="file" class="upload" />
+											</div>
+										</div>
 									</div>
+
 								</div>
+
 
 							</div>
-
-							<label>your tier</label>
-							<span>다이아</span>
-
-							<label>Email</label>
-							<input value="jennie@example.com" type="text">
-
-							<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
-							<textarea name="about" id="about" cols="30"
-								rows="10">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</textarea>
-
-							<!-- 저장 버튼 -->
-							<button class="button margin-top-20 margin-bottom-20">Save Changes</button>
-						</div>
-
-						<div class="col-md-4">
-							<!-- Avatar -->
-							<div class="edit-profile-photo">
-								<img src="images/agent-02.jpg" alt="">
-								<div class="change-photo-btn">
-									<div class="photoUpload">
-										<span><i class="fa fa-upload"></i> Upload Photo</span>
-										<input type="file" class="upload" />
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-
-					</div>
+					</form>
 				</div>
 
 			</div>
@@ -146,76 +157,41 @@
 ================================================== -->
 		<div class="margin-top-55"></div>
 
-		<div id="footer" class="sticky-footer">
-			<!-- Main -->
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-6">
-						<img class="footer-logo" src="images/logo.png" alt="">
-						<br><br>
-						<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros.
-							Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-					</div>
-
-					<div class="col-md-4 col-sm-6 ">
-						<h4>Helpful Links</h4>
-						<ul class="footer-links">
-							<li><a href="#">Login</a></li>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Add Property</a></li>
-							<li><a href="#">Pricing</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-
-						<ul class="footer-links">
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">Our Agents</a></li>
-							<li><a href="#">How It Works</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-
-					<div class="col-md-3  col-sm-12">
-						<h4>Contact Us</h4>
-						<div class="text-widget">
-							<span>12345 Little Lonsdale St, Melbourne</span> <br>
-							Phone: <span>(123) 123-456 </span><br>
-							E-Mail:<span> <a href="#">office@example.com</a> </span><br>
-						</div>
-
-						<ul class="social-icons margin-top-20">
-							<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-							<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-							<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-							<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-						</ul>
-
-					</div>
-
-				</div>
-
-				<!-- Copyright -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-		<!-- Footer / End -->
-
-
-		<!-- Back To Top Button -->
-		<div id="backtotop"><a href="#"></a></div>
-	</div>
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
 	<!-- Wrapper / End -->
 	
 	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+	<script>
+
+		let form = document.querySelector("form[name=formUpdt]");
+		let goUrlUpdtForm = "/profileUpdt";
+
+		// 등록버튼
+		document.getElementById("btnUpdate").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlUpdtForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!checkOnlyKoreanEnglishNumber('memberDept',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
+		}
+
+		
+
+	</script>
 
 </body>
 

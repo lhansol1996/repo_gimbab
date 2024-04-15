@@ -52,17 +52,18 @@ public class MemberService {
 		return memberDao.selectLogin(dto);
 	}
 
-	// 회원가입
-	public MemberDto memberReg(MemberDto dto) {
-		return memberDao.memberReg(dto);
+	// 회원가입 - 관리자
+	public int memberReg(MemberDto dto) {
+		memberDao.memberReg(dto);
+		return 1;
 	}
 
 	// 개수 리턴
 	public Integer selectCount(MemberVo vo) {
 		return memberDao.selectCount(vo);
 	}
-	
-	//profile 수정
+
+	// profile 수정
 	public int updateProfile(MemberDto dto) {
 		return memberDao.updateProfile(dto);
 	}

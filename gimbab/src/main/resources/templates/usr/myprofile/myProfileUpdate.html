@@ -108,8 +108,8 @@
 									</div>
 
 									<label>티어</label>
-									<span th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}"></span>
-
+									<span th:if="${item.memberTierCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}"></span>
+									<span unless:if="${item.memberGenderCd != null}" >티어 등록을안하셨습니다.</span>
 								
 									<label>Your Email</label>
 									<input type="text" id="memberEmail" name="memberEmail" th:value="${item.memberEmail}" />
@@ -118,6 +118,8 @@
 
 									<label>성별</label>
 									<span th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
+								
+
 
 									<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
 									<textarea name="memberDept" id="memberDept" cols="30" rows="10" th:text="${item.memberDept}"></textarea>

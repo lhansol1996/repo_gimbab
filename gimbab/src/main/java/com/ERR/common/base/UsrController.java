@@ -66,10 +66,10 @@ public class UsrController extends BaseController {
 	public String myProfileMyPartys(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
 		setSearch(vo);
 
-		vo.setParamsPaging(partyService.selectCount(vo));
+		vo.setParamsPaging(partyService.selectCountProfileMyPartys(vo));
 
 		if (vo.getTotalRows() > 0) {
-			model.addAttribute("list", partyService.profilePartyListWithPagigng(vo));
+			model.addAttribute("list", partyService.profilePartyListWithPaging(vo));
 		}
 		
 		return UsrCommomMyProfilePath + "myProfileMyPartys";
@@ -85,6 +85,32 @@ public class UsrController extends BaseController {
 	public String memberLoginRegister() throws Exception {
 
 		return UsrCommomMemberPath + "memberLoginRegister";
+	}
+	
+	@RequestMapping(value = "/myProfilePartyRequest")
+	public String myProfilePartyRequest(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
+		setSearch(vo);
+
+		vo.setParamsPaging(partyService.selectCountProfileRequest(vo));
+
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", partyService.profilePartyRequestListWithPaging(vo));
+		}
+		
+		return UsrCommomMyProfilePath + "myProfilePartyRequest";
+	}
+
+	@RequestMapping(value = "/myProfilePartyPermit")
+	public String myProfilePartyPermit(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
+		setSearch(vo);
+
+		vo.setParamsPaging(partyService.selectCountProfilePermit(vo));
+
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", partyService.profilePartyPermitListWithPaging(vo));
+		}
+		
+		return UsrCommomMyProfilePath + "myProfilePartyPermit";
 	}
 
 	@RequestMapping(value = "/memberChangePwd")

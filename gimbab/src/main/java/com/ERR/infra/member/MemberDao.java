@@ -25,8 +25,8 @@ public interface MemberDao {
 	//로그인
 	public MemberDto selectLogin(MemberDto dto);
 
-	//회원가입
-	public MemberDto memberReg(MemberDto dto);
+	//회원가입 
+	public int memberReg(MemberDto dto);
 	
 	//개수 리턴
 	public Integer selectCount(MemberVo vo);

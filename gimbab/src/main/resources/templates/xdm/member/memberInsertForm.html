@@ -194,7 +194,7 @@
 
 		function validationUpdt() {
 			if (!checkOnlyKoreanEnglish('memberName',2,0,'한글과 영어만 가능합니다.')) return false;
-			if (!checkOnlyKoreanEnglish('memberID',2,0,'한글과 영어만 가능합니다.')) return false;
+			if (!checkSelectNull('memberID',2,'값넣어.')) return false;
 			if (!checkOnlyKoreanEnglish('memberPwd',2,0,'한글과 영어만 가능합니다.')) return false;
 			if (!checkOnlyNumber('memberBirthday',2,0,0,0,9,'적절한 생년월일을 넣어주십시오 ex)19960825.')) return false;
 			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주십시오.')) return false;

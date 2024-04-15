@@ -141,6 +141,17 @@ public class MemberController extends BaseController {
 		service.memberReg(dto);
 		return "redirect:/memberXdmList";
 	}
+	
+	@RequestMapping(value = "/memberUsrReg")
+	public String memberUsrReg(MemberDto dto, Model model) throws Exception {
+		System.out.println("컨트롤러 넘어옴");
+		System.out.println("컨트롤러 넘어옴");
+		System.out.println("컨트롤러 넘어옴");
+		System.out.println("컨트롤러 넘어옴");
+		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
+		service.memberReg(dto);
+		return "redirect:/userIndex";
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/memberLogin")

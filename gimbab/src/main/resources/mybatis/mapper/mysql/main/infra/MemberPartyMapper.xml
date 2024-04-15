@@ -3,9 +3,10 @@
 
 <mapper namespace="com.ERR.infra.memberParty.MemberPartyDao">
 
-	<resultMap id="resultMapObj" type="com.ERR.infra.memberParty.MemberPartyDto"></resultMap>
-	
-	
+	<resultMap id="resultMapObj"
+		type="com.ERR.infra.memberParty.MemberPartyDto"></resultMap>
+
+
 
 
 	<select id="selectOne" resultMap="resultMapObj">
@@ -21,7 +22,8 @@
 		from
 		memberParty
 		where 1=1
-		and memberPartySeq = #{memberPartySeq}
+		and memberPartySeq =
+		#{memberPartySeq}
 	</select>
 
 	<insert id="insert">
@@ -39,7 +41,29 @@
 		,0
 		);
 
-<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<!-- 값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="memberSeqF"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+	<insert id="insertRequest">
+		insert into memberParty(
+		memberSeqF
+		,partySeqF
+		,masterNy
+		,partyJoinNy
+		,partyOutNy
+		)values(
+		#{memberSeqF}
+		,#{partySeqF}
+		,0
+		,2
+		,0
+		);
+
+		<!-- 값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
 		<selectKey resultType="String" keyProperty="memberSeqF"
 			order="AFTER">
 			select last_insert_id()
@@ -47,7 +71,15 @@
 	</insert>
 
 
-	
-
+	<update id="updatePermit">
+		update memberParty
+		SET
+		partyJoinNy = 1
+		,partyJoinDate = now()
+		
+		where
+		1=1
+		and partySeqF = #{partySeqF}
+	</update>
 
 </mapper>

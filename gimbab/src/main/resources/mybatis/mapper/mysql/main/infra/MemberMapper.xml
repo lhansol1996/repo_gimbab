@@ -180,11 +180,10 @@
 				#{memberBirthday},
 				#{memberEmail},
 				0,
-				#1,
+				#{memberAdminNy},
 				now(),
 				now()
 		    )
-	
 	</insert>
 
 

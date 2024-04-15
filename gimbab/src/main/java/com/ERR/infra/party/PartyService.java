@@ -34,6 +34,20 @@ public class PartyService {
 		return 1;
 	}
 
+	// 신청 버튼
+	public int insertRequest(PartyDto partyDto, MemberPartyDto memberPartyDto) {
+		memberPartyDto.setPartySeqF(partyDao.selectOne(partyDto).getPartySeq());
+		memberPartyDao.insertRequest(memberPartyDto);
+		return 1;
+	}
+
+	// 허가 버튼
+	public int updatePermit(PartyDto partyDto, MemberPartyDto memberPartyDto) {
+		memberPartyDto.setPartySeqF(partyDao.selectOne(partyDto).getPartySeq());
+		memberPartyDao.updatePermit(memberPartyDto);
+		return 1;
+	}
+
 	// 수정 버튼
 	public int update(PartyDto dto) {
 		return partyDao.update(dto);
@@ -59,14 +73,38 @@ public class PartyService {
 		return partyDao.selectCount(vo);
 	}
 
+	// 개수 리턴 - 내파티 목록 개수
+	public Integer selectCountProfileMyPartys(PartyVo vo) {
+		return partyDao.selectCountProfileMyPartys(vo);
+	}
+	// 개수 리턴 - 허가신청할 목록 개수
+	public Integer selectCountProfilePermit(PartyVo vo) {
+		return partyDao.selectCountProfilePermit(vo);
+	}
+
+	// 개수 리턴 - 가입신청한 목록 개수
+	public Integer selectCountProfileRequest(PartyVo vo) {
+		return partyDao.selectCountProfileRequest(vo);
+	}
+
 	// usrIndex에 쓰일 최근 5개 나열 리스트
 	public List<PartyDto> searchPartyForRecent5(PartyDto dto) {
 		return partyDao.searchPartyForRecent5(dto);
 	}
 
 	// 페이징 처리 리스트 (프로파일 나의파티)
-	public List<PartyDto> profilePartyListWithPagigng(PartyVo vo) {
-		return partyDao.profilePartyListWithPagigng(vo);
+	public List<PartyDto> profilePartyListWithPaging(PartyVo vo) {
+		return partyDao.profilePartyListWithPaging(vo);
+	}
+
+	// 페이징 처리 리스트 (프로파일 신청한파티)
+	public List<PartyDto> profilePartyRequestListWithPaging(PartyVo vo) {
+		return partyDao.profilePartyRequestListWithPaging(vo);
+	}
+
+	// 페이징 처리 리스트 (프로파일 가입허가 파티)
+	public List<PartyDto> profilePartyPermitListWithPaging(PartyVo vo) {
+		return partyDao.profilePartyPermitListWithPaging(vo);
 	}
 
 	// 파티 디테일 불러오기

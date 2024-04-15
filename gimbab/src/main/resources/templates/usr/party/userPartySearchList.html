@@ -31,7 +31,8 @@
 									<!-- Status -->
 									<div class="col-md-3">
 										<select data-placeholder="티어" class="chosen-select-no-single"
-											id="voPartyOwnerTierCd" name="voPartyOwnerTierCd">
+											id="voXMemberTierCd" name="voXMemberTierCd">
+											<option selected value="" >티어 선택</option>
 											<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
 												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
 											</option>
@@ -41,6 +42,7 @@
 									<div class="col-md-3">
 										<select data-placeholder="랭크/일반" class="chosen-select-no-single"
 											id="voPartyMatchTypeCd" name="voPartyMatchTypeCd">
+											<option selected value="" >파티타입 선택</option>
 											<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
 												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
 											</option>
@@ -126,16 +128,16 @@
 							<div class="listing-content">
 
 								<div class="listing-title">
-									<h4 th:text="${list.partyName}"><a href="single-property-page-1.html">파티이름</a></h4>
-									<a href="party-detail.html" class="details button border">파티바로가기(세부정보)</a>
+									<h4 th:text="${list.partyName}">파티이름</h4>
+									<a th:href="@{/userPartyDetail (partySeq=${list.partySeq})}" href="#" class="details button border">파티바로가기(세부정보)</a>
 								</div>
 
 								<ul class="listing-details">
 									<li>티어 <span
-											th:text="${@codeService.selectOneCachedCode(list.partyOwnerTierCd)}">다이아</span>
+											th:if="${list.xMasterNy== '1'}" th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
 									</li>
-									<li>승률 <span th:text="${list.partyOwnerRate}">ㅁㄴ%</span></li>
-									<li>평균 kda <span th:text="${list.partyOwnerKDA}">2</span></li>
+									<li>승률 <span th:if="${list.xMasterNy=='1'}" th:text="${list.xMemberVictoryRate}">ㅁㄴ%</span></li>
+									<li>평균 kda <span th:if="${list.xMasterNy=='1'}" th:text="${list.xMemberKDA}">2</span></li>
 								</ul>
 
 								<div class="listing-footer">

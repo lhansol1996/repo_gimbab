@@ -10,14 +10,16 @@
                 <ul class="my-account-nav">
                     <li class="sub-nav-title">Manage Account</li>
                     <li><a th:href="@{/myProfileUpdate}" href="#"><i class="sl sl-icon-user" ></i> My Profile</a></li>
-                    <li><a th:href="@{/myProfileMyPartys}" href="#"><i class="fa fa-legal" ></i> 내가 참가한 파티</a></li>
-                    <li><a th:href="@{/myProfilePartyMake}" href="#"><i class="sl sl-icon-star"></i> 파티 만들기</a></li>
+                    
                 </ul>
 
 
                 <ul class="my-account-nav">
-                    <li><a th:href="@{/memberChangePwd}" href="#"><i class="sl sl-icon-lock"></i> Change Password</a>
-                    </li>
+                    <!-- <li><a th:href="@{/memberChangePwd}" href="#"><i class="sl sl-icon-lock"></i> Change Password</a></li>/ -->
+                    <li><a th:href="@{/myProfilePartyMake}" href="#"><i class="sl sl-icon-star"></i> 파티 만들기</a></li>
+                    <li><a th:href="@{/myProfileMyPartys (VoXMemberSeqF=${session.sessMemberSeq})}" href="#"><i class="fa fa-legal" ></i> 내가 참가한 파티</a></li>
+                    <li><a th:href="@{/myProfilePartyRequest (VoXMemberSeqF=${session.sessMemberSeq})}" href="#"><i class="sl sl-icon-user-follow"></i>신청 대기중인 파티</a></li>
+                    <li><a th:href="@{/myProfilePartyPermit (VoXMemberSeqF=${session.sessMemberSeq})}" href="#"><i class="sl sl-icon-user-following"></i>가입 신청허가 대기중인 파티</a></li>
                 </ul>
 
             </div>

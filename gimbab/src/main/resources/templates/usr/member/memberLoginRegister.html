@@ -99,7 +99,7 @@
 
 									<div class="form-row form-row-wide">
 										<label for="memberID">ID:</label>
-										<input type="text" class="input-text" name="memberID" id="memberID" value="" />
+										<input type="text" class="input-text" name="memberID" id="memberID" />
 										<div class="invalid-feedback" id="memberIDFeedback"></div>
 									</div>
 
@@ -121,49 +121,55 @@
 							<!-- Register -->
 							<div class="tab-content" id="tab2" style="display: none;">
 
-								<form method="post" class="register">
+								<form method="post" class="register" name="formRegister" id="formRegister">
+									<input type="hidden" name="memberAdminNy" id="memberAdminNy" th:value="0">
 
 									<div class="form-row form-row-wide">
 										<label for="memberID2">ID:</label>
-										<input type="text" class="input-text" name="memberID" id="memberID2" value="" />
+										<input type="text" class="input-text" name="memberID" id="memberID2" />
 									</div>
 
 
 									<div class="form-row form-row-wide">
 										<label for="memberPwd2">비밀번호:</label>
-										<input class="input-text" type="password" name="memberPwd2" id="memberPwd2" />
+										<input class="input-text" type="password" name="memberPwd" id="memberPwd2" />
 									</div>
 
 									<div class="form-row form-row-wide">
 										<label for="memberName">이름:</label>
-										<input class="input-text" type="password" name="memberName" id="memberName" />
+										<input class="input-text" type="text" name="memberName" id="memberName" />
 										<div class="invalid-feedback" id="memberNameFeedback"></div>
 									</div>
 
 									<div class="form-row form-row-wide">
 										<label for="memberGenderCd">성별:</label>
-										<select class="" name="memberGenderCd" id="memberGenderCd">
-											<option value="1">남</option>
-											<option value="2">여</option>
+										<select class="form-select" name="memberGenderCd" id="memberGenderCd">
+											<option value="" selected>성별을 선택하세요</option>
+											<option th:each="codeList : ${@codeService.selectListCachedCode(3)}"
+											th:value="${codeList.codeSeq}"
+											th:text="${codeList.codeName}">
+											</option>
 										</select>
+										<div class="invalid-feedback" id="memberGenderCdFeedback"></div>
 									</div>
+
 
 									<div class="form-row form-row-wide">
 										<label for="memberBirthday">생년월일:</label>
 										<input type="text" class="input-text" name="memberBirthday" id="memberBirthday"
-											placeholder="ex&#41; 19960825" value="" />
+											placeholder="ex&#41; 19960825" />
 									</div>
 
 									<div class="form-row form-row-wide">
 										<label for="email2">Email:</label>
 										<input type="text" class="input-text" name="memberEmail" id="memberEmail"
-											placeholder="email1@naver.com" value="" />
+											placeholder="email1@naver.com" />
 									</div>
 
 									<div class="form-row">
-										<button class="btn btn-primary" id="btnReg"
+										<button class="btn btn-primary" id="btnReg" type="button"
 											style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.5rem;">
-											로그인
+											등록
 										</button>
 									</div>
 
@@ -190,7 +196,7 @@
 			let formR = document.querySelector("form[name=formRegister]");
 			let formL = document.querySelector("form[name=formLogin]");
 			let seq = document.querySelector("input[name=seq]");
-			// let goUrlXdmInstForm = "/codeGroupInsert";							
+			let goUrlUsrInstForm = "/memberUsrReg";							
 			// let goUrlXdmView = "/codeGroupXdmView";		
 
 			// 등록버튼
@@ -201,32 +207,8 @@
 					return false;
 				} else {
 					alert('안걸림')
-					// $.ajax({
-					// 	async: true 
-					// 	,cache: false
-					// 	,type: "post"
-					// 	/* ,dataType:"json" */
-					// 	,url: "/memberLoginRegister"
-					// 	/* ,data : $("#formLogin").serialize() */
-					// 	,data : { "memberID" : $("#memberID").val(), "memberPwd" : $("#memberPwd").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-					// 	,success: function(response) {
-					// 		if(response.rt == "success") {
-					// 			if(response.changePwd == "true") {
-					// 				location.href = "/codeGroupDView";
-					// 			} else {
-					// 				location.href = "/codeGroupList";
-					// 			}
-					// 		} else {
-					// 			alert('로그인 안됨')
-					// 			 // document.getElementById("modalAlertTitle").innerText = "확 인";
-					// 			 // document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-					// 			 // $("#modalAlert").modal("show");
-					// 		}
-					// 	}
-					// 	,error : function(jqXHR, textStatus, errorThrown){
-					// 		alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					// 	}
-					// });
+					formR.action = goUrlUsrInstForm
+					formR.submit();
 				}
 
 			}

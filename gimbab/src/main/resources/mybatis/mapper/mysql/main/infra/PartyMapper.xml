@@ -10,6 +10,8 @@
 			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
 			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
+			AND mp.masterNy = 1
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
 			<if test="voXMemberTierCd != null and voXMemberTierCd.equals('')">AND m.memberTierCd = #{voXMemberTierCd}</if>
 			<if test="voPartyMatchTypeCd != null and !voPartyMatchTypeCd.equals('')">AND a.partyMatchTypeCd = #{voPartyMatchTypeCd}</if>
 			<if test="voPartyName !=null and !voPartyName.equals('')">AND a.partyName LIKE CONCAT('%',#{voPartyName},'%')</if>
@@ -138,7 +140,7 @@
 		SELECT COUNT(*)
 			<include refid="commonSelectParty" />
 	</select>
-
+	
 	<select id="searchPartyForRecent5">
 		SELECT 
 			a.partySeq
@@ -159,8 +161,40 @@
 		LIMIT 0, 5;
 	
 	</select>
+	
+	<select id="selectCountProfileMyPartys" resultType="Integer">
+		SELECT COUNT(*)
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+			WHERE 1=1	
+				and	mp.PartyJoinNy = 1
+				and mp.memberSeqF = #{voXMemberSeqF}
+	</select>
+	
+	<select id="selectCountProfileRequest" resultType="Integer">
+		SELECT COUNT(*)
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+			WHERE 1=1	
+				and	mp.PartyJoinNy = 2
+				and mp.memberSeqF = #{voXMemberSeqF}
+	</select>
+	
+	<select id="selectCountProfilePermit" resultType="Integer">
+		SELECT COUNT(*)
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+				
+			WHERE 1=1	
+	</select>
+	
 
-	<select id="profilePartyListWithPagigng">
+	
+
+	<select id="profilePartyListWithPaging">
 		<include refid="base.selectHeader" />
 			SELECT 
 			a.partySeq
@@ -180,6 +214,56 @@
 				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 			WHERE 1=1	
 				and	mp.PartyJoinNy = 1
+				and mp.memberSeqF = #{voXMemberSeqF}
+			ORDER BY a.partyRegDate DESC
+			<include refid="base.selectFooterMysql" />
+	</select>
+	
+	<select id="profilePartyRequestListWithPaging">
+		<include refid="base.selectHeader" />
+			SELECT 
+			a.partySeq
+			,a.partyName
+			,a.partyMatchTypeCd
+			,a.partyRegDate
+			,m.memberName as xMemberName
+			,m.memberTierCd as xMemberTierCd
+			,m.memberKDA as xMemberKDA
+			,m.memberVictoryRate xMemberVictoryRate
+			,mp.masterNy as xMasterNy
+			,mp.partyJoinNy as xPartyJoinNy
+			,mp.partyOutNy as xPartyOutNy
+			
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+			WHERE 1=1	
+				and	mp.PartyJoinNy = 2
+				and mp.memberSeqF = #{voXMemberSeqF}
+			ORDER BY a.partyRegDate DESC
+			<include refid="base.selectFooterMysql" />
+	</select>
+	
+	<select id="profilePartyPermitListWithPaging">
+		<include refid="base.selectHeader" />
+			SELECT 
+			a.partySeq
+			,a.partyName
+			,a.partyMatchTypeCd
+			,a.partyRegDate
+			,m.memberName as xMemberName
+			,m.memberTierCd as xMemberTierCd
+			,m.memberKDA as xMemberKDA
+			,m.memberVictoryRate xMemberVictoryRate
+			,mp.masterNy as xMasterNy
+			,mp.partyJoinNy as xPartyJoinNy
+			,mp.partyOutNy as xPartyOutNy
+			,mp.memberSeqF as xMemberSeq
+			
+			FROM party a
+				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+			WHERE 1=1	
 			ORDER BY a.partyRegDate DESC
 			<include refid="base.selectFooterMysql" />
 	</select>
@@ -190,6 +274,7 @@
 			,a.partyName
 			,a.partyMatchTypeCd
 			,a.partyRegDate
+			,m.memberSeq as xMemberSeq 
 			,m.memberName as xMemberName
 			,m.memberTierCd as xMemberTierCd
 			,m.memberKDA as xMemberKDA

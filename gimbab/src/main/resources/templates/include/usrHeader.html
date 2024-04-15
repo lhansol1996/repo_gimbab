@@ -37,11 +37,11 @@
 
                 <!-- Left Side Content -->
                 <div class="left-side">
-
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="index.html"><img src="xdm/assets/images/logoERR-dark.svg" alt=""></a>
+                        <a th:href="@{/userIndex}" href="#"><img src="xdm/assets/images/logoERR-dark.svg" alt=""></a>
                     </div>
+                    <span>반갑습니다!! : <span th:text="${session.sessMemberId}"></span>
 
 
 
@@ -66,7 +66,8 @@
 
                         <a th:if="${session.sessMemberSeq != null}" href="submit-property.html" th:href="@{/myProfileUpdate}" class="button border">my
                             account 가기</a>
-                    </div>
+                        </div>
+                    
                     <!-- Header Widget / End -->
                 </div>
                 <!-- Right Side Content / End -->

@@ -35,13 +35,13 @@
 		<div class="row">
 			<div class="col-md-12">
 
-				<h2>참가한 파티 목록</h2>
+				<h2>신청한 파티 목록</h2>
 
 				<!-- Breadcrumbs -->
 				<nav id="breadcrumbs">
 					<ul>
 						<li><a href="#">Home</a></li>
-						<li>참가한 파티</li>
+						<li>신청한 파티</li>
 					</ul>
 				</nav>
 
@@ -71,7 +71,7 @@
 				<table class="manage-table bookmarks-table responsive-table">
 
 					<tr>
-						<th><i class="fa fa-group"></i> 참가한 파티</th>
+						<th><i class="fa fa-group"></i> 참가 신청한 파티</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -84,13 +84,7 @@
 						</td>
 						<td>
 							<div class="title-container">
-								<h4>파티이름 : <a th:href="@{/userPartyDetail (partySeq=${list.partySeq})}" href="#" th:text="${list.partyName}"></a></h4>
-								<span>파티장 이름 : <span th:if="${list.xMasterNy == '1'}" th:text="${list.xMemberName}"></span></span>
-								<span>파티장 티어 : 
-									<span class="table-property-price" th:if="${list.xMasterNy == '1' && list.xMemberTierCd != null}"  th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}"></span>
-									<span class="table-property-price" th:unless="${list.xMasterNy == '1' && list.xMemberTierCd != null}">파티장이 티어를 등록하지않았습니다.</span>
-								</span>
-								
+								<h4>파티이름 : <a href="#" th:text="${list.partyName}"></a></h4>
 							</div>	
 						</td>
 						<td class="action">
@@ -124,11 +118,11 @@
 <div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 <script>
-    let goUrlProfilePartyList = "/myProfileMyPartys";
+    let goUrlProfilePartyRequestList = "/myProfilePartyRequest";
 	let form = document.querySelector("form[name=formList]");
 	goList = function (thisPage) {
 		document.querySelector("input[name=thisPage]").value = thisPage;
-		form.action = goUrlProfilePartyList;
+		form.action = goUrlProfilePartyRequestList;
 		form.submit();
 		}
 </script>

@@ -77,6 +77,17 @@ public class PartyController extends BaseController {
 		return "redirect:/partyXdmList";
 	}
 
+	@RequestMapping(value = "/insertReq")
+	public String insertReq(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+			throws Exception {
+		System.out.println(
+				httpSession.getAttribute("sessMemberSeq") + "================================================");
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
+
+		partyservice.insert(partyDto, memberPartyDto);
+		return "redirect:/myProfilePartyRequest";
+	}
+
 	@RequestMapping(value = "/partyUpdt")
 	public String partyUpdt(PartyDto dto, Model model) throws Exception {
 
@@ -115,6 +126,35 @@ public class PartyController extends BaseController {
 		model.addAttribute("item", partyservice.selectOneDetail(dto));
 
 		return UsrPartyCommonPath + "userPartyDetail";
+	}
+
+	@RequestMapping(value = "/partyUsrInsert")
+	public String partyUsrInsert(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+			throws Exception {
+		System.out.println(
+				httpSession.getAttribute("sessMemberSeq") + "================================================");
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
+
+		partyservice.insert(partyDto, memberPartyDto);
+		return "redirect:/myProfileMyPartys";
+	}
+
+	@RequestMapping(value = "/insertRequest")
+	public String insertRequest(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+			throws Exception {
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
+
+		partyservice.insertRequest(partyDto, memberPartyDto);
+		return "redirect:/myProfileMyPartys";
+	}
+
+	@RequestMapping(value = "/updatePermit")
+	public String updatePermit(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+			throws Exception {
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
+
+		partyservice.updatePermit(partyDto, memberPartyDto);
+		return "redirect:/myProfilePartyPermit";
 	}
 
 }

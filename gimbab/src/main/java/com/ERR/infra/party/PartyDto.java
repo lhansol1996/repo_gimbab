@@ -11,6 +11,7 @@ public class PartyDto {
 	private Date partyRegDate;
 	private Date partyModDate;
 
+	private String xMemberSeq;
 	private String xMemberName;
 	private String xPartySeqF;
 	private String xMemberSeqF;
@@ -138,6 +139,14 @@ public class PartyDto {
 
 	public void setxMemberKDA(double xMemberKDA) {
 		this.xMemberKDA = xMemberKDA;
+	}
+
+	public String getxMemberSeq() {
+		return xMemberSeq;
+	}
+
+	public void setxMemberSeq(String xMemberSeq) {
+		this.xMemberSeq = xMemberSeq;
 	}
 
 }

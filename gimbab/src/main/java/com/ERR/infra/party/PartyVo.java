@@ -6,7 +6,7 @@ public class PartyVo extends BaseVo {
 	private String voPartySeq;
 	private String voPartyName;
 	private String voPartyMatchTypeCd;
-
+	
 	private String voXMemberName;
 	private String voXPartySeqF;
 	private String voXMemberSeqF;

@@ -43,7 +43,6 @@ public class PartyService {
 
 	// 허가 버튼
 	public int updatePermit(PartyDto partyDto, MemberPartyDto memberPartyDto) {
-		memberPartyDto.setPartySeqF(partyDao.selectOne(partyDto).getPartySeq());
 		memberPartyDao.updatePermit(memberPartyDto);
 		return 1;
 	}
@@ -110,6 +109,11 @@ public class PartyService {
 	// 파티 디테일 불러오기
 	public PartyDto selectOneDetail(PartyDto dto) {
 		return partyDao.selectOneDetail(dto);
+	}
+	
+	//파티 멤버 불러오기
+	public List<PartyDto> selectPartyMember(String partySeq) {
+		return partyDao.selectPartyMember(partySeq);
 	}
 
 }

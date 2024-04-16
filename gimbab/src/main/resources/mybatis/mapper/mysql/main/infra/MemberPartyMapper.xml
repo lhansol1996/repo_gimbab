@@ -80,6 +80,7 @@
 		where
 		1=1
 		and partySeqF = #{partySeqF}
+		and memberSeqF = #{memberSeqF}
 	</update>
 
 </mapper>

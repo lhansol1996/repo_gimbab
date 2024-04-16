@@ -69,8 +69,6 @@ public class PartyController extends BaseController {
 	@RequestMapping(value = "/partyInsert")
 	public String partyInsert(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
 			throws Exception {
-		System.out.println(
-				httpSession.getAttribute("sessMemberSeq") + "================================================");
 		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
 		partyservice.insert(partyDto, memberPartyDto);
@@ -80,8 +78,6 @@ public class PartyController extends BaseController {
 	@RequestMapping(value = "/insertReq")
 	public String insertReq(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
 			throws Exception {
-		System.out.println(
-				httpSession.getAttribute("sessMemberSeq") + "================================================");
 		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
 		partyservice.insert(partyDto, memberPartyDto);
@@ -122,8 +118,10 @@ public class PartyController extends BaseController {
 	}
 
 	@RequestMapping(value = "/userPartyDetail")
-	public String userPartyDetail(PartyDto dto, Model model) throws Exception {
+	public String userPartyDetail(PartyDto dto, Model model, Model model2) throws Exception {
+
 		model.addAttribute("item", partyservice.selectOneDetail(dto));
+		model2.addAttribute("list", partyservice.selectPartyMember(dto.getPartySeq()));
 
 		return UsrPartyCommonPath + "userPartyDetail";
 	}
@@ -131,8 +129,6 @@ public class PartyController extends BaseController {
 	@RequestMapping(value = "/partyUsrInsert")
 	public String partyUsrInsert(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
 			throws Exception {
-		System.out.println(
-				httpSession.getAttribute("sessMemberSeq") + "================================================");
 		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
 		partyservice.insert(partyDto, memberPartyDto);
@@ -151,7 +147,7 @@ public class PartyController extends BaseController {
 	@RequestMapping(value = "/updatePermit")
 	public String updatePermit(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
 			throws Exception {
-		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
+		System.out.println(memberPartyDto.getMemberSeqF());
 
 		partyservice.updatePermit(partyDto, memberPartyDto);
 		return "redirect:/myProfilePartyPermit";

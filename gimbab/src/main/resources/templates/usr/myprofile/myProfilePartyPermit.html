@@ -77,7 +77,7 @@
 					</tr>
 
 					<!-- Item #1 -->
-					<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
+					<tr th:if="${!#lists.isEmpty(list) && list.xMasterSeqF == session.sessMemberSeq}" th:each="list:${list}">
 						<td class="title-container">
 							<img src="xdm/assets/images/listing-01.jpg" alt="">
 							
@@ -92,7 +92,7 @@
 								</div>	
 						</td>
 						<td class="action">
-							<a th:href="@{/updatePermit (partySeqF=${list.partySeq})}" href="#" class="delete"><i class="im im-icon-Add"></i> 가입 허가</a>
+							<a th:href="@{/updatePermit (partySeqF=${list.partySeq}, memberSeqF=${list.xMemberSeqF})}" href="#" class="delete"><i class="im im-icon-Add"></i> 가입 허가</a>
 						</td>
 					</tr>
 

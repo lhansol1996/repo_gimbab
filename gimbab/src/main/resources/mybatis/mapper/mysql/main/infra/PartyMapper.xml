@@ -3,30 +3,36 @@
 
 <mapper namespace="com.ERR.infra.party.PartyDao">
 
-	<resultMap id="resultMapObj" type="com.ERR.infra.party.PartyDto"></resultMap>
-	
+	<resultMap id="resultMapObj"
+		type="com.ERR.infra.party.PartyDto"></resultMap>
+
 	<sql id="commonSelectParty">
 		FROM party a
-			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
-			AND mp.masterNy = 1
-			<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
-			<if test="voXMemberTierCd != null and voXMemberTierCd.equals('')">AND m.memberTierCd = #{voXMemberTierCd}</if>
-			<if test="voPartyMatchTypeCd != null and !voPartyMatchTypeCd.equals('')">AND a.partyMatchTypeCd = #{voPartyMatchTypeCd}</if>
-			<if test="voPartyName !=null and !voPartyName.equals('')">AND a.partyName LIKE CONCAT('%',#{voPartyName},'%')</if>
-		
+		AND mp.masterNy = 1
+		<if test="voDelNy != null and !voDelNy.equals('')">AND a.partyDelNy = #{voDelNy}</if>
+		<if test="voXMemberTierCd != null and voXMemberTierCd.equals('')">AND m.memberTierCd = #{voXMemberTierCd}</if>
+		<if
+			test="voPartyMatchTypeCd != null and !voPartyMatchTypeCd.equals('')">AND a.partyMatchTypeCd = #{voPartyMatchTypeCd}</if>
+		<if test="voPartyName !=null and !voPartyName.equals('')">AND a.partyName LIKE CONCAT('%',#{voPartyName},'%')</if>
+
 		<choose>
-			<when test="voOptionDate == 1">AND a.partyRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
-			<when test="voOptionDate == 2">AND a.partyModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 1">AND a.partyRegDate BETWEEN #{voDateStart} AND
+				#{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.partyModDate BETWEEN #{voDateStart} AND
+				#{voDateEnd}</when>
 		</choose>
 
 		<choose>
 			<when test="voOption == 1">AND a.partySeq = #{voValue}</when>
-			<when test="voOption == 2">AND a.partyName LIKE CONCAT('%',#{voValue},'%')</when>
-			<when test="voOption == 3">AND a.partyMatchTypeCd LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 2">AND a.partyName LIKE CONCAT('%',#{voValue},'%')
+			</when>
+			<when test="voOption == 3">AND a.partyMatchTypeCd LIKE
+				CONCAT('%',#{voValue},'%')</when>
 		</choose>
-	
+
 	</sql>
 
 
@@ -44,7 +50,7 @@
 		where 1=1
 		and partySeq = #{partySeq}
 	</select>
-	
+
 	<select id="selectPartySeq" resultMap="resultMapObj">
 		select
 		partySeq
@@ -53,7 +59,7 @@
 		where 1=1
 		and partySeq = #{partySeq}
 	</select>
-	
+
 
 	<insert id="insert">
 		insert into party(
@@ -68,7 +74,7 @@
 		,0
 		);
 
-<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<!-- 값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
 		<selectKey resultType="String" keyProperty="partySeq"
 			order="AFTER">
 			select last_insert_id()
@@ -80,9 +86,11 @@
 		UPDATE party
 		SET
 		partyName = #{partyName}
-		,partyDept = #{partyDept}
+		,partyDept =
+		#{partyDept}
 		,partyMatchTypeCd = #{partyMatchTypeCd}
-		,partyModDate = now()
+		,partyModDate =
+		now()
 		where
 		1=1
 		and partySeq = #{partySeq}
@@ -93,7 +101,8 @@
 		SET
 		partyDelNy=1
 		where 1=1
-		and partySeq=#{partySeq}
+		and
+		partySeq=#{partySeq}
 	</update>
 
 	<delete id="delete">
@@ -101,194 +110,223 @@
 		where 1=1
 		and partySeq = #{partySeq}
 	</delete>
-	
+
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
-		select 
+		select
 		partySeq,
 		partyName
 		from party
 		where 1=1
-			AND partyDelNy=0
+		AND partyDelNy=0
 	</select>
-	
-	<select id="selectListWithPaging"  resultMap="resultMapObj">
-			<include refid="base.selectHeader" />
-			SELECT
-				  a.partySeq
-			    , a.partyName
-			    , a.partyDept
-			    , a.partyMatchTypeCd
-				, a.partyDelNy
-				, a.partyRegDate
-				, a.partyModDate
-				, m.memberName as xMemberName
-				,m.memberTierCd as xMemberTierCd
-				,m.memberKDA as xMemberKDA
-				,m.memberVictoryRate as xMemberVictoryRate
-				,mp.masterNy as xMasterNy
-				
-			<include refid="commonSelectParty" />
-			
- 
-			
-			ORDER BY a.partySeq desc, a.partyName, a.partySeq
-			<include refid="base.selectFooterMysql" />
-	
+
+	<select id="selectListWithPaging" resultMap="resultMapObj">
+		<include refid="base.selectHeader" />
+		SELECT
+		a.partySeq
+		, a.partyName
+		, a.partyDept
+		, a.partyMatchTypeCd
+		, a.partyDelNy
+		, a.partyRegDate
+		, a.partyModDate
+		, m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate as xMemberVictoryRate
+		,mp.masterNy as xMasterNy
+
+		<include refid="commonSelectParty" />
+
+
+
+		ORDER BY a.partySeq desc, a.partyName, a.partySeq
+		<include refid="base.selectFooterMysql" />
+
 	</select>
-	
+
 	<select id="selectCount" resultType="Integer">
 		SELECT COUNT(*)
-			<include refid="commonSelectParty" />
+		<include refid="commonSelectParty" />
 	</select>
-	
+
 	<select id="searchPartyForRecent5">
-		SELECT 
-			a.partySeq
-			,a.partyName
-			,a.partyMatchTypeCd
-			,a.partyRegDate
-			,a.partyModDate
-			,a.partyDept
-			,m.memberName as xMemberName
-			,m.memberTierCd as xMemberTierCd
-			,m.memberKDA as xMemberKDA
-			,m.memberVictoryRate as xMemberVictoryRate
+		SELECT
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,a.partyRegDate
+		,a.partyModDate
+		,a.partyDept
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate as xMemberVictoryRate
 		FROM party a
-			LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-			LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-		WHERE 1=1	
-			ORDER BY partyRegDate DESC
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		AND mp.MasterNy = 1
+		ORDER BY partyRegDate DESC
 		LIMIT 0, 5;
 	
 	</select>
-	
+
 	<select id="selectCountProfileMyPartys" resultType="Integer">
-		SELECT COUNT(*)
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-			WHERE 1=1	
-				and	mp.PartyJoinNy = 1
-				and mp.memberSeqF = #{voXMemberSeqF}
+		SELECT
+		COUNT(*)
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		and mp.PartyJoinNy = 1
+		and mp.memberSeqF = #{voXMemberSeqF}
 	</select>
-	
+
 	<select id="selectCountProfileRequest" resultType="Integer">
-		SELECT COUNT(*)
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-			WHERE 1=1	
-				and	mp.PartyJoinNy = 2
-				and mp.memberSeqF = #{voXMemberSeqF}
+		SELECT
+		COUNT(*)
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		and mp.PartyJoinNy = 2
+		and mp.memberSeqF = #{voXMemberSeqF}
 	</select>
-	
+
 	<select id="selectCountProfilePermit" resultType="Integer">
 		SELECT COUNT(*)
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-				
-			WHERE 1=1	
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		AND mp.partyJoinNy = 2
 	</select>
-	
 
-	
 
 	<select id="profilePartyListWithPaging">
 		<include refid="base.selectHeader" />
-			SELECT 
-			a.partySeq
-			,a.partyName
-			,a.partyMatchTypeCd
-			,a.partyRegDate
-			,m.memberName as xMemberName
-			,m.memberTierCd as xMemberTierCd
-			,m.memberKDA as xMemberKDA
-			,m.memberVictoryRate xMemberVictoryRate
-			,mp.masterNy as xMasterNy
-			,mp.partyJoinNy as xPartyJoinNy
-			,mp.partyOutNy as xPartyOutNy
-			
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-			WHERE 1=1	
-				and	mp.PartyJoinNy = 1
-				and mp.memberSeqF = #{voXMemberSeqF}
-			ORDER BY a.partyRegDate DESC
-			<include refid="base.selectFooterMysql" />
+		SELECT
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,a.partyRegDate
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate xMemberVictoryRate
+		,mp.masterNy as xMasterNy
+		,mp.partyJoinNy as xPartyJoinNy
+		,mp.partyOutNy as xPartyOutNy
+
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		and mp.PartyJoinNy = 1
+		and mp.memberSeqF = #{voXMemberSeqF}
+		ORDER BY a.partyRegDate DESC
+		<include refid="base.selectFooterMysql" />
 	</select>
-	
+
 	<select id="profilePartyRequestListWithPaging">
 		<include refid="base.selectHeader" />
-			SELECT 
-			a.partySeq
-			,a.partyName
-			,a.partyMatchTypeCd
-			,a.partyRegDate
-			,m.memberName as xMemberName
-			,m.memberTierCd as xMemberTierCd
-			,m.memberKDA as xMemberKDA
-			,m.memberVictoryRate xMemberVictoryRate
-			,mp.masterNy as xMasterNy
-			,mp.partyJoinNy as xPartyJoinNy
-			,mp.partyOutNy as xPartyOutNy
-			
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-			WHERE 1=1	
-				and	mp.PartyJoinNy = 2
-				and mp.memberSeqF = #{voXMemberSeqF}
-			ORDER BY a.partyRegDate DESC
-			<include refid="base.selectFooterMysql" />
+		SELECT
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,a.partyRegDate
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate xMemberVictoryRate
+		,mp.masterNy as xMasterNy
+		,mp.partyJoinNy as xPartyJoinNy
+		,mp.partyOutNy as xPartyOutNy
+
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		and mp.PartyJoinNy = 2
+		and mp.memberSeqF = #{voXMemberSeqF}
+		ORDER BY a.partyRegDate DESC
+		<include refid="base.selectFooterMysql" />
 	</select>
-	
+
 	<select id="profilePartyPermitListWithPaging">
 		<include refid="base.selectHeader" />
-			SELECT 
-			a.partySeq
-			,a.partyName
-			,a.partyMatchTypeCd
-			,a.partyRegDate
-			,m.memberName as xMemberName
-			,m.memberTierCd as xMemberTierCd
-			,m.memberKDA as xMemberKDA
-			,m.memberVictoryRate xMemberVictoryRate
-			,mp.masterNy as xMasterNy
-			,mp.partyJoinNy as xPartyJoinNy
-			,mp.partyOutNy as xPartyOutNy
-			,mp.memberSeqF as xMemberSeq
-			
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
-			WHERE 1=1	
-			ORDER BY a.partyRegDate DESC
-			<include refid="base.selectFooterMysql" />
+		SELECT
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,a.partyRegDate
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate xMemberVictoryRate
+		,mp.masterNy as xMasterNy
+		,mp.partyJoinNy as xPartyJoinNy
+		,mp.partyOutNy as xPartyOutNy
+		,mp.memberSeqF as xMemberSeqF
+		,(SELECT memberSeqF FROM memberParty WHERE masterNy = 1 AND partySeqF =
+		a.partySeq) as xMasterSeqF
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		WHERE 1=1
+		AND mp.partyJoinNy = 2
+		ORDER BY a.partyRegDate DESC
+		<include refid="base.selectFooterMysql" />
 	</select>
 
 	<select id="selectOneDetail" resultMap="resultMapObj">
-			SELECT 
-			a.partySeq
-			,a.partyName
-			,a.partyMatchTypeCd
-			,a.partyRegDate
-			,m.memberSeq as xMemberSeq 
-			,m.memberName as xMemberName
-			,m.memberTierCd as xMemberTierCd
-			,m.memberKDA as xMemberKDA
-			,m.memberVictoryRate xMemberVictoryRate
-			,mp.masterNy as xMasterNy
-			,mp.partyJoinNy as xPartyJoinNy
-			,mp.partyOutNy as xPartyOutNy
-			
-			FROM party a
-				LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
-				LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		SELECT
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,a.partyRegDate
+		,m.memberSeq as xMemberSeqF
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate xMemberVictoryRate
+		,mp.masterNy as xMasterNy
+		,mp.partyJoinNy as xPartyJoinNy
+		,mp.partyOutNy as xPartyOutNy
+
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		where 1=1
-		and partySeq = #{partySeq}
-		and mp.PartyJoinNy = 1
+		and partySeq =
+		#{partySeq}
+		and mp.masterNy = 1
 	</select>
 
+	<select id="selectPartyMember" resultMap="resultMapObj">
+		SELECT
+		a.partySeq
+		,a.partyName
+		,a.partyMatchTypeCd
+		,a.partyRegDate
+		,m.memberSeq as xMemberSeqF
+		,m.memberName as xMemberName
+		,m.memberTierCd as xMemberTierCd
+		,m.memberKDA as xMemberKDA
+		,m.memberVictoryRate xMemberVictoryRate
+		,mp.masterNy as xMasterNy
+		,mp.partyJoinNy as xPartyJoinNy
+		,mp.partyOutNy as xPartyOutNy
+		,mp.partyJoinDate as xPartyJoinDate
+
+		FROM party a
+		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
+		where 1=1
+		and partySeq = #{partySeq}
+		and mp.masterNy = 0
+		and mp.partyJoinNy = 1
+	</select>
+	
 </mapper>

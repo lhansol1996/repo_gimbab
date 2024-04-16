@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class UsrController extends BaseController {
 	private String UsrCommonPath = "usr/";
-	private String UsrCommonPartyPath = "usr/party/";
 	private String UsrCommomMemberPath = "usr/member/";
 	private String UsrCommomMyProfilePath = "usr/myprofile/";
 	@Autowired

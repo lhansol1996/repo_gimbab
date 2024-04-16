@@ -19,8 +19,12 @@
 					<div class="col-md-12">
 					<form name="formInsert" id="formInsert" method="post">
 						<input type="hidden" name="partySeq" id="partySeq" th:value="${item.partySeq}" />
-						<button type="button" th:if="${item.xMemberSeq != session.sessMemberSeq}" id="btnRequest" href="listings-list-with-sidebar.html"
-							class="back-to-listings">신청</button>
+						<button type="button" 
+							th:if="${item.xMemberSeqF != session.sessMemberSeq}" id="btnRequest" href="#" class="back-to-listings">신청
+						</button>
+						<div 
+							th:unless="${item.xMemberSeqF != session.sessMemberSeq}" href="#" class="back-to-listings">파티장입니다.
+						</div>
 						<div class="property-title">
 							<h2 th:text="${item.partyName}">파티 이름</h2>
 						</div>
@@ -82,12 +86,9 @@
 
 							<p th:text="${item.partyDept}">블라블라</p>
 
-
-
 						</div>
 
 
-						<!-- 현재 파티원
 						<h3 class="desc-headline no-border">현재 가입한 파티원</h3>
 
 						<div class="container">
@@ -101,13 +102,6 @@
 											<div class="sort-by">
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="layout-switcher">
-												<a href="#" class="list"><i class="fa fa-th-list"></i></a>
-												<a href="#" class="grid"><i class="fa fa-th-large"></i></a>
-												<a href="#" class="grid-three"><i class="fa fa-th"></i></a>
-											</div>
-										</div>
 									</div>
 
 
@@ -116,34 +110,31 @@
 										<div class="listing-item">
 
 											<a href="single-property-page-1.html" class="listing-img-container">
-
-												<div class="listing-carousel">
-													<div><img src="images/listing-01.jpg" alt=""></div>
-													<div><img src="images/listing-01b.jpg" alt=""></div>
-													<div><img src="images/listing-01c.jpg" alt=""></div>
-												</div>
+												<div><img src="xdm/assets/images/listing-01.jpg" alt=""></div>
 											</a>
-
-											<div class="listing-content">
+											<!-- 파티원 리스트 출력 시작 -->
+											<div class="listing-content" th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
 
 												<div class="listing-title">
-													<h4><a href="single-property-page-1.html">파티원 1 이름</a></h4>
-													<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-														class="listing-address popup-gmaps">
-													</a>
-
+													<h4 th:text="${list.xMemberName}">파티원 1 이름</h4>
 												</div>
 
 												<ul class="listing-details">
-													<li>티어 <span>다이아</span></li>
-													<li>승률 <span>ㅁㄴ%</span></li>
-													<li>평균 kda <span>2</span></li>
-													<li>평균 딜량 <span>1</span></li>
+													<li>티어 :<span th:if="${list.xMemberTierCd != null}" th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
+															<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지 않았습니다.</span>
+													</li>
+													
+													<li>승률 :<span th:if="${list.xMemberVictoryRate != null}" th:text="${list.xMemberVictoryRate}">다이아</span>
+															<span th:unless="${list.xMemberVictoryRate != null}">사용자가 티어를 등록하지 않았습니다.</span>
+													</li>
+
+													<li>평균 kda :<span th:if="${list.xMemberKDA != null}" th:text="${list.xMemberKDA}">다이아</span>
+																<span th:unless="${list.xMemberKDA != null}">사용자가 티어를 등록하지 않았습니다.</span>
+													</li>
 												</ul>
 
 												<div class="listing-footer">
-													<a href="#"><i class="fa fa-user"></i> 작성자 인게임 닉네임</a>
-													<span><i class="fa fa-calendar-o"></i> 작성일</span>
+													파티 가입일  <i class="fa fa-calendar-o">&nbsp;&nbsp;<span th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
 												</div>
 
 											</div>
@@ -153,7 +144,7 @@
 								</div>
 
 							</div>
-						</div> -->
+						</div>
 
 					</div>
 				</div>

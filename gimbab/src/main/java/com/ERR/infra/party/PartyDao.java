@@ -30,7 +30,7 @@ public interface PartyDao {
 
 	// 개수 리턴 - 나의파티 목록 개수
 	public Integer selectCountProfileMyPartys(PartyVo vo);
-	
+
 	// 개수 리턴 - 허가신청할 목록 개수
 	public Integer selectCountProfilePermit(PartyVo vo);
 
@@ -51,5 +51,8 @@ public interface PartyDao {
 
 	// 파티 디테일 불러오기
 	public PartyDto selectOneDetail(PartyDto dto);
+
+	// 파티 멤버 불러오기
+	public List<PartyDto> selectPartyMember(String partySeq);
 
 }

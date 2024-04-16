@@ -11,7 +11,7 @@ public class PartyDto {
 	private Date partyRegDate;
 	private Date partyModDate;
 
-	private String xMemberSeq;
+	private String xMasterSeqF;
 	private String xMemberName;
 	private String xPartySeqF;
 	private String xMemberSeqF;
@@ -20,6 +20,7 @@ public class PartyDto {
 	private Integer xMemberTierCd;
 	private Integer xMemberVictoryRate;
 	private double xMemberKDA;
+	private Date xPartyJoinDate;
 
 	public String getPartySeq() {
 		return partySeq;
@@ -75,6 +76,14 @@ public class PartyDto {
 
 	public void setPartyModDate(Date partyModDate) {
 		this.partyModDate = partyModDate;
+	}
+
+	public String getxMasterSeqF() {
+		return xMasterSeqF;
+	}
+
+	public void setxMasterSeqF(String xMasterSeqF) {
+		this.xMasterSeqF = xMasterSeqF;
 	}
 
 	public String getxMemberName() {
@@ -141,12 +150,12 @@ public class PartyDto {
 		this.xMemberKDA = xMemberKDA;
 	}
 
-	public String getxMemberSeq() {
-		return xMemberSeq;
+	public Date getxPartyJoinDate() {
+		return xPartyJoinDate;
 	}
 
-	public void setxMemberSeq(String xMemberSeq) {
-		this.xMemberSeq = xMemberSeq;
+	public void setxPartyJoinDate(Date xPartyJoinDate) {
+		this.xPartyJoinDate = xPartyJoinDate;
 	}
 
 }

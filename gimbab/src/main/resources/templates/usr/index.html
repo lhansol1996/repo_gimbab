@@ -139,19 +139,17 @@
 						<table class="basic-table">
 
 							<tr>
+								<th>유저Num</th>
 								<th>닉네임</th>
-								<th>티어</th>
-								<th>RP</th>
-								<th>평균 순위</th>
-								<th>모스트 실험체</th>
+								<th>MMR</th>
+								<th>RANkING</th>
 							</tr>
 
-							<tr>
-								<td>Item</td>
-								<td>Description</td>
-								<td>Description</td>
-								<td>Description</td>
-								<td>Description</td>
+							<tr th:each="topRanks : ${topRanks}">
+								<td th:text="${topRanks.userNum}">Item</td>
+								<td th:text="${topRanks.nickname}">Description</td>
+								<td th:text="${topRanks.mmr}">Description</td>
+								<td th:text="${topRanks.rank}">Description</td>
 							</tr>
 
 

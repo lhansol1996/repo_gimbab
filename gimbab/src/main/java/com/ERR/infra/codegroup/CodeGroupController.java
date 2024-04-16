@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+import com.ERR.common.util.UtilSetSearch;
 
 @Controller
 public class CodeGroupController extends BaseController{
@@ -20,18 +21,11 @@ public class CodeGroupController extends BaseController{
 //	CodeGroupService codeGroupService;
 	
 	
-	public void setSearch(CodeGroupVo vo) throws Exception {
-		vo.setVoDateStart(vo.getVoDateStart() == null
-		    ? UtilDateTime.calculateDayReplace00TimeString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL)
-		    : UtilDateTime.add00TimeString(vo.getVoDateStart()));
-		vo.setVoDateEnd(vo.getVoDateEnd() == null
-		    ? UtilDateTime.nowString()
-		    : UtilDateTime.addNowTimeString(vo.getVoDateEnd()));		
-	}
+
 	
 	@RequestMapping(value="/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo")CodeGroupVo vo, Model model) throws Exception {
-		setSearch(vo);
+		UtilSetSearch.setSearch(vo);
 
 		
 		vo.setParamsPaging(service.selectCount(vo));
@@ -61,9 +55,6 @@ public class CodeGroupController extends BaseController{
 	@RequestMapping(value="/codeGroupDView")
 	public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
 	
-		System.out.println("받아온 객체 ================");
-		System.out.println(dto.toString());
-		
 		model.addAttribute("item",service.selectOne(dto));
 		
 		return  XdmCdgCommomPath + "codeGroupDView";

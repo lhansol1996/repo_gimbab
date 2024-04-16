@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+import com.ERR.common.util.UtilSetSearch;
 import com.ERR.infra.codegroup.CodeGroupService;
 
 @Controller
@@ -21,17 +22,10 @@ public class CodeController extends BaseController {
 	@Autowired
 	CodeGroupService codeGroupService;
 
-	public void setSearch(CodeVo vo) throws Exception {
-		vo.setVoDateStart(vo.getVoDateStart() == null
-				? UtilDateTime.calculateDayReplace00TimeString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL)
-				: UtilDateTime.add00TimeString(vo.getVoDateStart()));
-		vo.setVoDateEnd(vo.getVoDateEnd() == null ? UtilDateTime.nowString()
-				: UtilDateTime.addNowTimeString(vo.getVoDateEnd()));
-	}
 
 	@RequestMapping(value = "/codeXdmList")
 	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
-		setSearch(vo);
+		UtilSetSearch.setSearch(vo);
 
 		vo.setParamsPaging(codeService.selectCount(vo));
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+import com.ERR.common.util.UtilSetSearch;
 
 @Controller
 public class CharacterController extends BaseController {
@@ -20,19 +21,11 @@ public class CharacterController extends BaseController {
 	@Autowired
 	CharacterService characterService;
 
-	public void setSearch(CharacterVo vo) throws Exception {
-
-		vo.setVoDateStart(vo.getVoDateStart() == null
-				? UtilDateTime.calculateDayReplace00TimeString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL)
-				: UtilDateTime.add00TimeString(vo.getVoDateStart()));
-		vo.setVoDateEnd(vo.getVoDateEnd() == null ? UtilDateTime.nowString()
-				: UtilDateTime.addNowTimeString(vo.getVoDateEnd()));
-	}
-
+	
 	@RequestMapping(value = "/characterXdmList")
 	public String characterXdmList(@ModelAttribute("vo") CharacterVo vo, Model model) throws Exception {
 
-		setSearch(vo);
+		UtilSetSearch.setSearch(vo);
 		vo.setParamsPaging(characterService.selectCount(vo));
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", characterService.selectListWithPaging(vo));

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilDateTime;
+import com.ERR.common.util.UtilSetSearch;
 import com.ERR.infra.code.CodeService;
 import com.ERR.infra.memberParty.MemberPartyDto;
 
@@ -24,17 +25,10 @@ public class PartyController extends BaseController {
 	@Autowired
 	CodeService codeService;
 
-	public void setSearch(PartyVo vo) throws Exception {
-		vo.setVoDateStart(vo.getVoDateStart() == null
-				? UtilDateTime.calculateDayReplace00TimeString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL)
-				: UtilDateTime.add00TimeString(vo.getVoDateStart()));
-		vo.setVoDateEnd(vo.getVoDateEnd() == null ? UtilDateTime.nowString()
-				: UtilDateTime.addNowTimeString(vo.getVoDateEnd()));
-	}
 
 	@RequestMapping(value = "/partyXdmList")
 	public String partyXdmList(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
-		setSearch(vo);
+		UtilSetSearch.setSearch(vo);
 
 		vo.setParamsPaging(partyservice.selectCount(vo));
 
@@ -107,7 +101,7 @@ public class PartyController extends BaseController {
 
 	@RequestMapping(value = "/userPartySearchList")
 	public String userPartySearchList(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
-		setSearch(vo);
+		UtilSetSearch.setSearch(vo);
 		vo.setParamsPaging(partyservice.selectCount(vo));
 
 		if (vo.getTotalRows() > 0) {
@@ -118,10 +112,10 @@ public class PartyController extends BaseController {
 	}
 
 	@RequestMapping(value = "/userPartyDetail")
-	public String userPartyDetail(PartyDto dto, Model model, Model model2) throws Exception {
+	public String userPartyDetail(PartyDto dto, Model model) throws Exception {
 
 		model.addAttribute("item", partyservice.selectOneDetail(dto));
-		model2.addAttribute("list", partyservice.selectPartyMember(dto.getPartySeq()));
+		model.addAttribute("list", partyservice.selectPartyMember(dto.getPartySeq()));
 
 		return UsrPartyCommonPath + "userPartyDetail";
 	}

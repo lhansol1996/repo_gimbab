@@ -27,13 +27,11 @@
 								<h2>ERR 전적 검색</h2>
 
 								<!-- Main Search -->
-								<form class="main-search-form">
-
+								<form id="mainSearch" name="mainSearch" method="get" autocomplete="off" class="main-search-form">
 									<!-- Type -->
 									<div class="search-type">
 										<label class="active"><input class="first-tab" name="tab" checked="checked"
-												type="radio">정규 시즌 3</label> <label><input name="tab" type="radio">정규 시즌
-											2</label> <label><input name="tab" type="radio">정규 시즌 1</label>
+												type="radio">정규 시즌</label>
 										<div class="search-type-arrow"></div>
 									</div>
 
@@ -43,13 +41,12 @@
 
 										<!-- Main Search Input -->
 										<div class="main-search-input larger-input">
-											<input type="text" class="ico-01" id="autocomplete-input"
+											<input type="text" class="ico-01" id="nickName" name="nickName"
 												placeholder="닉네임 검색" value="" />
-											<button class="button">Search</button>
+											<button type="button" class="button" id="searchMainBtn">Search</button>
 										</div>
 									</div>
 									<!-- Box / End -->
-
 								</form>
 								<!-- Main Search -->
 
@@ -129,7 +126,7 @@
 		<section class="fullwidth margin-top-105" data-background-color="#f7f7f7">
 
 			<!-- Box Headline -->
-			<h3 class="headline-box">실시간 in 1000</h3>
+			<h3 class="headline-box">실시간 in 10</h3>
 
 			<!-- Content -->
 			<div class="container">
@@ -191,6 +188,24 @@
 
 	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
+	<script>
+	let formMain = document.querySelector("form[name=mainSearch]");
+	let goUrlRecord = "/record";
+	let searchMainInput = document.getElementById("nickName").value;
+
+			document.getElementById("searchMainBtn").onclick = function () {
+				alert("버튼클릭됨");
+				alert("값 들어옴")
+				goFormMain(searchMainInput);
+			}
+
+			goFormMain = function () {
+				alert("goFormMain 시작");
+				formMain.action = goUrlRecord;
+				formMain.submit();
+			}
+
+	</script>
 
 </body>
 

@@ -21,7 +21,7 @@
 		<script>
 	// 로그아웃 버튼 - xdm
 	document.getElementById("btnXdmLogout").onclick = function () {
-			alert('111----xdm--------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
+			alert('로그아웃 시작');
 			$.ajax({
 				async: true
 				, cache: false
@@ -77,6 +77,7 @@
 		let formTop = document.querySelector("form[name=formTop]");
 		let goUrlCharacterDetail = "/characterDetail";
 		let searchInput = document.getElementById("XtopBarSearchInputValue").value;
+		let searchInput2 = document.getElementById("XtopBarSearchInputValue2").value;
 
 		document.getElementById("searchTopBtn").onclick = function () {
 			alert("버튼클릭됨");
@@ -96,9 +97,27 @@
 			}
 		}
 
+		document.getElementById("searchTopBtn2").onclick = function () {
+			alert("버튼클릭됨");
+			alert("값 들어옴")
+			goFormTop(searchInput2);
+		}
+
+		goFormTop2 = function () {
+			alert("goformTop2 시작");
+			formTop2.action = goUrlCharacterDetail;
+			formTop2.submit();
+		}
+
+		function enterkeyTop(event) {
+			if (event.key === 'Enter') {
+				goFormTop2(searchInput);
+			}
+		}
+
 		// 로그아웃 버튼 - usr
 		document.getElementById("btnLogout").onclick = function () {
-				alert('111-------usr------ㄴㄴㄴㄴㄴㄴㄴㄴ-----');
+				alert('로그아웃');
 				$.ajax({
 					async: true
 					, cache: false

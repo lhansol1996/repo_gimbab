@@ -59,26 +59,6 @@
 			border-bottom-right-radius: 4px;
 		}
 
-		.css-1149s7j {
-			width: 128px;
-			flex-wrap: wrap;
-			gap: 4px;
-			row-gap: 4px;
-			column-gap: 4px;
-			-webkit-box-pack: center;
-			justify-content: center;
-		}
-
-		.css-1149s7j>li>img.item {
-			width: 40px;
-			height: 35px;
-			padding: 5px;
-			
-		}
-		#itemName{
-			font-size: 11px;
-		}
-
 		menu,
 		ol,
 		ul {
@@ -192,92 +172,68 @@
 					<table class="manage-table responsive-table">
 
 						<tr>
-							<th> 캐릭터 정보</th>
-							<th> mmr 변동</th>
-							<th >아이템</th>
-							<th>정보</th>
+							<th>캐릭터 정보</th>
+							<th>RP,MMR 변동</th>
+							<th>게임 내 정보</th>
+							<th>KDA 정보</th>
 						</tr>
 
 
 
 						<!-- Item #2 -->
-						<tr>
+						<tr th:if="${!#lists.isEmpty(userGamesList)}" th:each="userGamesList:${userGamesList}">
 							<td class="title-container">
 								<img src="xdm/assets/images/listing-01.jpg" alt="">
 								<div class="title">
-									<h4><a href="#">캐릭터이름</a></h4>
-									<span>무기군</span>
-									<span class="table-property-price">게임 id</span>
+									<span>캐릭터<span class="table-property-price" th:text="${@codeService.selectOneCachedCode(userGamesList.characterNum)}"></span></span>
+									<span>게임ID<span class="table-property-price" th:text="${userGamesList.gameId}">게임 id</span></span>
 
 								</div>
 							</td>
-							<td class="expire-date">휙득 rp</td>
+							<td class="expire-date" style="text-align: center;">
+								<ul>
+									<li>
+										<span>획득 전: </span><span th:text="${userGamesList.mmrBefore}"></span>
+									</li>
+									<li>
+										<span>획득 후: </span><span th:text="${userGamesList.mmrAfter}"></span>
+									</li>
+									<li>
+										<span>획득 RP: </span><span th:text="${userGamesList.mmrGain}"></span>
+									</li>
+								</ul>
+							</td>
 
 							<td class="flex-wrap">
-								<ul class="css-1149s7j">
+								<ul>
 									<li>
-										<img class="item"
-											src="//cdn.dak.gg/assets/er/game-assets/1.16.0/ItemIcon_116503.png"
-											alt="하이 눈">
-										<span id="itemName">하이 눈</span>
+										<span>평균 MMR: </span><span th:text="${userGamesList.mmrAvg}"></span>
 									</li>
 									<li>
-										<img class="item"
-											src="//cdn.dak.gg/assets/er/game-assets/1.16.0/ItemIcon_202502.png"
-											alt="퀸 오브 하트">
-										<span id="itemName" style="font-size: 12px;">퀸 오브 하트</span>
+										<span>매치 사이즈: </span><span th:text="${userGamesList.matchSize}"></span>
 									</li>
-
 									<li>
-										<img class="item"
-											src="//cdn.dak.gg/assets/er/game-assets/1.16.0/ItemIcon_201503.png"
-											alt="페르소나">
-										<span id="itemName">페르소나</span>
+										<span>팀 번호: </span><span th:text="${userGamesList.teamNumber}"></span>
 									</li>
-											
 									<li>
-										<img class="item"
-											src="//cdn.dak.gg/assets/er/game-assets/1.16.0/ItemIcon_203512.png"
-											alt="아흐라만의 손길">
-										<span id="itemName">아흐라만의 손길</span>
-									</li>
-											
-									<li>
-										<img class="item"
-											src="//cdn.dak.gg/assets/er/game-assets/1.16.0/ItemIcon_204410.png"
-											alt="글레이셜 슈즈">
-										<span id="itemName">글레이셜 슈즈</span>
+										<span>팀 등수: </span><span th:text="${userGamesList.gameRank}"></span>
 									</li>
 								</ul>
 							</td>
 							<td class="action">
-								<a href="#"><i class="im im-icon-Knife"></i> 딜량</a>
-								<a href="#"><i class="fa fa-child"></i> 평점(kda)</a>
-								<a href="#" class="delete"><i class="fa fa-group"></i>TK</a>
+								<ul>
+									<li>
+									<i class="im im-icon-Gun"></i>&nbsp;&nbsp;킬 수 :<span th:text="${userGamesList.playerKill}"></span>
+									</li>
+									<li>
+										<i class="im im-icon-Skull"></i>&nbsp;&nbsp;데스 수 :<span th:text="${userGamesList.playerDeaths}"></span>
+									</li>
+									<li>
+										<i class="im im-icon-Aerobics-3"></i>&nbsp;&nbsp;어시스트 수 :<span th:text="${userGamesList.playerAssistant}"></span>
+									</li>
+								</ul>
 							</td>
 						</tr>
-
-						<!-- Item #3 -->
-						<tr>
-							<td class="title-container">
-								<img src="images/listing-04.jpg" alt="">
-								<div class="title">
-									<h4><a href="#">Selway Apartments</a></h4>
-									<span>33 William St. Northbrook, IL </span>
-									<span class="table-property-price">$420,000</span>
-								</div>
-							</td>
-							<td class="expire-date">December 04, 2016</td>
-							<td class="">아이템</td>
-							<td class="action">
-								<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-								<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-								<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-							</td>
-						</tr>
-
-
-
 					</table>
 				</div>
 
@@ -289,96 +245,11 @@
 ================================================== -->
 		<div class="margin-top-55"></div>
 
-		<div id="footer" class="sticky-footer">
-			<!-- Main -->
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-6">
-						<img class="footer-logo" src="images/logo.png" alt="">
-						<br><br>
-						<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros.
-							Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-					</div>
-
-					<div class="col-md-4 col-sm-6 ">
-						<h4>Helpful Links</h4>
-						<ul class="footer-links">
-							<li><a href="#">Login</a></li>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Add Property</a></li>
-							<li><a href="#">Pricing</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-
-						<ul class="footer-links">
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">Our Agents</a></li>
-							<li><a href="#">How It Works</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-
-					<div class="col-md-3  col-sm-12">
-						<h4>Contact Us</h4>
-						<div class="text-widget">
-							<span>12345 Little Lonsdale St, Melbourne</span> <br>
-							Phone: <span>(123) 123-456 </span><br>
-							E-Mail:<span> <a href="#">office@example.com</a> </span><br>
-						</div>
-
-						<ul class="social-icons margin-top-20">
-							<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-							<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-							<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-							<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-						</ul>
-
-					</div>
-
-				</div>
-
-				<!-- Copyright -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-		<!-- Footer / End -->
-
-
-		<!-- Back To Top Button -->
-		<div id="backtotop"><a href="#"></a></div>
-
-
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+		
 		<!-- Scripts
 ================================================== -->
-		<script type="text/javascript" src="/usr/assets/scripts/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/jquery-migrate-3.3.2.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/chosen.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/magnific-popup.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/rangeSlider.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/sticky-kit.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/slick.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/masonry.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/mmenu.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/tooltips.min.js"></script>
-		<script type="text/javascript" src="/usr/assets/scripts/custom.js"></script>
-
-
-
-
-
-	</div>
-	<!-- Wrapper / End -->
-
+<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 </body>
 

@@ -86,13 +86,13 @@
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2>[닉네임]의 전적</h2>
+						<h2>[[${userNameItem}]]의 전적</h2>
 
 						<!-- Breadcrumbs -->
 						<nav id="breadcrumbs">
 							<ul>
 								<li><a href="#">Home</a></li>
-								<li>My Properties</li>
+								<li>전적검색</li>
 							</ul>
 						</nav>
 
@@ -111,55 +111,53 @@
 				<!-- 유저 간략 정보 사이드바 -->
 				<div class="col-md-4">
 					<div class="sidebar left">
-						<section class="usersection-css">
+						<section class="usersection-css" th:if="${!#lists.isEmpty(getUserStatItem)}" th:each="getUserStatItem:${getUserStatItem}">
 							<header>
 								<h2 class="p-5 mt-3 text-center">랭크</h2>
 							</header>
 							<div class="usertierimage-css"><img src="//cdn.dak.gg/assets/er/images/rank/round/6.png"
 									alt="다이아몬드">
 								<div>
-									<b class="rp">5337<span>RP</span></b>
-									<div class="tier">다이아몬드 3 - 187 RP</div>
-									<div class="rank">939위 (상위 2.35%)</div>
-									<div class="local-rank">Asia 845위 (상위 2.35%)</div>
+									<b class="rp" th:text="${getUserStatItem.mmr} + 'RP'">5337</b>
+									<div class="rank" th:text="${getUserStatItem.rank} + '위'"></div>
 								</div>
 							</div>
 							<div class="css-uxuu7z">
 								<div class="css-1se3mx8">
-									<h4>평균 TK</h4>
-									<div class="value">7.24</div>
+									<h4>상위 %</h4>
+									<div class="value" th:text="${getUserStatItem.rankPercent} + '%'">7.24</div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>승률</h4>
-									<div class="value">18.2%</div>
+									<div class="value"  th:text="${getUserStatItem.top1 * 100} + '%'"></div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>게임 수</h4>
-									<div class="value">33</div>
+									<div class="value" th:text="${getUserStatItem.totalGames}"></div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>평균 킬</h4>
-									<div class="value">2.45</div>
+									<div class="value" th:text="${getUserStatItem.averageKills}"></div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>TOP 2</h4>
-									<div class="value">24.2%</div>
+									<div class="value" th:text="${getUserStatItem.top2 * 100} + '%'"></div>
 								</div>
 								<div class="css-1se3mx8">
-									<h4>평균 딜량</h4>
-									<div class="value">12,222</div>
+									<h4>평균 사냥</h4>
+									<div class="value" th:text="${getUserStatItem.averageHunts} + '마리'"></div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>평균 어시</h4>
-									<div class="value">3.9</div>
+									<div class="value" th:text="${getUserStatItem.averageAssistants}">3.9</div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>TOP 3</h4>
-									<div class="value">36.4%</div>
+									<div class="value" th:text="${getUserStatItem.top3 * 100} + '%'"></div>
 								</div>
 								<div class="css-1se3mx8">
 									<h4>평균 순위</h4>
-									<div class="value">#4.2</div>
+									<div class="value" th:text="${getUserStatItem.averageRank}">3.9</div>
 								</div>
 							</div>
 						</section>

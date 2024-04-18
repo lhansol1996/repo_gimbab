@@ -35,6 +35,8 @@ public class RecordController extends BaseController {
 		System.out.println(getUserMap);
 		Map<String, Object> getUserNumMap = (Map<String, Object>) getUserMap.get("user");
 		String userNum = String.valueOf(getUserNumMap.get("userNum"));
+		String userName = String.valueOf(getUserNumMap.get("nickname"));
+		model.addAttribute("userNameItem", userName);
 
 		// 받은 userNum 으로 전적 호출 API
 		String getUserRecordUrl = "https://open-api.bser.io/v1/user/games/" + userNum;
@@ -47,8 +49,19 @@ public class RecordController extends BaseController {
 
 		model.addAttribute("userGamesList", userGamesList);
 
+		// 받은 userNum으로 해당 유저 상세 정보 호출 API
+		String getUserStatUrl = "https://open-api.bser.io/v1/user/stats/" + userNum + "/23";
+		UtilApi.callERApi(getUserStatUrl);
+		StringBuilder stringBuilder3 = UtilApi.callERApi(getUserStatUrl);
+		// objectMapper 생성
+		ObjectMapper objectMapper3 = new ObjectMapper();
+		Map<String, Object> getUserStat = objectMapper3.readValue(stringBuilder3.toString(), Map.class);
+		List<Map<String, Object>> getUserStatItem = (List<Map<String, Object>>) getUserStat.get("userStats");
+		System.out.println(getUserStatItem);
+
+		model.addAttribute("getUserStatItem", getUserStatItem);
+
 		return UsrCommonPath + "record";
 	}
 
-	
 }

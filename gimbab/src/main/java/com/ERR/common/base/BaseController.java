@@ -11,7 +11,7 @@ import com.ERR.common.util.UtilDateTime;
 public class BaseController {
 	
 	public BaseController() {
-        // 실행되는 주체를 확인하기 위해서 클래스 이름을 콘솔에 출력.
+        // 실행되는 주체를 확인하기 위해서 클래스 이름을 콘솔에 출력. 
     	String className = this.getClass().getName();
     	System.out.println(className);
     }

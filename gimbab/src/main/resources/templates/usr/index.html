@@ -25,9 +25,10 @@
 							<!-- Main Search Container -->
 							<div class="main-search-container">
 								<h2>ERR 전적 검색</h2>
-
+								<h5>본 시ㅗㅓㅎ.ㅏ호/.ㅏㅓㅗ. 어디 서비스의 api 를 갖고와서 무슨 시스템인지 서술</h5>
 								<!-- Main Search -->
-								<form id="mainSearch" name="mainSearch" method="get" autocomplete="off" class="main-search-form">
+								<form id="mainSearch" name="mainSearch" method="get" autocomplete="off"
+									class="main-search-form">
 									<!-- Type -->
 									<div class="search-type">
 										<label class="active"><input class="first-tab" name="tab" checked="checked"
@@ -42,7 +43,7 @@
 										<!-- Main Search Input -->
 										<div class="main-search-input larger-input">
 											<input type="text" class="ico-01" id="nickName" name="nickName"
-												placeholder="닉네임 검색" value="" />
+												placeholder="닉네임 검색" value="" onkeypress="enterkeyMain(event)" />
 											<button type="button" class="button" id="searchMainBtn">Search</button>
 										</div>
 									</div>
@@ -74,38 +75,50 @@
 				</div>
 
 				<!-- Carousel -->
-				<div class="col-md-12" >
-					<div class="carousel"  >
+				<div class="col-md-12">
+					<div class="carousel">
 
-						<div class="carousel-item" th:if="${!#lists.isEmpty(partyRecentList)}" th:each="partyRecentList:${partyRecentList}">
-							<div class="listing-item" >
-								
-								<a th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}" href="#" class="listing-img-container">
+						<div class="carousel-item" th:if="${!#lists.isEmpty(partyRecentList)}"
+							th:each="partyRecentList:${partyRecentList}">
+							<div class="listing-item">
+
+								<a th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}" href="#"
+									class="listing-img-container">
 
 									<img src="xdm/assets/images/listing-01.jpg" alt="">
-									
+
 								</a>
 
 								<div class="listing-content">
 
 									<div class="listing-title">
 										<h4>
-											<a href="single-property-page-1.html" th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}">[[${partyRecentList.partyName}]]</a>
+											<a href="single-property-page-1.html"
+												th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}">[[${partyRecentList.partyName}]]</a>
 										</h4>
-										<i class="fa fa-caret-right"></i><span th:if="${partyRecentList.xMemberTierCd != null}">파티장 티어 : [[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</span></a>
+										<i class="fa fa-caret-right"></i><span
+											th:if="${partyRecentList.xMemberTierCd != null}">파티장 티어 :
+											[[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</span></a>
 									</div>
 
 									<ul class="listing-features">
-										<li>파티장 승률 :<span th:if="${partyRecentList.xMemberVictoryRate != null}">[[${partyRecentList.xMemberVictoryRate}]] %</span>
+										<li>파티장 승률 :<span
+												th:if="${partyRecentList.xMemberVictoryRate != null}">[[${partyRecentList.xMemberVictoryRate}]]
+												%</span>
 											<span th:unless="${partyRecentList.xMemberVictoryRate != null}">등록안함</span>
 										</li>
-										<li>파티장 KDA :<span th:if="${partyRecentList.xMemberKDA != null}">[[${partyRecentList.xMemberKDA}]]</span></li>
-										<li>파티 타입 :<span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span></li>
+										<li>파티장 KDA :<span
+												th:if="${partyRecentList.xMemberKDA != null}">[[${partyRecentList.xMemberKDA}]]</span>
+										</li>
+										<li>파티 타입
+											:<span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span>
+										</li>
 									</ul>
 
 									<div class="listing-footer">
 										<a href="#"><i class="fa fa-user"></i> : [[${partyRecentList.xMemberName}]]</a>
-										<span><i class="fa fa-calendar-o"></i> : [[${#dates.format(partyRecentList.partyRegDate, 'yy.MM.dd')}]]</span>
+										<span><i class="fa fa-calendar-o"></i> :
+											[[${#dates.format(partyRecentList.partyRegDate, 'yy.MM.dd')}]]</span>
 									</div>
 
 								</div>
@@ -124,7 +137,9 @@
 
 		<!-- Fullwidth Section -->
 		<section class="fullwidth margin-top-105" data-background-color="#f7f7f7">
-
+			<form name="goRecordForm" id="goRecordForm" method="get">
+				<input type="hidden" name="nickName" id="nickNameTr" />
+			</form>
 			<!-- Box Headline -->
 			<h3 class="headline-box">실시간 in 10</h3>
 
@@ -136,21 +151,19 @@
 						<table class="basic-table">
 
 							<tr>
-								<th>유저Num</th>
+								<th>RANkING</th>
 								<th>닉네임</th>
 								<th>MMR</th>
-								<th>RANkING</th>
+								<th>유저Num</th>
 							</tr>
-
-							<tr th:each="topRanks : ${topRanks}">
-								<td th:text="${topRanks.userNum}">Item</td>
+							<tr th:each="topRanks : ${topRanks}" onclick="goRecord(this)">
+								<td th:text="${topRanks.rank}">Description</td>
 								<td th:text="${topRanks.nickname}">Description</td>
 								<td th:text="${topRanks.mmr}">Description</td>
-								<td th:text="${topRanks.rank}">Description</td>
+								<td th:text="${topRanks.userNum}">Item</td>
 							</tr>
-
-
 						</table>
+
 					</div>
 				</div>
 		</section>
@@ -189,21 +202,38 @@
 	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 	<script>
-	let formMain = document.querySelector("form[name=mainSearch]");
-	let goUrlRecord = "/record";
-	let searchMainInput = document.getElementById("nickName").value;
+		let formMain = document.querySelector("form[name=mainSearch]");
+		let formRecord = document.querySelector("form[name=goRecordForm]");
+		let goUrlRecord = "/record";
+		let searchMainInput = document.getElementById("nickName").value;
 
-			document.getElementById("searchMainBtn").onclick = function () {
-				alert("버튼클릭됨");
-				alert("값 들어옴")
+		document.getElementById("searchMainBtn").onclick = function () {
+			alert("버튼클릭됨");
+			goFormMain(searchMainInput);
+		}
+
+		goFormMain = function () {
+			alert("goFormMain 시작");
+			formMain.action = goUrlRecord;
+			formMain.submit();
+		}
+
+		function enterkeyMain(event) {
+			if (event.key === 'Enter') {
+				alert("엔터키 메인시작")
 				goFormMain(searchMainInput);
 			}
+		}
 
-			goFormMain = function () {
-				alert("goFormMain 시작");
-				formMain.action = goUrlRecord;
-				formMain.submit();
-			}
+		function goRecord(row) {
+			alert('gorecord 시작')
+			let nickName = row.cells[1].innerText; // 두 번째 셀의 텍스트(닉네임)를 가져옴
+			alert(nickName)
+			document.getElementById("nickNameTr").value = nickName;
+			formRecord.action = goUrlRecord;
+			formRecord.submit();
+		}
+
 
 	</script>
 

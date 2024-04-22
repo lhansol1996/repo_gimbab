@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+		<!-- Titlebar
+================================================== -->
+		<div id="titlebar" class="submit-page">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2><i class="fa fa-warning"></i>요청하신 작업을 완료할 수 없습니다.</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+		<div class="container">
+			<div class="row">
+
+				<!-- Submit Page -->
+				<div class="col-md-12">
+					<div class="submit-page">
+
+						<div class="notification notice large margin-bottom-55">
+							<h4>검색하실 인게임 닉네임을 확인해주세요</h4>
+							<p>존재하지 않는 닉네임을 검색하실 경우 전적 검색이 불가합니다.</p>
+						</div>
+
+						<div class="notification notice large margin-bottom-55">
+							<h4>검색하실 캐릭터 이름을 확인해주세요</h4>
+							<p>존재하지 않는 캐릭터 이름을 검색하실 경우 캐릭터 검색이 불가합니다.</p>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+			<!-- Footer
+================================================== -->
+			<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+
+
+			<!-- Scripts
+================================================== -->
+
+
+			<!-- DropZone | Documentation: http://dropzonejs.com -->
+			<script type="text/javascript" src="scripts/dropzone.js"></script>
+			<script>
+				$(".dropzone").dropzone({
+					dictDefaultMessage: "<i class='sl sl-icon-plus'></i> Click here or drop files to upload",
+				});
+			</script>
+
+
+
+
+
+		</div>
+		<!-- Wrapper / End -->
+
+		<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+</body>
+
+</html>
